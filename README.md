@@ -9,7 +9,7 @@ Para cadastrar médicos e pacientes, é necessário fornecer um endereço comple
 | --------------------- | ----------------------------- |
 | :sparkles: Nome       | JomedAPI                      |
 | :label: Tecnologias   | ASP.NET, .NET, C#, SQL Server |
-| :inbox_tray: Download | []()                          |
+| :inbox_tray: Download | [Download Zip][zipprojeto]    |
 
 ## Detalhes do projeto
 
@@ -467,6 +467,20 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 
 <br>
 
+## Imagens
+
+[swagger1]
+[swagger2]
+[schemas]
+[consultas]
+[medicos]
+[pacientes]
+[usuarios]
+[usuarios]
+[testes]
+
+
+## 
   <!-- Links -->
 
 [http200]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/200
@@ -474,3 +488,12 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 [http400]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/400
 [http403]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/403
 [http404]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/404
+
+[swagger1]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/swagger1.png
+[swagger2]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/swagger2.png
+[schemas]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/schemas.png
+[consultas]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/consultas.png
+[medicos]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/medicos.png
+[pacientes]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/pacientes.png
+[usuarios]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/usuarios.png
+[testes]: https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/testes.png
