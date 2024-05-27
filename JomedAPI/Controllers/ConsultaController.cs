@@ -67,6 +67,7 @@ public class ConsultaController : ControllerBase, IConsultaController
         return httpResponse;
     }
     [HttpDelete("{id}")]
+    [Authorize]
     public ObjectResult DeletarConsulta(int id, [FromBody] DeleteConsultaDto motivoCancelamento)
     {
         Consulta? consulta = _consultaRepository.BuscarConsultaPorId(id);

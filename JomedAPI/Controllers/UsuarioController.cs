@@ -2,6 +2,7 @@
 using JomedAPI.Data.DTO.Usuario;
 using JomedAPI.Data.Interfaces.Controllers;
 using JomedAPI.Data.Interfaces.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -36,6 +37,7 @@ namespace JomedAPI.Controllers
             return httpResponse;
         }
         [HttpDelete("{id}")]
+        [Authorize]
         public ObjectResult DeletarUsuario(int id)
         {
             Usuario? usuario = _usuarioRepository.BuscarUsuarioPorId(id);

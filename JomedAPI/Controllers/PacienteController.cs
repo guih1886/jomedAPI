@@ -3,6 +3,7 @@ using JomedAPI.Data.DTO.Enderecos;
 using JomedAPI.Data.DTO.Paciente;
 using JomedAPI.Data.Interfaces.Controllers;
 using JomedAPI.Data.Interfaces.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -19,7 +20,9 @@ namespace JomedAPI.Controllers
         {
             _pacienteRepository = pacienteController;
         }
+
         [HttpPost]
+        [Authorize]
         public ObjectResult CadastrarPaciente([FromBody] CreatePacienteDto pacienteDto)
         {
             Paciente paciente = _pacienteRepository.CadastrarPaciente(pacienteDto);
@@ -56,6 +59,7 @@ namespace JomedAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ObjectResult AtualizarPaciente(int id, UpdatePacienteDto pacienteDto)
         {
             Paciente? paciente = _pacienteRepository.BuscarPacientePorId(id);
@@ -90,6 +94,7 @@ namespace JomedAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public ObjectResult DeletarPaciente(int id)
         {
             Paciente? paciente = _pacienteRepository.BuscarPacientePorId(id);
@@ -110,6 +115,7 @@ namespace JomedAPI.Controllers
         }
 
         [HttpDelete("{id}/inativar")]
+        [Authorize]
         public ObjectResult InativarPaciente(int id)
         {
             Paciente? paciente = _pacienteRepository.BuscarPacientePorId(id);

@@ -11,7 +11,6 @@ namespace JomedAPI.Controllers;
 
 [ApiController]
 [Route("Medicos")]
-[Authorize]
 public class MedicoController : ControllerBase, IMedicoController
 {
     private ObjectResult httpResponse = new ObjectResult("");
@@ -23,6 +22,7 @@ public class MedicoController : ControllerBase, IMedicoController
     }
 
     [HttpPost]
+    [Authorize]
     public ObjectResult CadastrarMedico([FromBody] CreateMedicoDto medicoDto)
     {
         Medico medico = _medicoRepository.CadastrarMedico(medicoDto);
@@ -56,6 +56,7 @@ public class MedicoController : ControllerBase, IMedicoController
         return httpResponse;
     }
     [HttpPut("{id}")]
+    [Authorize]
     public ObjectResult AtualizarMedico(int id, UpdateMedicoDto medicoAlterado)
     {
         Medico? medico = _medicoRepository.BuscarMedicoPorId(id);
@@ -78,6 +79,7 @@ public class MedicoController : ControllerBase, IMedicoController
         return httpResponse;
     }
     [HttpPut("{id}/atualizarEndereco")]
+    [Authorize]
     public ObjectResult AtualizarEndereco(int id, UpdateEnderecoDto endereco)
     {
         Medico? medico = _medicoRepository.BuscarMedicoPorId(id);
@@ -94,6 +96,7 @@ public class MedicoController : ControllerBase, IMedicoController
         return httpResponse;
     }
     [HttpDelete("{id}")]
+    [Authorize]
     public ObjectResult DeletarMedico(int id)
     {
         Medico? medico = _medicoRepository.BuscarMedicoPorId(id);
@@ -113,6 +116,7 @@ public class MedicoController : ControllerBase, IMedicoController
         return httpResponse;
     }
     [HttpDelete("{id}/inativar")]
+    [Authorize]
     public ObjectResult InativarMedico(int id)
     {
         Medico? medico = _medicoRepository.BuscarMedicoPorId(id);
