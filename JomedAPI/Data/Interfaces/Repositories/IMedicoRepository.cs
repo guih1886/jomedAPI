@@ -8,9 +8,11 @@ public interface IMedicoRepository
 {
     Medico AtualizarMedico(Medico medico, UpdateMedicoDto medicoAlterado);
     Medico? BuscarMedicoPorId(int medicoId);
+    Medico? BuscarMedicoAtivoOuInativo(int medicoId);
     Medico CadastrarMedico(CreateMedicoDto medicoDto);
     List<Medico> ListarMedicos();
     bool DeletarMedico(Medico medico);
     bool InativarMedico(Medico medico);
     Medico AtualizarEndereco(Medico medico, UpdateEnderecoDto endereco);
+    Medico AtivarMedico(Medico medico);
 }

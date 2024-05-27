@@ -24,19 +24,20 @@ namespace JomedAPI.Data.Repositories
             _jomedContext.SaveChanges();
             return paciente;
         }
-
         public Paciente AtualizarPaciente(Paciente paciente, UpdatePacienteDto novoPaciente)
         {
             Paciente pacienteAlterado = _mapper.Map(novoPaciente, paciente);
             _jomedContext.SaveChanges();
             return pacienteAlterado;
         }
-
         public Paciente? BuscarPacientePorId(int id)
         {
             return _jomedContext.Pacientes.Where(p => p.Ativo == true).FirstOrDefault(p => p.Id == id);
         }
-
+        public Paciente? BuscarPacienteAtivoOuInativo(int id)
+        {
+            return _jomedContext.Pacientes.FirstOrDefault(p => p.Id == id);
+        }
         public Paciente CadastrarPaciente(CreatePacienteDto pacienteDto)
         {
             Paciente novoPaciente = _mapper.Map<Paciente>(pacienteDto);
@@ -45,7 +46,6 @@ namespace JomedAPI.Data.Repositories
             _jomedContext.SaveChanges();
             return novoPaciente;
         }
-
         public bool DeletarPaciente(Paciente paciente)
         {
             try
@@ -59,7 +59,6 @@ namespace JomedAPI.Data.Repositories
                 return false;
             }
         }
-
         public bool InativarPaciente(Paciente paciente)
         {
             try
@@ -73,7 +72,12 @@ namespace JomedAPI.Data.Repositories
                 return false;
             }
         }
-
+        public Paciente? AtivarPaciente(Paciente paciente)
+        {
+            paciente.Ativo = true;
+            _jomedContext.SaveChanges();
+            return paciente;
+        }
         public List<Paciente> ListarPacientes()
         {
             return _jomedContext.Pacientes.Where(p => p.Ativo == true).ToList();

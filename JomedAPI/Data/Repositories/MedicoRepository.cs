@@ -17,9 +17,14 @@ public class MedicoRepository : IMedicoRepository
         _jomedContext = jomedContext;
         _mapper = mapper;
     }
+
     public Medico? BuscarMedicoPorId(int medicoId)
     {
         return _jomedContext.Medicos.Where(m => m.Ativo == true).FirstOrDefault(m => m.Id == medicoId);
+    }
+    public Medico? BuscarMedicoAtivoOuInativo(int medicoId)
+    {
+        return _jomedContext.Medicos.FirstOrDefault(m => m.Id == medicoId);
     }
     public List<Medico> ListarMedicos()
     {
@@ -51,6 +56,12 @@ public class MedicoRepository : IMedicoRepository
         {
             return false;
         }
+    }
+    public Medico AtivarMedico(Medico medico)
+    {
+        medico.Ativo = true;
+        _jomedContext.SaveChanges();
+        return medico;
     }
     public bool InativarMedico(Medico medico)
     {

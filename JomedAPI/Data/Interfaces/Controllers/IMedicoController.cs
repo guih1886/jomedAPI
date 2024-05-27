@@ -13,4 +13,5 @@ public interface IMedicoController
     ObjectResult DeletarMedico(int id);
     ObjectResult InativarMedico(int id);
     ObjectResult AtualizarEndereco(int id, UpdateEnderecoDto endereco);
+    ObjectResult AtivarMedico(int id);
 }

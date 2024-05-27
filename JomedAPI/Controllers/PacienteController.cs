@@ -32,6 +32,30 @@ namespace JomedAPI.Controllers
             return httpResponse;
         }
 
+        [HttpPost("{id}/ativar")]
+        [Authorize]
+        public ObjectResult AtivarPaciente(int id)
+        {
+            Paciente? paciente = _pacienteRepository.BuscarPacienteAtivoOuInativo(id);
+            if (paciente == null)
+            {
+                httpResponse.StatusCode = 404;
+                httpResponse.Value = "Paciente não encontrado.";
+                return httpResponse;
+            }
+            if (paciente.Ativo == true)
+            {
+                httpResponse.StatusCode = 400;
+                httpResponse.Value = "Paciente já está ativo.";
+                return httpResponse;
+            }
+            Paciente? pacienteAtivo = _pacienteRepository.AtivarPaciente(paciente);
+            string json = JsonConvert.SerializeObject(pacienteAtivo);
+            httpResponse.StatusCode = 200;
+            httpResponse.Value = json;
+            return httpResponse;
+        }
+
         [HttpGet]
         public ObjectResult ListarPacientes()
         {

@@ -31,6 +31,29 @@ public class MedicoController : ControllerBase, IMedicoController
         httpResponse.Value = json;
         return httpResponse;
     }
+    [HttpPost("{id}/ativar")]
+    [Authorize]
+    public ObjectResult AtivarMedico(int id)
+    {
+        Medico? medico = _medicoRepository.BuscarMedicoAtivoOuInativo(id);
+        if (medico == null)
+        {
+            httpResponse.StatusCode = 404;
+            httpResponse.Value = "Médico não encontrado.";
+            return httpResponse;
+        }
+        if (medico.Ativo == true)
+        {
+            httpResponse.StatusCode = 400;
+            httpResponse.Value = "Médico já está ativo.";
+            return httpResponse;
+        }
+        Medico medicoAtivo = _medicoRepository.AtivarMedico(medico);
+        string json = JsonConvert.SerializeObject(medicoAtivo);
+        httpResponse.StatusCode = 200;
+        httpResponse.Value = json;
+        return httpResponse;
+    }
     [HttpGet]
     public ObjectResult ListarMedicos()
     {

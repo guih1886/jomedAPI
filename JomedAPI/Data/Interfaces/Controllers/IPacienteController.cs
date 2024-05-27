@@ -13,4 +13,5 @@ public interface IPacienteController
     ObjectResult AtualizarEndereco(int id, UpdateEnderecoDto endereco);
     ObjectResult DeletarPaciente(int id);
     ObjectResult InativarPaciente(int id);
+    ObjectResult AtivarPaciente(int id);
 }
