@@ -204,6 +204,44 @@ public class MedicoControllerTest
         Assert.Equal("Médico não encontrado.", resposta.Value);
         DeletarMedico(medico);
     }
+    [Fact]
+    public void AtivaMedicoCorretoTest()
+    {
+        //Arrange
+        ObjectResult criarResposta = CriarMedico();
+        Medico medico = JsonConvert.DeserializeObject<Medico>(criarResposta.Value!.ToString()!)!;
+        //Act
+        _ = _medicoController.InativarMedico(medico.Id);
+        ObjectResult resposta = _medicoController.AtivarMedico(medico.Id);
+        Medico medicoAtivo = JsonConvert.DeserializeObject<Medico>(resposta.Value!.ToString()!)!;
+        //Assert
+        Assert.Equal(200, resposta.StatusCode);
+        Assert.IsType<Medico>(medicoAtivo);
+        DeletarMedico(medico);
+    }
+    [Fact]
+    public void NaoAtivaMedicoJaAtivoTest()
+    {
+        //Arrange
+        ObjectResult criarResposta = CriarMedico();
+        Medico medico = JsonConvert.DeserializeObject<Medico>(criarResposta.Value!.ToString()!)!;
+        //Act
+        ObjectResult resposta = _medicoController.AtivarMedico(medico.Id);
+        //Assert
+        Assert.Equal(400, resposta.StatusCode);
+        Assert.Equal("Médico já está ativo.", resposta.Value);
+        DeletarMedico(medico);
+    }
+    [Fact]
+    public void NaoAtivaMedicoIncorretoTest()
+    {
+        //Arrange
+        //Act
+        ObjectResult resposta = _medicoController.AtivarMedico(0);
+        //Assert
+        Assert.Equal(404, resposta.StatusCode);
+        Assert.Equal("Médico não encontrado.", resposta.Value);
+    }
 
     private ObjectResult CriarMedico()
     {

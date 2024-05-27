@@ -12,12 +12,12 @@ namespace JomedAPITests.ControllerTest;
 
 public class PacienteControllerTest
 {
-    private IPacienteController _controller;
+    private IPacienteController _pacienteController;
     private ITestOutputHelper _output;
 
     public PacienteControllerTest(ITestOutputHelper output)
     {
-        _controller = new PacienteControllerServiceProvider().AdicionarServico();
+        _pacienteController = new PacienteControllerServiceProvider().AdicionarServico();
         _output = output;
     }
 
@@ -49,7 +49,7 @@ public class PacienteControllerTest
     {
         //Arrange
         //Act
-        ObjectResult resposta = _controller.ListarPacientes();
+        ObjectResult resposta = _pacienteController.ListarPacientes();
         List<Paciente> paciente = DeserializarObjeto<List<Paciente>>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
@@ -62,7 +62,7 @@ public class PacienteControllerTest
         ObjectResult respostaCriar = CriarPaciente();
         Paciente paciente = DeserializarObjeto<Paciente>(respostaCriar);
         //Act
-        ObjectResult resposta = _controller.BuscarPacientePorId(paciente.Id);
+        ObjectResult resposta = _pacienteController.BuscarPacientePorId(paciente.Id);
         Paciente pacienteBuscado = DeserializarObjeto<Paciente>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
@@ -74,7 +74,7 @@ public class PacienteControllerTest
     {
         //Arrange
         //Act
-        ObjectResult resposta = _controller.BuscarPacientePorId(0);
+        ObjectResult resposta = _pacienteController.BuscarPacientePorId(0);
         //Assert
         Assert.Equal(404, resposta.StatusCode);
         Assert.Equal("Paciente não encontrado.", resposta.Value);
@@ -89,7 +89,7 @@ public class PacienteControllerTest
         Paciente paciente = DeserializarObjeto<Paciente>(respostaPaciente);
 
         //Act
-        ObjectResult resposta = _controller.AtualizarPaciente(paciente.Id, pacienteAlterado);
+        ObjectResult resposta = _pacienteController.AtualizarPaciente(paciente.Id, pacienteAlterado);
         Paciente novoPaciente = DeserializarObjeto<Paciente>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
@@ -103,7 +103,7 @@ public class PacienteControllerTest
         //Arrange
         UpdatePacienteDto pacienteAlterado = new UpdatePacienteDto(nome: "Paciente Alterado", email: "novoEmail@exemple.com");
         //Act
-        ObjectResult resposta = _controller.AtualizarPaciente(0, pacienteAlterado);
+        ObjectResult resposta = _pacienteController.AtualizarPaciente(0, pacienteAlterado);
         //Assert
         Assert.Equal(404, resposta.StatusCode);
         Assert.Equal("Paciente não encontrado.", resposta.Value);
@@ -116,7 +116,7 @@ public class PacienteControllerTest
         Paciente pacienteCriado = DeserializarObjeto<Paciente>(respostaCriar);
         UpdateEnderecoDto novoEndereco = new UpdateEnderecoDto(cidade: "Vinhedo", uf: "MG");
         //Act
-        ObjectResult resposta = _controller.AtualizarEndereco(pacienteCriado.Id, novoEndereco);
+        ObjectResult resposta = _pacienteController.AtualizarEndereco(pacienteCriado.Id, novoEndereco);
         Paciente pacienteAtualizado = DeserializarObjeto<Paciente>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
@@ -140,7 +140,7 @@ public class PacienteControllerTest
         //Arrange
         //Act
         UpdateEnderecoDto novoEndereco = new UpdateEnderecoDto(logradouro: "Rua Alterado", cep: "1373265", uf: "MG");
-        var resposta = _controller.AtualizarEndereco(0, novoEndereco);
+        var resposta = _pacienteController.AtualizarEndereco(0, novoEndereco);
         //Assert
         Assert.Equal(404, resposta.StatusCode);
         Assert.Equal("Paciente não encontrado.", resposta.Value);
@@ -151,7 +151,7 @@ public class PacienteControllerTest
         //Arrange
         ObjectResult resposta = CriarPaciente();
         Paciente paciente = DeserializarObjeto<Paciente>(resposta);
-        ObjectResult respostaDeletar = _controller.DeletarPaciente(paciente.Id);
+        ObjectResult respostaDeletar = _pacienteController.DeletarPaciente(paciente.Id);
         //Act
         //Assert
         Assert.Equal(204, respostaDeletar.StatusCode);
@@ -161,7 +161,7 @@ public class PacienteControllerTest
     public void NaoDeletaPacienteIncorretoTest()
     {
         //Arrange
-        ObjectResult respostaDeletar = _controller.DeletarPaciente(0);
+        ObjectResult respostaDeletar = _pacienteController.DeletarPaciente(0);
         //Act
         //Assert
         Assert.Equal(404, respostaDeletar.StatusCode);
@@ -173,7 +173,7 @@ public class PacienteControllerTest
         //Arrange
         ObjectResult resposta = CriarPaciente();
         Paciente paciente = DeserializarObjeto<Paciente>(resposta);
-        ObjectResult respostaDeletar = _controller.InativarPaciente(paciente.Id);
+        ObjectResult respostaDeletar = _pacienteController.InativarPaciente(paciente.Id);
         //Act
         //Assert
         Assert.Equal(204, respostaDeletar.StatusCode);
@@ -182,11 +182,49 @@ public class PacienteControllerTest
     public void NaoInativaPacienteIncorretoTest()
     {
         //Arrange
-        ObjectResult respostaDeletar = _controller.InativarPaciente(0);
+        ObjectResult respostaDeletar = _pacienteController.InativarPaciente(0);
         //Act
         //Assert
         Assert.Equal(404, respostaDeletar.StatusCode);
         Assert.Equal("Paciente não encontrado.", respostaDeletar.Value);
+    }
+    [Fact]
+    public void AtivarPacienteCorretoTest()
+    {
+        //Arrange
+        ObjectResult criarPaciente = CriarPaciente();
+        Paciente paciente = DeserializarObjeto<Paciente>(criarPaciente);
+        //Act
+        _ = _pacienteController.InativarPaciente(paciente.Id);
+        ObjectResult resposta = _pacienteController.AtivarPaciente(paciente.Id);
+        Paciente pacienteAtivo = DeserializarObjeto<Paciente>(resposta);
+        //Assert
+        Assert.Equal(200, resposta.StatusCode);
+        Assert.IsType<Paciente>(pacienteAtivo);
+        DeletarPaciente(paciente.Id);
+    }
+    [Fact]
+    public void NaoAtivaPacienteJaAtivoTest()
+    {
+        //Arrange
+        ObjectResult criarPaciente = CriarPaciente();
+        Paciente paciente = DeserializarObjeto<Paciente>(criarPaciente);
+        //Act
+        ObjectResult resposta = _pacienteController.AtivarPaciente(paciente.Id);
+        //Assert
+        Assert.Equal(400, resposta.StatusCode);
+        Assert.Equal("Paciente já está ativo.", resposta.Value);
+        DeletarPaciente(paciente.Id);
+    }
+    [Fact]
+    public void NaoAtivaPacienteIncorretoTest()
+    {
+        //Arrange
+        //Act
+        ObjectResult resposta = _pacienteController.AtivarPaciente(0);
+        //Assert
+        Assert.Equal(404, resposta.StatusCode);
+        Assert.Equal("Paciente não encontrado.", resposta.Value);
     }
 
 
@@ -194,14 +232,14 @@ public class PacienteControllerTest
     {
         Endereco endereco = new Endereco("Endereco criado", "Com sucesso", "13000-000", "Para", "OS", 1, "Testes");
         CreatePacienteDto paciente = new CreatePacienteDto("José Silva", "jose@email.com", "12345678900", "1998245-6235", endereco);
-        ObjectResult resposta = _controller.CadastrarPaciente(paciente);
+        ObjectResult resposta = _pacienteController.CadastrarPaciente(paciente);
         Paciente pacientecriado = JsonConvert.DeserializeObject<Paciente>(resposta.Value!.ToString()!)!;
         _output.WriteLine($"Paciente {pacientecriado.Id} criado com sucesso.");
         return resposta;
     }
     private void DeletarPaciente(int id)
     {
-        _controller.DeletarPaciente(id);
+        _pacienteController.DeletarPaciente(id);
         _output.WriteLine($"Paciente {id} deletado com sucesso.");
     }
     private T DeserializarObjeto<T>(ObjectResult obj)
