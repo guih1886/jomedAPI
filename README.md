@@ -31,11 +31,9 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 - Criar as telas com windows forms para realizar as operações.
 - Implementar um app com Flutter para o consumo da API.
 
-<br>
-
 ## Configurando o projeto
 
-Faça um clone do repositório em seu diretório de preferencia, adicione o arquivo `appsettings.json` na raiz do projeto JomedAPI, você pode utilizar o modelo disponibilizado [Aqui][appsettings].
+Faça um clone do repositório em seu diretório de preferencia, adicione o arquivo `appsettings.json` na raiz do projeto JomedAPI, você pode utilizar o modelo disponibilizado [Aqui][appsettings].<br>
 Faça a alteração da chave do JWT, e a alteração da connection string do seu banco de dados SQL Server. Na raiz do projeto execute o comando `dotnet ef migrations add "Criando as migrações para o banco de dados."`, e depois `dotnet ef database update`.
 Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 
@@ -484,8 +482,7 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/usuarios.png)
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/testes.png)
 
-## 
-  <!-- Links -->
+<!-- Links -->
 
 [http200]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/200
 [http204]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/204
