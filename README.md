@@ -33,6 +33,12 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 
 <br>
 
+## Configurando o projeto
+
+Faça um clone do repositório em seu diretório de preferencia, adicione o arquivo `appsettings.json` na raiz do projeto JomedAPI, você pode utilizar o modelo disponibilizado [Aqui][appsettings].
+Faça a alteração da chave do JWT, e a alteração da connection string do seu banco de dados SQL Server. Na raiz do projeto execute o comando `dotnet ef migrations add "Criando as migrações para o banco de dados."`, e depois `dotnet ef database update`.
+Dessa forma o banco de dados estará atualizado para rodar a aplicação.
+
 ## Login
 
 - `POST /Login`: Essa rota recebe através do corpo da requisição um JSON com os dados de `login` e `senha` do usuário cadastrado no banco de dados.
@@ -478,12 +484,6 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/usuarios.png)
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/testes.png)
 
-<br>
-
-## Configurando o projeto
-
-
-
 ## 
   <!-- Links -->
 
@@ -492,3 +492,4 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 [http400]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/400
 [http403]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/403
 [http404]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/404
+[appsettings]: https://raw.githubusercontent.com/guih1886/jomedAPI/main/JomedAPI/Assets/appsettings.json
