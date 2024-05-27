@@ -23,7 +23,7 @@ namespace JomedAPITests.ControllerTest
             //Arrange
             //Act
             ObjectResult resposta = CriarUsuario();
-            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(resposta.Value!.ToString()!)!;
+            Usuario usuario = DeserializarObjeto<Usuario>(resposta);
             //Assert
             Assert.Equal(200, resposta.StatusCode);
             Assert.IsType<Usuario>(usuario);
@@ -46,7 +46,7 @@ namespace JomedAPITests.ControllerTest
 
             //Act
             ObjectResult user = CriarUsuario();
-            Usuario usuario = JsonConvert.DeserializeObject<Usuario>(user.Value!.ToString()!)!;
+            Usuario usuario = DeserializarObjeto<Usuario>(user);
             ObjectResult resposta = CriarUsuario();
             //Assert
             Assert.Equal(400, resposta.StatusCode);
@@ -77,6 +77,11 @@ namespace JomedAPITests.ControllerTest
             var validationContext = new ValidationContext(model, null, null);
             Validator.TryValidateObject(model, validationContext, validationResults, true);
             return validationResults;
+        }
+        private T DeserializarObjeto<T>(ObjectResult obj)
+        {
+            T resposta = JsonConvert.DeserializeObject<T>(obj.Value!.ToString()!)!;
+            return resposta;
         }
         private void DeletarUsuario(int id)
         {

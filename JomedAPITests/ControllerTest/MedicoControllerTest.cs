@@ -28,7 +28,7 @@ public class MedicoControllerTest
         //Arrange
         //Act
         ObjectResult resposta = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(resposta.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(resposta);
         //Asert
         Assert.Equal(200, resposta.StatusCode);
         Assert.IsType<Medico>(medico);
@@ -52,12 +52,12 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult medicoResult = CriarMedico();
-        Medico medicoCriado = JsonConvert.DeserializeObject<Medico>(medicoResult.Value!.ToString()!)!;
+        Medico medicoCriado = DeserializarObjeto<Medico>(medicoResult);
         UpdateEnderecoDto endereco = new UpdateEnderecoDto("Rua Alterada", "Bairro Alterado", "13000-000", "Campinas", "SP", 1, "");
         IList<ValidationResult> validaEndereco = ValidarModelo(endereco);
         //Act
         ObjectResult resposta = _medicoController.AtualizarEndereco(medicoCriado.Id, endereco);
-        Medico medico = JsonConvert.DeserializeObject<Medico>(resposta.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
         Assert.Equal("Rua Alterada", medico.Endereco.Logradouro);
@@ -92,7 +92,7 @@ public class MedicoControllerTest
         //Arrange
         //Act
         ObjectResult resposta = _medicoController.ListarMedicos();
-        List<Medico> medicos = JsonConvert.DeserializeObject<List<Medico>>(resposta.Value!.ToString()!)!;
+        List<Medico> medicos = DeserializarObjeto<List<Medico>>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
         Assert.IsType<List<Medico>>(medicos);
@@ -103,7 +103,7 @@ public class MedicoControllerTest
         //Arrange
         //Act
         ObjectResult resposta = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(resposta.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
         Assert.IsType<Medico>(medico);
@@ -124,11 +124,11 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult criarMedico = CriarMedico();
-        Medico medicoCriado = JsonConvert.DeserializeObject<Medico>(criarMedico.Value!.ToString()!)!;
+        Medico medicoCriado = DeserializarObjeto<Medico>(criarMedico);
         UpdateMedicoDto medicoAlterado = new UpdateMedicoDto(nome: "Medico Alterado", crm: "13265");
         //Act
         ObjectResult resposta = _medicoController.AtualizarMedico(medicoCriado.Id, medicoAlterado);
-        Medico medicoAlteradoMed = JsonConvert.DeserializeObject<Medico>(resposta.Value!.ToString()!)!;
+        Medico medicoAlteradoMed = DeserializarObjeto<Medico>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
         Assert.Equal("Medico Alterado", medicoAlteradoMed.Nome);
@@ -151,7 +151,7 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult respostaMedico = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(respostaMedico.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(respostaMedico);
         //Act
         ObjectResult resposta = _medicoController.DeletarMedico(medico.Id);
         //Assert
@@ -173,7 +173,7 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult respostaMedico = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(respostaMedico.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(respostaMedico);
         //Act
         ObjectResult resposta = _medicoController.InativarMedico(medico.Id);
         //Assert
@@ -195,7 +195,7 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult respostaMedico = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(respostaMedico.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(respostaMedico);
         //Act
         _medicoController.InativarMedico(medico.Id);
         ObjectResult resposta = _medicoController.InativarMedico(medico.Id);
@@ -209,11 +209,11 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult criarResposta = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(criarResposta.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(criarResposta);
         //Act
         _ = _medicoController.InativarMedico(medico.Id);
         ObjectResult resposta = _medicoController.AtivarMedico(medico.Id);
-        Medico medicoAtivo = JsonConvert.DeserializeObject<Medico>(resposta.Value!.ToString()!)!;
+        Medico medicoAtivo = DeserializarObjeto<Medico>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
         Assert.IsType<Medico>(medicoAtivo);
@@ -224,7 +224,7 @@ public class MedicoControllerTest
     {
         //Arrange
         ObjectResult criarResposta = CriarMedico();
-        Medico medico = JsonConvert.DeserializeObject<Medico>(criarResposta.Value!.ToString()!)!;
+        Medico medico = DeserializarObjeto<Medico>(criarResposta);
         //Act
         ObjectResult resposta = _medicoController.AtivarMedico(medico.Id);
         //Assert
@@ -257,6 +257,11 @@ public class MedicoControllerTest
     {
         _medicoController.DeletarMedico(medico.Id);
         _outputHelper.WriteLine($"Médico {medico.Id} deletado com sucesso.");
+    }
+    private T DeserializarObjeto<T>(ObjectResult obj)
+    {
+        T resposta = JsonConvert.DeserializeObject<T>(obj.Value!.ToString()!)!;
+        return resposta;
     }
     private IList<ValidationResult> ValidarModelo(object model)
     {

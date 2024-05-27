@@ -26,7 +26,7 @@ public class LoginControllerTest
     {
         //Assert
         ObjectResult usuario = CriarUsuario();
-        Usuario usuarioCriado = JsonConvert.DeserializeObject<Usuario>(usuario.Value!.ToString()!)!;
+        Usuario usuarioCriado = DeserializarObjeto<Usuario>(usuario);
         LoginDto loginDto = new LoginDto(usuarioCriado.Email, usuarioCriado.Senha);
         //Act
         ObjectResult resposta = _controller.Login(loginDto);
@@ -61,7 +61,7 @@ public class LoginControllerTest
     {
         //Assert
         ObjectResult usuario = CriarUsuario();
-        Usuario usuarioCriado = JsonConvert.DeserializeObject<Usuario>(usuario.Value!.ToString()!)!;
+        Usuario usuarioCriado = DeserializarObjeto<Usuario>(usuario);
         LoginDto loginDto = new LoginDto(usuarioCriado.Email, "d6e9af");
         //Act
         ObjectResult resposta = _controller.Login(loginDto);
@@ -83,6 +83,11 @@ public class LoginControllerTest
         var validationContext = new ValidationContext(model, null, null);
         Validator.TryValidateObject(model, validationContext, validationResults, true);
         return validationResults;
+    }
+    private T DeserializarObjeto<T>(ObjectResult obj)
+    {
+        T resposta = JsonConvert.DeserializeObject<T>(obj.Value!.ToString()!)!;
+        return resposta;
     }
     private void DeletarUsuario(int id)
     {
