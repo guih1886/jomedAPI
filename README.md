@@ -25,7 +25,7 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 ## Escalamento do projeto
 
 - Implementado os conceitos de repository, para a clareza do código, desenvolvimento guiado via testes (TDD). ✅
-- Implementado 46 testes para garantir a qualidade do código. ✅
+- Implementado 52 testes para garantir a qualidade do código. ✅
 - Implementar segurança de login, com o JWT. ✅
 - Implementar a ativação dos médicos e pacientes. ✅
 - Criar as telas com windows forms para realizar as operações.
