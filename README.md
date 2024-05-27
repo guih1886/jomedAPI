@@ -101,7 +101,7 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
   A resposta em caso de sucesso é um [HTTP 200][http200] com o JSON do médico criado. O dto de criação de médico possui uma série de validações dos dados, o qual não é criado caso esteja errado.
   No caso de erro, é retornado o [HTTP 400][http400] e a mensagem de erro de qual campo não foi validado.
 
--`POST /Medicos/{id}/ativar`: Essa rota tem a finalidade de ativar o cadastro um médico inativo com o `id` informado.
+- `POST /Medicos/{id}/ativar`: Essa rota tem a finalidade de ativar o cadastro um médico inativo com o `id` informado.
   Caso o médico com o `id` informado não for encontrado, retorna o [HTTP 404][http404] com a mensagem `Médico não encontrado.`.
   Caso o médico com o `id` informado já esteja ativo, retorna o [HTTP 400][http400] com a mensagem `Médico já está ativo.`.
   Se não, ativa o médico e retorna o [HTTP 200][http200] com os dados do médico ativado.
@@ -260,7 +260,7 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
   A resposta em caso de sucesso é um [HTTP 200][http200] com o JSON do paciente criado. O dto de criação de paciente possui uma série de validações dos dados, o qual não é criado caso esteja errado.
   No caso de erro, é retornado o [HTTP 400][http400] e a mensagem de erro de qual campo não foi validado.
 
--`POST /Pacientes/{id}/ativar`: Essa rota tem a finalidade de ativar o cadastro um paciente inativo com o `id` informado.
+- `POST /Pacientes/{id}/ativar`: Essa rota tem a finalidade de ativar o cadastro um paciente inativo com o `id` informado.
   Caso o paciente com o `id` informado não for encontrado, retorna o [HTTP 404][http404] com a mensagem `Paciente não encontrado.`.
   Caso o paciente com o `id` informado já esteja ativo, retorna o [HTTP 400][http400] com a mensagem `Paciente já está ativo.`.
   Se não, ativa o paciente e retorna o [HTTP 200][http200] com os dados do paciente ativado.
