@@ -13,8 +13,8 @@ Para cadastrar médicos e pacientes, é necessário fornecer um endereço comple
 
 ## Detalhes do projeto
 
-> - **Cadastrar, Alterar, Deletar e Listar médicos: Permite a criação, atualização, exclusão e listagem de médicos.**
-> - **Cadastrar, Alterar, Deletar e Listar pacientes: Permite a criação, atualização, exclusão e listagem de pacientes.**
+> - **Cadastrar, Alterar, Deletar, Inativar, Ativar e Listar médicos: Permite a criação, atualização, exclusão e listagem de médicos.**
+> - **Cadastrar, Alterar, Deletar, Inativar, Ativar e Listar pacientes: Permite a criação, atualização, exclusão e listagem de pacientes.**
 > - **Cadastrar e Deletar usuários: Permite a criação para a autenticação e deleção de usuários.**
 > - **Agendar uma consulta.**
 > - **Cancelar uma consulta.**
@@ -27,7 +27,7 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 - Implementado os conceitos de repository, para a clareza do código, desenvolvimento guiado via testes (TDD). ✅
 - Implementado 46 testes para garantir a qualidade do código. ✅
 - Implementar segurança de login, com o JWT. ✅
-- Implementar a ativação dos médicos e pacientes.
+- Implementar a ativação dos médicos e pacientes. ✅
 - Criar as telas com windows forms para realizar as operações.
 - Implementar um app com Flutter para o consumo da API.
 
@@ -73,8 +73,7 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
 
 ## Médicos
 
-- `POST /Medicos`: Essa rota tem a finalidade de cadastrar um médico e recebe através do corpo da requisição um JSON com
-  os dados: `nome`,`email`,`telefone`,`crm`,`especialidade` e `endereço`.
+- `POST /Medicos`: Essa rota tem a finalidade de cadastrar um médico e recebe através do corpo da requisição um JSON com os dados: `nome`,`email`,`telefone`,`crm`,`especialidade` e `endereço`.
 
   ```json
   {
@@ -101,6 +100,11 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
   e `complemento`.
   A resposta em caso de sucesso é um [HTTP 200][http200] com o JSON do médico criado. O dto de criação de médico possui uma série de validações dos dados, o qual não é criado caso esteja errado.
   No caso de erro, é retornado o [HTTP 400][http400] e a mensagem de erro de qual campo não foi validado.
+
+-`POST /Medicos/{id}/ativar`: Essa rota tem a finalidade de ativar o cadastro um médico inativo com o `id` informado.
+  Caso o médico com o `id` informado não for encontrado, retorna o [HTTP 404][http404] com a mensagem `Médico não encontrado.`.
+  Caso o médico com o `id` informado já esteja ativo, retorna o [HTTP 400][http400] com a mensagem `Médico já está ativo.`.
+  Se não, ativa o médico e retorna o [HTTP 200][http200] com os dados do médico ativado.
 
 - `GET /Medicos`: Essa rota tem a finalidade de listar os médicos cadastrados. A resposta é um [HTTP 200][http200] com o JSON da lista de médicos cadastrados.
 
@@ -255,6 +259,11 @@ As requisições com os verbos POST, PUT e DELETE precisam ser autenticadas com 
   O endereço deve ser passado como um objeto, contendo os campos de `logradouro`,`bairro`,`cep`,`cidade`,`uf`,`numero` e `complemento`.
   A resposta em caso de sucesso é um [HTTP 200][http200] com o JSON do paciente criado. O dto de criação de paciente possui uma série de validações dos dados, o qual não é criado caso esteja errado.
   No caso de erro, é retornado o [HTTP 400][http400] e a mensagem de erro de qual campo não foi validado.
+
+-`POST /Pacientes/{id}/ativar`: Essa rota tem a finalidade de ativar o cadastro um paciente inativo com o `id` informado.
+  Caso o paciente com o `id` informado não for encontrado, retorna o [HTTP 404][http404] com a mensagem `Paciente não encontrado.`.
+  Caso o paciente com o `id` informado já esteja ativo, retorna o [HTTP 400][http400] com a mensagem `Paciente já está ativo.`.
+  Se não, ativa o paciente e retorna o [HTTP 200][http200] com os dados do paciente ativado.
 
 - `GET /Pacientes`: Essa rota tem a finalidade de listar os pacientes cadastrados. A resposta é um [HTTP 200][http200] com o JSON da lista de pacientes cadastrados.
 
