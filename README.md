@@ -492,9 +492,11 @@ A API retorna um JWT com os dados do usuário, o qual é armazenado pelo sistema
 <br>
 
 Ao clicar no botão "cadastrar" na tela de login, abre a tela para o cadastro de usuários, que faz a requisição para /Usuarios enviando os dados do formulário. 
-Caso tenha erros, é exibido no label de mensagem, e em caso de sucesso é mostrado uma mensagem de sucesso e redirecionado para a tela de login e preenchendo o campo de e-mail com o e-mail cadastrado.
+Ao cadastrar um novo usuário, esse terá a Role como `Usuario`.
 
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastrar.png)
+
+Caso tenha erros, é exibido no label de mensagem, e em caso de sucesso é mostrado uma mensagem de sucesso e redirecionado para a tela de login e preenchendo o campo de e-mail com o e-mail cadastrado.
 
 <br>
 
