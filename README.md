@@ -481,6 +481,23 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 
 <br>
 
+## Windows Forms
+
+A entrada no sistema começa na tela de login, o qual faz uma requisição para `/Login` com os dados do formulário. Apresenta os erros de login caso possua ou abre a tela principal do sistema.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/login.png)
+
+A API retorna um JWT com os dados do usuário, o qual é armazenado pelo sistema para fazer as requisições, a fim de evitar o erro [HTTP 401][http401] e o [HTTP 403][http403] caso o usuário não seja `Administrador`.
+
+<br>
+
+Ao clicar no botão "cadastrar" na tela de login, abre a tela para o cadastro de usuários, que faz a requisição para /Usuarios enviando os dados do formulário. 
+Caso tenha erros, é exibido no label de mensagem, e em caso de sucesso é mostrado uma mensagem de sucesso e redirecionado para a tela de login e preenchendo o campo de e-mail com o e-mail cadastrado.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastrar.png)
+
+<br>
+
 ## Imagens
 
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/swagger1.png)
@@ -497,6 +514,7 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 [http200]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/200
 [http204]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/204
 [http400]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/400
+[http401]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/401
 [http403]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/403
 [http404]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/404
 [appsettings]: https://raw.githubusercontent.com/guih1886/jomedAPI/main/JomedAPI/Assets/appsettings.json
