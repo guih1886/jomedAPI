@@ -13,7 +13,7 @@ namespace JomedAPI.Data.DTO.Usuario
         }
 
         [JsonPropertyName("email")]
-        [EmailAddress(ErrorMessage = "")]
+        [EmailAddress(ErrorMessage = "E-mail inválido.")]
         [Required(ErrorMessage = "O e-mail deve ser informado.")]
         public string Email { get; set; }
         [JsonPropertyName("senha")]
