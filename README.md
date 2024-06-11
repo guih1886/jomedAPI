@@ -3,6 +3,7 @@
 O projeto "JomedAPI" é uma aplicação que permite a gestão completa de médicos e pacientes, oferecendo funcionalidades de criação, consulta, atualização e exclusão (CRUD). A API facilita o agendamento e cancelamento de consultas, utilizando o ID do médico e o ID do paciente como chaves estrangeiras, além de um datetime para especificar o horário da consulta.
 A API também permite a desativação de médicos e pacientes. Desativar um médico ou paciente não os exclui permanentemente, apenas os marca como inativos, possibilitando sua reativação futura.
 Para realizar o login, é necessário autenticar-se utilizando JSON Web Tokens (JWT). O sistema assegura que apenas usuários autenticados possam acessar e manipular os dados, uma vez que o token JWT deve ser incluído nas requisições para autenticação.
+Para as requisições do método DELETE, o usuário autenticado precisa ter a Role de Administrador.
 Para cadastrar médicos e pacientes, é necessário fornecer um endereço completo, que inclui dados como rua, número e bairro, entre outros.
 
 | :placard: Vitrine.Dev | Guilherme Henrique            |
@@ -21,7 +22,8 @@ Para cadastrar médicos e pacientes, é necessário fornecer um endereço comple
 > - **Login com JWT: As operações POST, PUT e DELETE requerem autenticação via JWT, obtido através do endpoint /Login.**
 
 As requisições com os verbos POST e PUT precisam ser autenticadas com o Jwt obtido através do endpoint de `/Login`, cadastrado através do `POST /Usuarios` (livre de autenticação).
-As requisições para o verbo DELETE precisa ser autenticada com a Role do usuário sendo 'Administrador'. O usuário ao ser criado é cadastrado com a Role de 'Usuario'.
+<br>
+As requisições para o verbo DELETE precisa ser autenticada com a Role do usuário sendo `Administrador`. O usuário ao ser criado é cadastrado com a Role de `Usuario`.
 
 ## Escalamento do projeto
 
@@ -29,7 +31,7 @@ As requisições para o verbo DELETE precisa ser autenticada com a Role do usuá
 - Implementado 52 testes para garantir a qualidade do código. ✅
 - Implementado segurança de login, com o JWT. ✅
 - Implementado a ativação dos médicos e pacientes. ✅
-- Implementado a autenticação do usuário com funções ('Usuario' e 'Administrador') onde somente o Administrador pode fazer requisições DELETE. ✅
+- Implementado a autenticação do usuário com funções (`Usuario` e `Administrador`) onde somente o Administrador pode fazer requisições DELETE. ✅
 - Criar as telas com windows forms para realizar as operações.
 - Implementar um app com Flutter para o consumo da API.
 
@@ -74,7 +76,7 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 
 - `DELETE /Usuarios/{id}`: Essa rota tem a finalidade de deletar o cadastro do usuário, passando o `id`.
   Caso o usuário seja encontrado, é deletado e retornado um [HTTP 204][http204], informando que a requisição foi bem sucedida mas não retornou nada. Mas se não for encontrado, é retornado um [HTTP 404][http404] e a mensagem `Usuário não encontrado`.
-  Para fazer essa requisição, o usuário logado precisa ter a Role 'Administrador'.
+  <br> Para fazer essa requisição, o usuário logado precisa ter a Role `Administrador`.
 
 <br>
 
@@ -235,11 +237,11 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 
 - `DELETE /Medicos/{id}`: Essa rota tem a finalidade de deletar o cadastro do médico, passando o `id` do médico.
   Caso o médico seja encontrado, é deletado e retornado um [HTTP 204][http204], informando que a requisição foi bem sucedida mas não retornou nada. Mas se não for encontrado, é retornado um [HTTP 404][http404] e a mensagem `Médico não encontrado`.
-  Para fazer essa requisição, o usuário logado precisa ter a Role 'Administrador'.
+  <br> Para fazer essa requisição, o usuário logado precisa ter a Role `Administrador`.
 
 - `DELETE /Medicos/{id}/inativar`: Essa rota tem a finalidade de inativar o cadastro do médico, passando o `id` do médico.
   Caso o médico seja encontrado, é inativado e retornado um [HTTP 204][http204], informando que a requisição foi bem sucedida mas não retornou nada. Mas se não for encontrado, é retornado um [HTTP 404][http404] e a mensagem `Médico não encontrado`.
-  Para fazer essa requisição, o usuário logado precisa ter a Role 'Administrador'.
+  <br> Para fazer essa requisição, o usuário logado precisa ter a Role `Administrador`.
 
 <br>
 
@@ -392,11 +394,11 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 
 - `DELETE /Pacientes/{id}`: Essa rota tem a finalidade de deletar o cadastro do paciente com o `id` do informado.
   Caso o paciente seja encontrado, é deletado e retornado um [HTTP 204][http204], informando que a requisição foi bem sucedida mas não retornou nada. Mas se não for encontrado, é retornado um [HTTP 404][http404] e a mensagem `Paciente não encontrado`.
-  Para fazer essa requisição, o usuário logado precisa ter a Role 'Administrador'.
+  <br> Para fazer essa requisição, o usuário logado precisa ter a Role `Administrador`.
 
 - `DELETE /Pacientes/{id}/inativar`: Essa rota tem a finalidade de inativar o cadastro do paciente com o `id` do informado.
   Caso o paciente seja encontrado, é inativado e retornado um [HTTP 204][http204], informando que a requisição foi bem sucedida mas não retornou nada. Mas se não for encontrado, é retornado um [HTTP 404][http404] e a mensagem `Paciente não encontrado`.
-  Para fazer essa requisição, o usuário logado precisa ter a Role 'Administrador'.
+  <br> Para fazer essa requisição, o usuário logado precisa ter a Role `Administrador`.
 
 <br>
 
@@ -466,7 +468,7 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 - `DELETE /Consultas/{id}`: Essa rota tem a finalidade de cancelar uma consulta cadastrada com o `id` informado. Deve ser passado no corpo da requisição um JSON com o campo de `motivoCancelamento`, o qual também é um enum e deve
   ser `PACIENTE_CANCELOU`, `MEDICO_CANCELOU`, `MUDANCA_HORARIO` ou `OUTROS`.
   A coluna `Cancelado` da consulta passa a ser `true` e o motivo passa a ser o informado no JSON de cancelamento.
-  Para fazer essa requisição, o usuário logado precisa ter a Role 'Administrador'.
+  <br> Para fazer essa requisição, o usuário logado precisa ter a Role `Administrador`.
 
   ```json
   {
