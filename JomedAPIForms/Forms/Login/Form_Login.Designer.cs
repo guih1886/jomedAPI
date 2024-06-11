@@ -1,6 +1,6 @@
-﻿namespace JomedAPIForms
+﻿namespace JomedAPIForms.Forms
 {
-    partial class Form_Principal
+    partial class Form_Login
     {
         /// <summary>
         /// Required designer variable.
@@ -30,15 +30,13 @@
         {
             SuspendLayout();
             // 
-            // Form_Principal
+            // Form_Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(934, 591);
-            Name = "Form_Principal";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "JomedAPI - Principal";
-            WindowState = FormWindowState.Maximized;
+            ClientSize = new Size(800, 538);
+            Name = "Form_Login";
+            Text = "Form_Login";
             ResumeLayout(false);
         }
 
