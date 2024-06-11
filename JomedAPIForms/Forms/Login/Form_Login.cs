@@ -37,12 +37,18 @@ public partial class Form_Login : Form
     }
     private void Btn_Cadastrar_Click(object sender, EventArgs e)
     {
-        Form_Cadastrar cadastro = new Form_Cadastrar(_httpClientBuilder);
+        Form_Cadastrar cadastro = new Form_Cadastrar(_httpClientBuilder, this);
+        this.Hide();
         DialogResult response = cadastro.ShowDialog();
         if (response == DialogResult.OK)
         {
             Lbl_Message.Text = "";
             Txt_Email.Text = cadastro.Email;
+            Txt_Senha.Focus();
+        }
+        else
+        {
+            Txt_Email.Focus();
         }
     }
 }
