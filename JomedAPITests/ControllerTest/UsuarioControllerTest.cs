@@ -26,6 +26,7 @@ namespace JomedAPITests.ControllerTest
             Usuario usuario = DeserializarObjeto<Usuario>(resposta);
             //Assert
             Assert.Equal(200, resposta.StatusCode);
+            Assert.Equal("Usuario", usuario.Role.ToString());
             Assert.IsType<Usuario>(usuario);
             DeletarUsuario(usuario.Id);
         }
