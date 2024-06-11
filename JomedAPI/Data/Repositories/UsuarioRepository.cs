@@ -2,6 +2,7 @@
 using jomedAPI.Models;
 using JomedAPI.Data.DTO.Usuario;
 using JomedAPI.Data.Interfaces.Repositories;
+using JomedAPI.Models.Enum;
 
 namespace jomedAPI.Data.Repositories;
 
@@ -29,6 +30,7 @@ public class UsuarioRepository : IUsuarioRepository
     public Usuario CadastrarUsuario(CreateUsuarioDto novoUsuario)
     {
         Usuario usuario = _mapper.Map<Usuario>(novoUsuario);
+        usuario.Role = Roles.Usuario;
         _jomedContext.Usuarios.Add(usuario);
         _jomedContext.SaveChanges();
         return usuario;

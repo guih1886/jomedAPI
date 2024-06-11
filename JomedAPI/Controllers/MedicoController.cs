@@ -119,7 +119,7 @@ public class MedicoController : ControllerBase, IMedicoController
         return httpResponse;
     }
     [HttpDelete("{id}")]
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public ObjectResult DeletarMedico(int id)
     {
         Medico? medico = _medicoRepository.BuscarMedicoPorId(id);
@@ -139,7 +139,7 @@ public class MedicoController : ControllerBase, IMedicoController
         return httpResponse;
     }
     [HttpDelete("{id}/inativar")]
-    [Authorize]
+    [Authorize(Roles = "Administrador")]
     public ObjectResult InativarMedico(int id)
     {
         Medico? medico = _medicoRepository.BuscarMedicoPorId(id);

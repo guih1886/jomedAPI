@@ -37,7 +37,7 @@ namespace JomedAPI.Controllers
             return httpResponse;
         }
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public ObjectResult DeletarUsuario(int id)
         {
             Usuario? usuario = _usuarioRepository.BuscarUsuarioPorId(id);

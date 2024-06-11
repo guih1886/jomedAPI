@@ -34,6 +34,7 @@ public class LoginService
             {
                 new Claim(type: "id", usuarioDB.Id.ToString()),
                 new Claim(type: "email", usuarioDB.Email.ToString()),
+                new Claim(type: "role", usuarioDB.Role.ToString()),
             },
             expires: DateTime.Now.AddHours(12),
             signingCredentials: credenciais

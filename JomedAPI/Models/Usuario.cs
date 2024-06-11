@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using JomedAPI.Models.Enum;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace jomedAPI.Models;
@@ -18,4 +19,6 @@ public class Usuario
     public string Email { get; set; }
     [JsonPropertyName("senha")]
     public string Senha { get; set; }
+    [JsonPropertyName("role")]
+    public Roles Role { get; set; }
 }

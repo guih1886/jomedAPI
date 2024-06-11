@@ -118,7 +118,7 @@ namespace JomedAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public ObjectResult DeletarPaciente(int id)
         {
             Paciente? paciente = _pacienteRepository.BuscarPacientePorId(id);
@@ -139,7 +139,7 @@ namespace JomedAPI.Controllers
         }
 
         [HttpDelete("{id}/inativar")]
-        [Authorize]
+        [Authorize(Roles = "Administrador")]
         public ObjectResult InativarPaciente(int id)
         {
             Paciente? paciente = _pacienteRepository.BuscarPacientePorId(id);
