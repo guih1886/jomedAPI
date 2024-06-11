@@ -276,3 +276,6 @@ CarteiraDeJogos/appsettings.json
 jomedAPI/appsettings.json
 jomedAPI/appsettings.Development.json
 jomedAPI/Migrations
+*.csproj
+*.resx
+*.sln
