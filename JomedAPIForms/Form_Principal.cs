@@ -13,21 +13,22 @@ namespace JomedAPIForms
         {
             InitializeComponent();
             ValidaUrlBase();
+            _httpClientBuilder = new HttpClientBuilder(urlBase, "");
             LoginForm();
-            _httpClientBuilder = new HttpClientBuilder(urlBase, jwt);
         }
 
         private void LoginForm()
         {
-            Form_Login login = new Form_Login();
-            login.ShowDialog();
-            if (login.DialogResult == DialogResult.OK)
+            Form_Login login = new Form_Login(_httpClientBuilder);
+            DialogResult loginResponse = login.ShowDialog();
+            if (loginResponse == DialogResult.OK)
             {
                 jwt = login.Jwt!;
+                _httpClientBuilder = new HttpClientBuilder(urlBase, jwt);
             }
             else
             {
-                Application.Exit();
+                this.Close();
             }
         }
         private void ValidaUrlBase()
