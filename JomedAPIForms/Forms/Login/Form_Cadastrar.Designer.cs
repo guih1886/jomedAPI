@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             Gpb_Campos = new GroupBox();
+            Lbl_Message = new Label();
             Txt_ConfirmSenha = new TextBox();
             Lbl_ConfirmSenha = new Label();
             Btn_Voltar = new Button();
@@ -37,13 +38,15 @@
             Lbl_Senha = new Label();
             Txt_Email = new TextBox();
             Lbl_Email = new Label();
-            Lbl_Message = new Label();
+            Pic_Login = new PictureBox();
             Gpb_Campos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Pic_Login).BeginInit();
             SuspendLayout();
             // 
             // Gpb_Campos
             // 
             Gpb_Campos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            Gpb_Campos.Controls.Add(Lbl_Message);
             Gpb_Campos.Controls.Add(Txt_ConfirmSenha);
             Gpb_Campos.Controls.Add(Lbl_ConfirmSenha);
             Gpb_Campos.Controls.Add(Btn_Voltar);
@@ -52,18 +55,28 @@
             Gpb_Campos.Controls.Add(Lbl_Senha);
             Gpb_Campos.Controls.Add(Txt_Email);
             Gpb_Campos.Controls.Add(Lbl_Email);
-            Gpb_Campos.Location = new Point(12, 88);
+            Gpb_Campos.Location = new Point(12, 211);
             Gpb_Campos.Name = "Gpb_Campos";
-            Gpb_Campos.Size = new Size(393, 208);
+            Gpb_Campos.Size = new Size(395, 246);
             Gpb_Campos.TabIndex = 1;
             Gpb_Campos.TabStop = false;
+            // 
+            // Lbl_Message
+            // 
+            Lbl_Message.Font = new Font("Arial Narrow", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Lbl_Message.ForeColor = Color.Red;
+            Lbl_Message.Location = new Point(6, 166);
+            Lbl_Message.Name = "Lbl_Message";
+            Lbl_Message.Size = new Size(381, 45);
+            Lbl_Message.TabIndex = 2;
+            Lbl_Message.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Txt_ConfirmSenha
             // 
             Txt_ConfirmSenha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             Txt_ConfirmSenha.Location = new Point(6, 140);
             Txt_ConfirmSenha.Name = "Txt_ConfirmSenha";
-            Txt_ConfirmSenha.Size = new Size(381, 23);
+            Txt_ConfirmSenha.Size = new Size(383, 23);
             Txt_ConfirmSenha.TabIndex = 3;
             Txt_ConfirmSenha.UseSystemPasswordChar = true;
             // 
@@ -80,7 +93,7 @@
             // Btn_Voltar
             // 
             Btn_Voltar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            Btn_Voltar.Location = new Point(312, 179);
+            Btn_Voltar.Location = new Point(314, 217);
             Btn_Voltar.Name = "Btn_Voltar";
             Btn_Voltar.Size = new Size(75, 23);
             Btn_Voltar.TabIndex = 5;
@@ -92,7 +105,7 @@
             // Btn_Cadastrar
             // 
             Btn_Cadastrar.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            Btn_Cadastrar.Location = new Point(6, 179);
+            Btn_Cadastrar.Location = new Point(6, 217);
             Btn_Cadastrar.Name = "Btn_Cadastrar";
             Btn_Cadastrar.Size = new Size(75, 23);
             Btn_Cadastrar.TabIndex = 4;
@@ -105,7 +118,7 @@
             Txt_Senha.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             Txt_Senha.Location = new Point(6, 91);
             Txt_Senha.Name = "Txt_Senha";
-            Txt_Senha.Size = new Size(381, 23);
+            Txt_Senha.Size = new Size(383, 23);
             Txt_Senha.TabIndex = 2;
             Txt_Senha.UseSystemPasswordChar = true;
             // 
@@ -124,7 +137,7 @@
             Txt_Email.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             Txt_Email.Location = new Point(6, 42);
             Txt_Email.Name = "Txt_Email";
-            Txt_Email.Size = new Size(381, 23);
+            Txt_Email.Size = new Size(383, 23);
             Txt_Email.TabIndex = 1;
             // 
             // Lbl_Email
@@ -137,20 +150,23 @@
             Lbl_Email.TabIndex = 0;
             Lbl_Email.Text = "E-mail";
             // 
-            // Lbl_Message
+            // Pic_Login
             // 
-            Lbl_Message.Location = new Point(12, 299);
-            Lbl_Message.Name = "Lbl_Message";
-            Lbl_Message.Size = new Size(393, 45);
-            Lbl_Message.TabIndex = 2;
-            Lbl_Message.TextAlign = ContentAlignment.MiddleCenter;
+            Pic_Login.Image = Properties.Resources.cadastro;
+            Pic_Login.Location = new Point(12, 12);
+            Pic_Login.Name = "Pic_Login";
+            Pic_Login.Size = new Size(395, 215);
+            Pic_Login.SizeMode = PictureBoxSizeMode.Zoom;
+            Pic_Login.TabIndex = 2;
+            Pic_Login.TabStop = false;
             // 
             // Form_Cadastrar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(417, 361);
-            Controls.Add(Lbl_Message);
+            BackColor = SystemColors.InactiveCaption;
+            ClientSize = new Size(419, 469);
+            Controls.Add(Pic_Login);
             Controls.Add(Gpb_Campos);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "Form_Cadastrar";
@@ -158,6 +174,7 @@
             Text = "JomedAPI Cadastrar";
             Gpb_Campos.ResumeLayout(false);
             Gpb_Campos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Pic_Login).EndInit();
             ResumeLayout(false);
         }
 
@@ -173,5 +190,6 @@
         private TextBox Txt_ConfirmSenha;
         private Label Lbl_ConfirmSenha;
         private Label Lbl_Message;
+        private PictureBox Pic_Login;
     }
 }
