@@ -279,3 +279,4 @@ jomedAPI/Migrations
 *.csproj
 *.resx
 *.sln
+*.json
