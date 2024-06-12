@@ -1,6 +1,10 @@
-﻿using JomedAPIForms.Classes;
+﻿using jomedAPI.Models;
+using JomedAPIForms.Classes;
 using JomedAPIForms.Forms;
+using JomedAPIForms.Forms.Medicos;
+using JomedAPIForms.Forms.Pacientes;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Security.Claims;
 
 namespace JomedAPIForms
@@ -58,6 +62,37 @@ namespace JomedAPIForms
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+        private void cadastroDePacientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirCadastroDePacientes();
+        }
+        private void toolStripPacientes_Click(object sender, EventArgs e)
+        {
+            AbrirCadastroDePacientes();
+        }
+        private void cadastroDeMédicosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AbrirCadastroDeMedicos();
+        }
+        private void toolStripMedicos_Click(object sender, EventArgs e)
+        {
+            AbrirCadastroDeMedicos();
+        }
+
+        private async void AbrirCadastroDePacientes()
+        {
+            HttpResponseMessage resposta = await _httpClientBuilder.GetRequisition("/Pacientes");
+            List<Paciente> lista = JsonConvert.DeserializeObject<List<Paciente>>(await resposta.Content.ReadAsStringAsync())!;
+            Form_Pacientes pacientes = new Form_Pacientes(_httpClientBuilder, lista);
+            pacientes.Show();
+        }
+        private async void AbrirCadastroDeMedicos()
+        {
+            HttpResponseMessage resposta = await _httpClientBuilder.GetRequisition("/Medicos");
+            List<Medico> lista = JsonConvert.DeserializeObject<List<Medico>>(await resposta.Content.ReadAsStringAsync())!;
+            Form_Medicos pacientes = new Form_Medicos(_httpClientBuilder, lista);
+            pacientes.Show();
         }
     }
 }

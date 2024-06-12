@@ -30,17 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Principal));
             toolStrip1 = new ToolStrip();
-            toolStripButton1 = new ToolStripButton();
+            toolStripConsultas = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            toolStripButton2 = new ToolStripButton();
+            toolStripMedicos = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
-            toolStripButton3 = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
-            toolStripButton4 = new ToolStripButton();
+            toolStripPacientes = new ToolStripButton();
             menuStrip1 = new MenuStrip();
             consultasToolStripMenuItem = new ToolStripMenuItem();
+            cadastroDeConsultasToolStripMenuItem = new ToolStripMenuItem();
             médicosToolStripMenuItem = new ToolStripMenuItem();
+            cadastroDeMédicosToolStripMenuItem = new ToolStripMenuItem();
             pacientesToolStripMenuItem = new ToolStripMenuItem();
+            cadastroDePacientesToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             toolStripStatusRole = new ToolStripStatusLabel();
@@ -53,66 +54,52 @@
             // toolStrip1
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripButton1, toolStripSeparator1, toolStripButton2, toolStripSeparator2, toolStripButton3, toolStripSeparator3, toolStripButton4 });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripConsultas, toolStripSeparator1, toolStripMedicos, toolStripSeparator2, toolStripPacientes });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.RenderMode = ToolStripRenderMode.Professional;
-            toolStrip1.Size = new Size(934, 33);
+            toolStrip1.Size = new Size(934, 25);
             toolStrip1.TabIndex = 1;
             toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // toolStripConsultas
             // 
-            toolStripButton1.AutoSize = false;
-            toolStripButton1.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton1.Image = (Image)resources.GetObject("toolStripButton1.Image");
-            toolStripButton1.ImageTransparentColor = Color.Magenta;
-            toolStripButton1.Name = "toolStripButton1";
-            toolStripButton1.Size = new Size(35, 30);
-            toolStripButton1.Text = "toolStripButton1";
+            toolStripConsultas.CheckOnClick = true;
+            toolStripConsultas.Image = Properties.Resources.consulta;
+            toolStripConsultas.ImageTransparentColor = Color.Magenta;
+            toolStripConsultas.Margin = new Padding(6, 1, 0, 2);
+            toolStripConsultas.Name = "toolStripConsultas";
+            toolStripConsultas.Size = new Size(79, 22);
+            toolStripConsultas.Text = "Consultas";
             // 
             // toolStripSeparator1
             // 
             toolStripSeparator1.Name = "toolStripSeparator1";
-            toolStripSeparator1.Size = new Size(6, 33);
+            toolStripSeparator1.Size = new Size(6, 25);
             // 
-            // toolStripButton2
+            // toolStripMedicos
             // 
-            toolStripButton2.AutoSize = false;
-            toolStripButton2.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton2.Image = (Image)resources.GetObject("toolStripButton2.Image");
-            toolStripButton2.ImageTransparentColor = Color.Magenta;
-            toolStripButton2.Name = "toolStripButton2";
-            toolStripButton2.Size = new Size(23, 30);
-            toolStripButton2.Text = "toolStripButton2";
+            toolStripMedicos.Image = Properties.Resources.medico;
+            toolStripMedicos.ImageTransparentColor = Color.Magenta;
+            toolStripMedicos.Name = "toolStripMedicos";
+            toolStripMedicos.Size = new Size(72, 22);
+            toolStripMedicos.Text = "Médicos";
+            toolStripMedicos.Click += toolStripMedicos_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
-            toolStripSeparator2.Size = new Size(6, 33);
+            toolStripSeparator2.Size = new Size(6, 25);
             // 
-            // toolStripButton3
+            // toolStripPacientes
             // 
-            toolStripButton3.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton3.Image = (Image)resources.GetObject("toolStripButton3.Image");
-            toolStripButton3.ImageTransparentColor = Color.Magenta;
-            toolStripButton3.Name = "toolStripButton3";
-            toolStripButton3.Size = new Size(23, 30);
-            toolStripButton3.Text = "toolStripButton3";
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 33);
-            // 
-            // toolStripButton4
-            // 
-            toolStripButton4.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripButton4.Image = (Image)resources.GetObject("toolStripButton4.Image");
-            toolStripButton4.ImageTransparentColor = Color.Magenta;
-            toolStripButton4.Name = "toolStripButton4";
-            toolStripButton4.Size = new Size(23, 30);
-            toolStripButton4.Text = "toolStripButton4";
+            toolStripPacientes.Image = Properties.Resources.paciente;
+            toolStripPacientes.ImageTransparentColor = Color.Magenta;
+            toolStripPacientes.Name = "toolStripPacientes";
+            toolStripPacientes.Size = new Size(77, 22);
+            toolStripPacientes.Text = "Pacientes";
+            toolStripPacientes.ToolTipText = "Abre a tela de gerenciamento de cadastro de pacientes";
+            toolStripPacientes.Click += toolStripPacientes_Click;
             // 
             // menuStrip1
             // 
@@ -125,21 +112,47 @@
             // 
             // consultasToolStripMenuItem
             // 
+            consultasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastroDeConsultasToolStripMenuItem });
             consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
             consultasToolStripMenuItem.Size = new Size(71, 20);
             consultasToolStripMenuItem.Text = "Consultas";
             // 
+            // cadastroDeConsultasToolStripMenuItem
+            // 
+            cadastroDeConsultasToolStripMenuItem.Image = Properties.Resources.consulta;
+            cadastroDeConsultasToolStripMenuItem.Name = "cadastroDeConsultasToolStripMenuItem";
+            cadastroDeConsultasToolStripMenuItem.Size = new Size(192, 22);
+            cadastroDeConsultasToolStripMenuItem.Text = "Cadastro de Consultas";
+            // 
             // médicosToolStripMenuItem
             // 
+            médicosToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastroDeMédicosToolStripMenuItem });
             médicosToolStripMenuItem.Name = "médicosToolStripMenuItem";
             médicosToolStripMenuItem.Size = new Size(64, 20);
             médicosToolStripMenuItem.Text = "Médicos";
             // 
+            // cadastroDeMédicosToolStripMenuItem
+            // 
+            cadastroDeMédicosToolStripMenuItem.Image = Properties.Resources.medico;
+            cadastroDeMédicosToolStripMenuItem.Name = "cadastroDeMédicosToolStripMenuItem";
+            cadastroDeMédicosToolStripMenuItem.Size = new Size(185, 22);
+            cadastroDeMédicosToolStripMenuItem.Text = "Cadastro de Médicos";
+            cadastroDeMédicosToolStripMenuItem.Click += cadastroDeMédicosToolStripMenuItem_Click;
+            // 
             // pacientesToolStripMenuItem
             // 
+            pacientesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { cadastroDePacientesToolStripMenuItem });
             pacientesToolStripMenuItem.Name = "pacientesToolStripMenuItem";
             pacientesToolStripMenuItem.Size = new Size(69, 20);
             pacientesToolStripMenuItem.Text = "Pacientes";
+            // 
+            // cadastroDePacientesToolStripMenuItem
+            // 
+            cadastroDePacientesToolStripMenuItem.Image = Properties.Resources.paciente;
+            cadastroDePacientesToolStripMenuItem.Name = "cadastroDePacientesToolStripMenuItem";
+            cadastroDePacientesToolStripMenuItem.Size = new Size(190, 22);
+            cadastroDePacientesToolStripMenuItem.Text = "Cadastro de Pacientes";
+            cadastroDePacientesToolStripMenuItem.Click += cadastroDePacientesToolStripMenuItem_Click;
             // 
             // sairToolStripMenuItem
             // 
@@ -160,14 +173,14 @@
             // toolStripStatusRole
             // 
             toolStripStatusRole.Name = "toolStripStatusRole";
-            toolStripStatusRole.Size = new Size(118, 17);
-            toolStripStatusRole.Text = "toolStripStatusLabel1";
+            toolStripStatusRole.Size = new Size(30, 17);
+            toolStripStatusRole.Text = "Role";
             // 
             // toolStripStatusEmail
             // 
             toolStripStatusEmail.Name = "toolStripStatusEmail";
-            toolStripStatusEmail.Size = new Size(118, 17);
-            toolStripStatusEmail.Text = "toolStripStatusLabel2";
+            toolStripStatusEmail.Size = new Size(41, 17);
+            toolStripStatusEmail.Text = "E-Mail";
             // 
             // Form_Principal
             // 
@@ -177,6 +190,7 @@
             Controls.Add(statusStrip1);
             Controls.Add(toolStrip1);
             Controls.Add(menuStrip1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             Name = "Form_Principal";
             StartPosition = FormStartPosition.CenterScreen;
@@ -195,13 +209,9 @@
         #endregion
 
         private ToolStrip toolStrip1;
-        private ToolStripButton toolStripButton1;
+        private ToolStripButton toolStripConsultas;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton toolStripButton2;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton toolStripButton3;
-        private ToolStripSeparator toolStripSeparator3;
-        private ToolStripButton toolStripButton4;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem consultasToolStripMenuItem;
         private ToolStripMenuItem médicosToolStripMenuItem;
@@ -210,5 +220,10 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusRole;
         private ToolStripStatusLabel toolStripStatusEmail;
+        private ToolStripButton toolStripMedicos;
+        private ToolStripButton toolStripPacientes;
+        private ToolStripMenuItem cadastroDeConsultasToolStripMenuItem;
+        private ToolStripMenuItem cadastroDeMédicosToolStripMenuItem;
+        private ToolStripMenuItem cadastroDePacientesToolStripMenuItem;
     }
 }
