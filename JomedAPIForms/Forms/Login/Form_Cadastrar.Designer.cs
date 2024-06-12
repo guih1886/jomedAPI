@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Cadastrar));
             Gpb_Campos = new GroupBox();
             Lbl_Message = new Label();
             Txt_ConfirmSenha = new TextBox();
@@ -169,6 +170,7 @@
             Controls.Add(Pic_Login);
             Controls.Add(Gpb_Campos);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form_Cadastrar";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JomedAPI Cadastrar";

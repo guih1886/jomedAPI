@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Login));
             Gpb_Campos = new GroupBox();
             Lbl_Message = new Label();
             Btn_Sair = new Button();
@@ -159,6 +160,7 @@
             Controls.Add(Pic_Login);
             Controls.Add(Gpb_Campos);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form_Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "JomedAPI Login";
