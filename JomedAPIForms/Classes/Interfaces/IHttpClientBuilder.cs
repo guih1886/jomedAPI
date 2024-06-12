@@ -6,4 +6,5 @@ public interface IHttpClientBuilder
     Task<HttpResponseMessage> PostRequisition(string endPoint, object body);
     Task<HttpResponseMessage> PutRequisition(string endPoint, object body);
     Task<HttpResponseMessage> DeleteRequisition(string endPoint);
+    Task<HttpResponseMessage> GetExternal(string endPoint);
 }
