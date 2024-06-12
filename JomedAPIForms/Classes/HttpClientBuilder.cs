@@ -18,6 +18,12 @@ public class HttpClientBuilder : IHttpClientBuilder
         _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _jwt);
     }
 
+    public async Task<HttpResponseMessage> GetExternal(string endPoint)
+    {
+        HttpResponseMessage resposta = await _httpClient.GetAsync(endPoint);
+        return resposta;
+    }
+
     public async Task<HttpResponseMessage> GetRequisition(string endPoint)
     {
         HttpResponseMessage resposta = await _httpClient.GetAsync(_urlBase + endPoint);
