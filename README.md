@@ -520,6 +520,12 @@ Ao selecionar ou buscar um paciente, os dados são preenchidos no formulário, e
 
 O CEP tem um autopreenchimento via API do [viacep][viacep].
 
+<br>
+
+Ao clicar na lupa do formulário é aberto a tela de busca de pacientes, o qual pode ser feito filtros por `ativo/inativo`, `Id`, `Cpf`, `Nome` ou `E-mail`.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscar.png)
+
 
 ## Imagens
 
