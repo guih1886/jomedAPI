@@ -36,7 +36,7 @@ namespace JomedAPI.Controllers
         [Authorize]
         public ObjectResult AtivarPaciente(int id)
         {
-            Paciente? paciente = _pacienteRepository.BuscarPacienteAtivoOuInativo(id);
+            Paciente? paciente = _pacienteRepository.BuscarPacientePorId(id);
             if (paciente == null)
             {
                 httpResponse.StatusCode = 404;

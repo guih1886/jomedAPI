@@ -9,7 +9,6 @@ public interface IPacienteRepository
     Paciente AtualizarPaciente(Paciente paciente, UpdatePacienteDto novoPaciente);
     Paciente AtualizarEndereco(Paciente paciente, UpdateEnderecoDto endereco);
     Paciente? BuscarPacientePorId(int id);
-    Paciente? BuscarPacienteAtivoOuInativo(int id);
     Paciente CadastrarPaciente(CreatePacienteDto pacienteDto);
     List<Paciente> ListarPacientes();
     bool DeletarPaciente(Paciente paciente);

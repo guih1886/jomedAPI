@@ -32,10 +32,6 @@ namespace JomedAPI.Data.Repositories
         }
         public Paciente? BuscarPacientePorId(int id)
         {
-            return _jomedContext.Pacientes.Where(p => p.Ativo == true).FirstOrDefault(p => p.Id == id);
-        }
-        public Paciente? BuscarPacienteAtivoOuInativo(int id)
-        {
             return _jomedContext.Pacientes.FirstOrDefault(p => p.Id == id);
         }
         public Paciente CadastrarPaciente(CreatePacienteDto pacienteDto)
@@ -80,7 +76,7 @@ namespace JomedAPI.Data.Repositories
         }
         public List<Paciente> ListarPacientes()
         {
-            return _jomedContext.Pacientes.Where(p => p.Ativo == true).ToList();
+            return _jomedContext.Pacientes.ToList();
         }
     }
 }
