@@ -25,7 +25,7 @@ public partial class Form_Cadastrar : Form
     {
         CreateUsuarioDto usuario = new CreateUsuarioDto(Txt_Email.Text, Txt_Senha.Text, Txt_ConfirmSenha.Text);
         HttpResponseMessage resposta = await _httpClientBuilder.PostRequisition("/Usuarios", usuario);
-        string msg = await ValidaRequisicoes.ValidaCadastroUsuarioReq(resposta);
+        string msg = await ValidaRequisicoes.ValidarErrosRequisicao(resposta);
         if (resposta.IsSuccessStatusCode)
         {
             DialogResult = DialogResult.OK;

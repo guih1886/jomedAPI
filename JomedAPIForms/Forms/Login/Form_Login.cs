@@ -23,7 +23,7 @@ public partial class Form_Login : Form
     {
         LoginDto login = new LoginDto(Txt_Email.Text, Txt_Senha.Text);
         HttpResponseMessage resposta = await _httpClientBuilder.PostRequisition("/Login", login);
-        string msg = await ValidaRequisicoes.ValidaLoginReq(resposta);
+        string msg = await ValidaRequisicoes.ValidarErrosRequisicao(resposta);
         if (resposta.IsSuccessStatusCode)
         {
             Jwt = await resposta.Content.ReadAsStringAsync();
