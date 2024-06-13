@@ -366,6 +366,7 @@
             // 
             Txt_CEP.Enabled = false;
             Txt_CEP.Location = new Point(6, 32);
+            Txt_CEP.MaxLength = 9;
             Txt_CEP.Name = "Txt_CEP";
             Txt_CEP.Size = new Size(171, 23);
             Txt_CEP.TabIndex = 6;
@@ -470,6 +471,7 @@
             // 
             Txt_Telefone.Enabled = false;
             Txt_Telefone.Location = new Point(6, 117);
+            Txt_Telefone.MaxLength = 11;
             Txt_Telefone.Name = "Txt_Telefone";
             Txt_Telefone.Size = new Size(347, 23);
             Txt_Telefone.TabIndex = 5;

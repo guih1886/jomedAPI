@@ -1,4 +1,5 @@
 ﻿using jomedAPI.Models;
+using JomedAPI.Data.DTO.Enderecos;
 using JomedAPI.Data.DTO.Paciente;
 using JomedAPIForms.Classes;
 using JomedAPIForms.Classes.Interfaces;
@@ -12,13 +13,15 @@ public partial class Form_Pacientes : Form
     private IHttpClientBuilder _httpClientBuilder;
     private List<Paciente> _listaPacientes;
     private int? _pacienteId;
-    public Form_Pacientes(IHttpClientBuilder httpClientBuilder, List<Paciente> listaPacientes)
+    private string? _pacienteNome;
+    public Form_Pacientes(IHttpClientBuilder httpClientBuilder, List<Paciente> listaPacientes, string usuarioRole)
     {
         _httpClientBuilder = httpClientBuilder;
         _listaPacientes = listaPacientes;
         InitializeComponent();
         Dgv_Pacientes.DataSource = listaPacientes;
         PreencheComboBoxUF();
+        VerificaFuncaoDoUsuario(usuarioRole);
     }
 
     private void toolStripNovo_Click(object sender, EventArgs e)
@@ -31,15 +34,30 @@ public partial class Form_Pacientes : Form
     }
     private async void toolStripEditar_Click(object sender, EventArgs e)
     {
+        int numero = !string.IsNullOrEmpty(Txt_Numero.Text) ? Int32.Parse(Txt_Numero.Text) : 0;
         UpdatePacienteDto pacienteAlterado = new UpdatePacienteDto(Txt_Nome.Text, Txt_Email.Text, Txt_CPF.Text, Txt_Telefone.Text);
+        UpdateEnderecoDto novoEndereco = new UpdateEnderecoDto(Txt_Logradouro.Text, Txt_Bairro.Text, Txt_CEP.Text, Txt_Cidade.Text, Cmb_UF.Text, numero, Txt_Complemento.Text);
         HttpResponseMessage resposta = await _httpClientBuilder.PutRequisition($"/Pacientes/{_pacienteId}", pacienteAlterado);
-        ValidaRequisicoes.Teste(resposta);
+        HttpResponseMessage respostaEndereco = await _httpClientBuilder.PutRequisition($"/Pacientes/{_pacienteId}/atualizarEndereco", novoEndereco);
+        string msg = await ValidaRequisicoes.ValidarErrosRequisicao(resposta);
         if (resposta.IsSuccessStatusCode)
         {
-            MessageBox.Show("Paciente atualizado com sucesso.", "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            AtualizaPacientes();
-            LimparFormulario();
-            DesativarFormulario();
+            if (respostaEndereco.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Paciente atualizado com sucesso.", "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AtualizaPacientes();
+                LimparFormulario();
+                DesativarFormulario();
+            }
+            else
+            {
+                string msgEndereco = await ValidaRequisicoes.ValidarErrosRequisicao(respostaEndereco);
+                MessageBox.Show(msgEndereco, "Cadastros de Pacientess", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        else
+        {
+            MessageBox.Show(msg, "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
     private async void toolStripSalvar_Click(object sender, EventArgs e)
@@ -48,7 +66,7 @@ public partial class Form_Pacientes : Form
         Endereco endereco = new Endereco(Txt_Logradouro.Text, Txt_Bairro.Text, Txt_CEP.Text, Txt_Cidade.Text, Cmb_UF.Text, numero, Txt_Complemento.Text);
         CreatePacienteDto novoPaciente = new CreatePacienteDto(Txt_Nome.Text, Txt_Email.Text, Txt_CPF.Text, Txt_Telefone.Text, endereco);
         HttpResponseMessage resposta = await _httpClientBuilder.PostRequisition("/Pacientes", novoPaciente);
-        ValidaRequisicoes.Teste(resposta);
+        string msg = await ValidaRequisicoes.ValidarErrosRequisicao(resposta);
         if (resposta.IsSuccessStatusCode)
         {
             MessageBox.Show("Paciente atualizado com sucesso.", "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -56,14 +74,34 @@ public partial class Form_Pacientes : Form
             LimparFormulario();
             DesativarFormulario();
         }
+        else
+        {
+            MessageBox.Show(msg, "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
     private void toolStripBuscar_Click(object sender, EventArgs e)
     {
 
     }
-    private void toolStripExcluir_Click(object sender, EventArgs e)
+    private async void toolStripExcluir_Click(object sender, EventArgs e)
     {
-
+        DialogResult resposta = MessageBox.Show($"Deseja mesmo excluir o cadastro do paciente {_pacienteNome}?", "Exclusão de Pacientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+        if (resposta == DialogResult.OK)
+        {
+            HttpResponseMessage response = await _httpClientBuilder.DeleteRequisition($"/Pacientes/{_pacienteId}");
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Paciente excluído com sucesso.", "Exclusão de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimparFormulario();
+                DesativarFormulario();
+                AtualizaPacientes();
+            }
+            else
+            {
+                //Não chegará aqui, mas caso o botão de exclusão esteja ativo, a API devolverá o http 403
+                MessageBox.Show("Usuário sem autorização para executar a ação.", "Exclusão de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            }
+        }
     }
     private void toolStripCancelar_Click(object sender, EventArgs e)
     {
@@ -139,13 +177,14 @@ public partial class Form_Pacientes : Form
     }
     private void PreencheFormComDataGridView(DataGridViewRow linha)
     {
+        _pacienteId = (Int32)linha.Cells[1].Value;
+        _pacienteNome = linha.Cells[2].Value.ToString();
         AtivarFormulario();
         Txt_Id.Enabled = false;
         toolStripSalvar.Enabled = false;
-        if (linha.Cells[1].Value.ToString() == "1") Ckb_Ativo.CheckState = CheckState.Checked;
-        if (linha.Cells[1].Value.ToString() == "0") Ckb_Ativo.CheckState = CheckState.Unchecked;
+        if (linha.Cells[0].Value.ToString() == "True") Ckb_Ativo.CheckState = CheckState.Checked;
+        if (linha.Cells[0].Value.ToString() == "False") Ckb_Ativo.CheckState = CheckState.Unchecked;
         Txt_Id.Text = linha.Cells[1].Value.ToString();
-        _pacienteId = (Int32)linha.Cells[1].Value;
         Txt_Nome.Text = linha.Cells[2].Value.ToString();
         Txt_Email.Text = linha.Cells[3].Value.ToString();
         Txt_CPF.Text = linha.Cells[4].Value.ToString();
@@ -165,12 +204,22 @@ public partial class Form_Pacientes : Form
                 "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN",
                 "RS", "RO", "RR", "SC", "SP", "SE", "TO"]);
     }
+    private void VerificaFuncaoDoUsuario(string usuarioRole)
+    {
+        if (usuarioRole != "Administrador")
+        {
+            Ckb_Ativo.Visible = false;
+            toolStripExcluir.Visible = false;
+            toolStripSeparator5.Visible = false;
+        }
+    }
     private async void AtualizaPacientes()
     {
         HttpResponseMessage resposta = await _httpClientBuilder.GetRequisition("/Pacientes");
         List<Paciente> lista = JsonConvert.DeserializeObject<List<Paciente>>(await resposta.Content.ReadAsStringAsync())!;
         Dgv_Pacientes.DataSource = lista;
     }
+
 
     private async void Txt_CEP_Leave(object sender, EventArgs e)
     {
