@@ -9,6 +9,6 @@ public class PacienteProfile : Profile
     public PacienteProfile()
     {
         CreateMap<CreatePacienteDto, Paciente>();
-        CreateMap<UpdatePacienteDto, Paciente>().ForAllMembers(m => m.Condition((src, dest, srcMember) => srcMember != string.Empty));
+        CreateMap<UpdatePacienteDto, Paciente>().ForAllMembers(m => m.Condition((src, dest, srcMember) => srcMember.ToString() != string.Empty));
     }
 }
