@@ -500,6 +500,27 @@ Caso tenha erros, é exibido no label de mensagem, e em caso de sucesso é mostr
 
 <br>
 
+Ao fazer o login corretamente, é aberto da tela principal do sistema.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/principal.png)
+
+Aqui temos o menu, onde é possivel fazer o gerenciamento dos cadastros de consultas, médicos e pacientes. Abaixo tem a informação da função do usuário logado e o seu e-mail.
+
+<br>
+
+Na tela de cadastro de pacientes é possivel fazer a inclussão, alteração e caso o usuário logado seja um `Administrador` a exclusão e inativação dos pacientes.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/pacientes.png)
+
+Os icones de `exclusão` e `ativo` ficam invisíveis se o usuário não for administrador.<br>
+
+Ao selecionar ou buscar um paciente, os dados são preenchidos no formulário, e o menu é alterado para um modo de edição.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/pacientesEdicao.png)
+
+O CEP tem um autopreenchimento via API do [viacep][viacep].
+
+
 ## Imagens
 
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/swagger1.png)
@@ -520,3 +541,4 @@ Caso tenha erros, é exibido no label de mensagem, e em caso de sucesso é mostr
 [http403]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/403
 [http404]: https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/404
 [appsettings]: https://raw.githubusercontent.com/guih1886/jomedAPI/main/JomedAPI/Assets/appsettings.json
+[viacep]: https://viacep.com.br/
