@@ -3,6 +3,7 @@ using JomedAPI.Data.DTO.Enderecos;
 using JomedAPI.Data.DTO.Paciente;
 using JomedAPIForms.Classes;
 using JomedAPIForms.Classes.Interfaces;
+using JomedAPIForms.Forms.Buscar;
 using JomedAPIForms.Models;
 using Newtonsoft.Json;
 
@@ -14,6 +15,7 @@ public partial class Form_Pacientes : Form
     private List<Paciente> _listaPacientes;
     private int? _pacienteId;
     private string? _pacienteNome;
+    private DataGridViewRow? _pacienteSelecionado;
     public Form_Pacientes(IHttpClientBuilder httpClientBuilder, List<Paciente> listaPacientes, string usuarioRole)
     {
         _httpClientBuilder = httpClientBuilder;
@@ -28,6 +30,7 @@ public partial class Form_Pacientes : Form
     {
         AtivarFormulario();
         toolStripEditar.Enabled = false;
+        toolStripExcluir.Enabled = false;
         toolStripSalvar.Enabled = true;
         Ckb_Ativo.CheckState = CheckState.Checked;
         Ckb_Ativo.Enabled = false;
@@ -44,7 +47,8 @@ public partial class Form_Pacientes : Form
         {
             if (respostaEndereco.IsSuccessStatusCode)
             {
-                MessageBox.Show("Paciente atualizado com sucesso.", "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                AtivaOuDesativaPaciente();
+                MessageBox.Show("Paciente atualizado com sucesso.", "Cadastro de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AtualizaPacientes();
                 LimparFormulario();
                 DesativarFormulario();
@@ -52,12 +56,12 @@ public partial class Form_Pacientes : Form
             else
             {
                 string msgEndereco = await ValidaRequisicoes.ValidarErrosRequisicao(respostaEndereco);
-                MessageBox.Show(msgEndereco, "Cadastros de Pacientess", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(msgEndereco, "Cadastro de Pacientess", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         else
         {
-            MessageBox.Show(msg, "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(msg, "Cadastro de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
     private async void toolStripSalvar_Click(object sender, EventArgs e)
@@ -69,19 +73,24 @@ public partial class Form_Pacientes : Form
         string msg = await ValidaRequisicoes.ValidarErrosRequisicao(resposta);
         if (resposta.IsSuccessStatusCode)
         {
-            MessageBox.Show("Paciente atualizado com sucesso.", "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Paciente atualizado com sucesso.", "Cadastro de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             AtualizaPacientes();
             LimparFormulario();
             DesativarFormulario();
         }
         else
         {
-            MessageBox.Show(msg, "Cadastros de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(msg, "Cadastro de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
     private void toolStripBuscar_Click(object sender, EventArgs e)
     {
-
+        Form_Busca buscar = new Form_Busca(_listaPacientes, "CPF");
+        DialogResult resposta = buscar.ShowDialog();
+        if (resposta == DialogResult.OK)
+        {
+            PreencheFormComBuscar(buscar.selecionado!);
+        }
     }
     private async void toolStripExcluir_Click(object sender, EventArgs e)
     {
@@ -112,6 +121,7 @@ public partial class Form_Pacientes : Form
     {
         LimparFormulario();
         DataGridViewRow linha = Dgv_Pacientes.SelectedRows[0];
+        _pacienteSelecionado = linha;
         PreencheFormComDataGridView(linha);
     }
 
@@ -135,6 +145,7 @@ public partial class Form_Pacientes : Form
         Txt_Cidade.Enabled = true;
         Cmb_UF.Enabled = true;
         Txt_CPF.Focus();
+        Dgv_Pacientes.Enabled = false;
     }
     private void DesativarFormulario()
     {
@@ -158,6 +169,7 @@ public partial class Form_Pacientes : Form
         Txt_Cidade.Enabled = false;
         Cmb_UF.Enabled = false;
         Dgv_Pacientes.Focus();
+        Dgv_Pacientes.Enabled = true;
     }
     private void LimparFormulario()
     {
@@ -198,6 +210,29 @@ public partial class Form_Pacientes : Form
         Txt_Cidade.Text = endereco.Cidade;
         Cmb_UF.SelectedIndex = Cmb_UF.FindStringExact(endereco.Uf);
     }
+    private void PreencheFormComBuscar(DataGridViewRow linha)
+    {
+        _pacienteId = (Int32)linha.Cells[0].Value;
+        _pacienteNome = linha.Cells[1].Value.ToString();
+        AtivarFormulario();
+        Txt_Id.Enabled = false;
+        toolStripSalvar.Enabled = false;
+        if (linha.Cells[6].Value.ToString() == "True") Ckb_Ativo.CheckState = CheckState.Checked;
+        if (linha.Cells[6].Value.ToString() == "False") Ckb_Ativo.CheckState = CheckState.Unchecked;
+        Txt_Id.Text = linha.Cells[0].Value.ToString();
+        Txt_Nome.Text = linha.Cells[1].Value.ToString();
+        Txt_Email.Text = linha.Cells[2].Value.ToString();
+        Txt_CPF.Text = linha.Cells[3].Value.ToString();
+        Txt_Telefone.Text = linha.Cells[4].Value.ToString();
+        Endereco endereco = (Endereco)linha.Cells[5].Value;
+        Txt_Logradouro.Text = endereco.Logradouro;
+        Txt_Numero.Text = endereco.Numero.ToString();
+        Txt_Bairro.Text = endereco.Bairro;
+        Txt_Complemento.Text = endereco.Complemento;
+        Txt_CEP.Text = endereco.Cep;
+        Txt_Cidade.Text = endereco.Cidade;
+        Cmb_UF.SelectedIndex = Cmb_UF.FindStringExact(endereco.Uf);
+    }
     private void PreencheComboBoxUF()
     {
         Cmb_UF.Items.AddRange(["AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA",
@@ -217,21 +252,35 @@ public partial class Form_Pacientes : Form
     {
         HttpResponseMessage resposta = await _httpClientBuilder.GetRequisition("/Pacientes");
         List<Paciente> lista = JsonConvert.DeserializeObject<List<Paciente>>(await resposta.Content.ReadAsStringAsync())!;
+        _listaPacientes = lista;
         Dgv_Pacientes.DataSource = lista;
     }
-
+    private async void AtivaOuDesativaPaciente()
+    {
+        if (Ckb_Ativo.CheckState == CheckState.Unchecked)
+        {
+            await _httpClientBuilder.DeleteRequisition($"/Pacientes/{_pacienteId}/inativar");
+        }
+        if (Ckb_Ativo.CheckState == CheckState.Checked)
+        {
+            await _httpClientBuilder.PostRequisition($"/Pacientes/{_pacienteId}/ativar", "");
+        }
+    }
 
     private async void Txt_CEP_Leave(object sender, EventArgs e)
     {
         if (Txt_CEP.Text != string.Empty)
         {
             HttpResponseMessage resposta = await _httpClientBuilder.GetExternal($"https://viacep.com.br/ws/{Txt_CEP.Text}/json/");
-            BuscarEndereco endereco = JsonConvert.DeserializeObject<BuscarEndereco>(await resposta.Content.ReadAsStringAsync())!;
-            Txt_Logradouro.Text = endereco.Logradouro;
-            Txt_Bairro.Text = endereco.Bairro;
-            Txt_Complemento.Text = endereco.Complemento;
-            Txt_Cidade.Text = endereco.Localidade;
-            Cmb_UF.SelectedIndex = Cmb_UF.FindStringExact(endereco.Uf);
+            if (resposta.IsSuccessStatusCode)
+            {
+                BuscarEndereco endereco = JsonConvert.DeserializeObject<BuscarEndereco>(await resposta.Content.ReadAsStringAsync())!;
+                Txt_Logradouro.Text = endereco.Logradouro;
+                Txt_Bairro.Text = endereco.Bairro;
+                Txt_Complemento.Text = endereco.Complemento;
+                Txt_Cidade.Text = endereco.Localidade;
+                Cmb_UF.SelectedIndex = Cmb_UF.FindStringExact(endereco.Uf);
+            }
         }
     }
 }
