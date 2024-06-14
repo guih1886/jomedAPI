@@ -33,8 +33,9 @@
             Dgv_Busca = new DataGridView();
             pacienteBindingSource = new BindingSource(components);
             Gpb_Dados = new GroupBox();
-            Txt_Idenficador = new TextBox();
-            Ckb_Ativo = new CheckBox();
+            Lbl_Status = new Label();
+            Cmb_Status = new ComboBox();
+            Txt_Identificador = new TextBox();
             Lbl_Identificador = new Label();
             Txt_Email = new TextBox();
             Lbl_Email = new Label();
@@ -45,6 +46,7 @@
             Btn_Cancelar = new Button();
             Btn_Selecionar = new Button();
             Btn_Buscar = new Button();
+            Btn_Limpar = new Button();
             ((System.ComponentModel.ISupportInitialize)Dgv_Busca).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pacienteBindingSource).BeginInit();
             Gpb_Dados.SuspendLayout();
@@ -73,8 +75,9 @@
             // 
             // Gpb_Dados
             // 
-            Gpb_Dados.Controls.Add(Txt_Idenficador);
-            Gpb_Dados.Controls.Add(Ckb_Ativo);
+            Gpb_Dados.Controls.Add(Lbl_Status);
+            Gpb_Dados.Controls.Add(Cmb_Status);
+            Gpb_Dados.Controls.Add(Txt_Identificador);
             Gpb_Dados.Controls.Add(Lbl_Identificador);
             Gpb_Dados.Controls.Add(Txt_Email);
             Gpb_Dados.Controls.Add(Lbl_Email);
@@ -84,37 +87,45 @@
             Gpb_Dados.Controls.Add(Lbl_Id);
             Gpb_Dados.Location = new Point(12, 330);
             Gpb_Dados.Name = "Gpb_Dados";
-            Gpb_Dados.Size = new Size(813, 114);
+            Gpb_Dados.Size = new Size(813, 110);
             Gpb_Dados.TabIndex = 2;
             Gpb_Dados.TabStop = false;
             // 
-            // Txt_Idenficador
+            // Lbl_Status
             // 
-            Txt_Idenficador.Location = new Point(172, 33);
-            Txt_Idenficador.Name = "Txt_Idenficador";
-            Txt_Idenficador.Size = new Size(216, 23);
-            Txt_Idenficador.TabIndex = 11;
+            Lbl_Status.AutoSize = true;
+            Lbl_Status.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Lbl_Status.Location = new Point(6, 13);
+            Lbl_Status.Name = "Lbl_Status";
+            Lbl_Status.Size = new Size(35, 16);
+            Lbl_Status.TabIndex = 13;
+            Lbl_Status.Text = "Status";
             // 
-            // Ckb_Ativo
+            // Cmb_Status
             // 
-            Ckb_Ativo.AutoSize = true;
-            Ckb_Ativo.Checked = true;
-            Ckb_Ativo.CheckState = CheckState.Checked;
-            Ckb_Ativo.Location = new Point(6, 22);
-            Ckb_Ativo.Name = "Ckb_Ativo";
-            Ckb_Ativo.Size = new Size(54, 19);
-            Ckb_Ativo.TabIndex = 10;
-            Ckb_Ativo.TabStop = false;
-            Ckb_Ativo.Text = "Ativo";
-            Ckb_Ativo.UseVisualStyleBackColor = true;
-            Ckb_Ativo.CheckedChanged += Ckb_Ativo_CheckedChanged;
+            Cmb_Status.DropDownStyle = ComboBoxStyle.DropDownList;
+            Cmb_Status.FormattingEnabled = true;
+            Cmb_Status.Items.AddRange(new object[] { "Todos", "Ativo", "Inativo" });
+            Cmb_Status.Location = new Point(6, 30);
+            Cmb_Status.Name = "Cmb_Status";
+            Cmb_Status.Size = new Size(110, 23);
+            Cmb_Status.TabIndex = 12;
+            Cmb_Status.SelectedIndexChanged += Cmb_Status_SelectedIndexChanged;
+            // 
+            // Txt_Identificador
+            // 
+            Txt_Identificador.Location = new Point(6, 75);
+            Txt_Identificador.MaxLength = 11;
+            Txt_Identificador.Name = "Txt_Identificador";
+            Txt_Identificador.Size = new Size(216, 23);
+            Txt_Identificador.TabIndex = 11;
             // 
             // Lbl_Identificador
             // 
             Lbl_Identificador.AutoSize = true;
             Lbl_Identificador.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Lbl_Identificador.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            Lbl_Identificador.Location = new Point(172, 14);
+            Lbl_Identificador.Location = new Point(6, 56);
             Lbl_Identificador.Name = "Lbl_Identificador";
             Lbl_Identificador.Size = new Size(63, 16);
             Lbl_Identificador.TabIndex = 6;
@@ -122,16 +133,16 @@
             // 
             // Txt_Email
             // 
-            Txt_Email.Location = new Point(394, 33);
+            Txt_Email.Location = new Point(228, 75);
             Txt_Email.Name = "Txt_Email";
-            Txt_Email.Size = new Size(413, 23);
+            Txt_Email.Size = new Size(579, 23);
             Txt_Email.TabIndex = 4;
             // 
             // Lbl_Email
             // 
             Lbl_Email.AutoSize = true;
             Lbl_Email.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Lbl_Email.Location = new Point(394, 14);
+            Lbl_Email.Location = new Point(228, 56);
             Lbl_Email.Name = "Lbl_Email";
             Lbl_Email.Size = new Size(36, 16);
             Lbl_Email.TabIndex = 4;
@@ -139,16 +150,16 @@
             // 
             // Txt_Nome
             // 
-            Txt_Nome.Location = new Point(6, 71);
+            Txt_Nome.Location = new Point(228, 32);
             Txt_Nome.Name = "Txt_Nome";
-            Txt_Nome.Size = new Size(801, 23);
+            Txt_Nome.Size = new Size(579, 23);
             Txt_Nome.TabIndex = 3;
             // 
             // Lbl_Nome
             // 
             Lbl_Nome.AutoSize = true;
             Lbl_Nome.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Lbl_Nome.Location = new Point(6, 52);
+            Lbl_Nome.Location = new Point(228, 13);
             Lbl_Nome.Name = "Lbl_Nome";
             Lbl_Nome.Size = new Size(35, 16);
             Lbl_Nome.TabIndex = 2;
@@ -156,7 +167,7 @@
             // 
             // Txt_Id
             // 
-            Txt_Id.Location = new Point(66, 33);
+            Txt_Id.Location = new Point(122, 32);
             Txt_Id.Name = "Txt_Id";
             Txt_Id.Size = new Size(100, 23);
             Txt_Id.TabIndex = 1;
@@ -165,7 +176,7 @@
             // 
             Lbl_Id.AutoSize = true;
             Lbl_Id.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Lbl_Id.Location = new Point(66, 14);
+            Lbl_Id.Location = new Point(122, 13);
             Lbl_Id.Name = "Lbl_Id";
             Lbl_Id.Size = new Size(18, 16);
             Lbl_Id.TabIndex = 0;
@@ -173,7 +184,7 @@
             // 
             // Btn_Cancelar
             // 
-            Btn_Cancelar.Location = new Point(750, 461);
+            Btn_Cancelar.Location = new Point(750, 446);
             Btn_Cancelar.Name = "Btn_Cancelar";
             Btn_Cancelar.Size = new Size(75, 23);
             Btn_Cancelar.TabIndex = 3;
@@ -183,7 +194,7 @@
             // 
             // Btn_Selecionar
             // 
-            Btn_Selecionar.Location = new Point(669, 461);
+            Btn_Selecionar.Location = new Point(669, 446);
             Btn_Selecionar.Name = "Btn_Selecionar";
             Btn_Selecionar.Size = new Size(75, 23);
             Btn_Selecionar.TabIndex = 4;
@@ -193,7 +204,7 @@
             // 
             // Btn_Buscar
             // 
-            Btn_Buscar.Location = new Point(588, 461);
+            Btn_Buscar.Location = new Point(588, 446);
             Btn_Buscar.Name = "Btn_Buscar";
             Btn_Buscar.Size = new Size(75, 23);
             Btn_Buscar.TabIndex = 5;
@@ -201,12 +212,23 @@
             Btn_Buscar.UseVisualStyleBackColor = true;
             Btn_Buscar.Click += Btn_Buscar_Click;
             // 
+            // Btn_Limpar
+            // 
+            Btn_Limpar.Location = new Point(12, 446);
+            Btn_Limpar.Name = "Btn_Limpar";
+            Btn_Limpar.Size = new Size(75, 23);
+            Btn_Limpar.TabIndex = 6;
+            Btn_Limpar.Text = "Limpar";
+            Btn_Limpar.UseVisualStyleBackColor = true;
+            Btn_Limpar.Click += Btn_Limpar_Click;
+            // 
             // Form_Busca
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(837, 496);
+            ClientSize = new Size(837, 474);
+            Controls.Add(Btn_Limpar);
             Controls.Add(Btn_Buscar);
             Controls.Add(Btn_Selecionar);
             Controls.Add(Btn_Cancelar);
@@ -234,11 +256,8 @@
         private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private BindingSource pacienteBindingSource;
         private GroupBox Gpb_Dados;
-        private CheckBox Ckb_Ativo;
-        private TextBox Txt_CPF;
         private Label Lbl_Identificador;
         private TextBox Txt_Email;
-        private TextBox Txt_Identificador;
         private Label Lbl_Email;
         private TextBox Txt_Nome;
         private Label Lbl_Nome;
@@ -246,7 +265,10 @@
         private Label Lbl_Id;
         private Button Btn_Cancelar;
         private Button Btn_Selecionar;
-        private TextBox Txt_Idenficador;
+        private TextBox Txt_Identificador;
         private Button Btn_Buscar;
+        private Label Lbl_Status;
+        private ComboBox Cmb_Status;
+        private Button Btn_Limpar;
     }
 }
