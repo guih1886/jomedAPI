@@ -71,6 +71,7 @@
             toolStripConsultas.Name = "toolStripConsultas";
             toolStripConsultas.Size = new Size(79, 22);
             toolStripConsultas.Text = "Consultas";
+            toolStripConsultas.Click += toolStripConsultas_Click;
             // 
             // toolStripSeparator1
             // 
@@ -123,6 +124,7 @@
             cadastroDeConsultasToolStripMenuItem.Name = "cadastroDeConsultasToolStripMenuItem";
             cadastroDeConsultasToolStripMenuItem.Size = new Size(192, 22);
             cadastroDeConsultasToolStripMenuItem.Text = "Cadastro de Consultas";
+            cadastroDeConsultasToolStripMenuItem.Click += cadastroDeConsultasToolStripMenuItem_Click;
             // 
             // médicosToolStripMenuItem
             // 
