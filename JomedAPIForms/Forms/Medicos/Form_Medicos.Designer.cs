@@ -30,13 +30,6 @@ partial class Form_Medicos
         components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Medicos));
         Dgv_Medicos = new DataGridView();
-        ativoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
-        idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        crmDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        telefoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        especialidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         medicoBindingSource = new BindingSource(components);
         toolStrip1 = new ToolStrip();
         toolStripNovo = new ToolStripButton();
@@ -80,6 +73,13 @@ partial class Form_Medicos
         Lbl_Nome = new Label();
         Txt_Id = new TextBox();
         Lbl_Id = new Label();
+        ativoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+        idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        crmDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        telefoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        especialidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
         ((System.ComponentModel.ISupportInitialize)Dgv_Medicos).BeginInit();
         ((System.ComponentModel.ISupportInitialize)medicoBindingSource).BeginInit();
         toolStrip1.SuspendLayout();
@@ -95,7 +95,7 @@ partial class Form_Medicos
         Dgv_Medicos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         Dgv_Medicos.AutoGenerateColumns = false;
         Dgv_Medicos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        Dgv_Medicos.Columns.AddRange(new DataGridViewColumn[] { ativoDataGridViewCheckBoxColumn, idDataGridViewTextBoxColumn, crmDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn, especialidadeDataGridViewTextBoxColumn });
+        Dgv_Medicos.Columns.AddRange(new DataGridViewColumn[] { ativoDataGridViewCheckBoxColumn, idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, crmDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn, especialidadeDataGridViewTextBoxColumn });
         Dgv_Medicos.DataSource = medicoBindingSource;
         Dgv_Medicos.Location = new Point(12, 28);
         Dgv_Medicos.MultiSelect = false;
@@ -104,62 +104,6 @@ partial class Form_Medicos
         Dgv_Medicos.Size = new Size(1147, 312);
         Dgv_Medicos.TabIndex = 0;
         Dgv_Medicos.TabStop = false;
-        // 
-        // ativoDataGridViewCheckBoxColumn
-        // 
-        ativoDataGridViewCheckBoxColumn.DataPropertyName = "Ativo";
-        ativoDataGridViewCheckBoxColumn.HeaderText = "Ativo";
-        ativoDataGridViewCheckBoxColumn.Name = "ativoDataGridViewCheckBoxColumn";
-        ativoDataGridViewCheckBoxColumn.ReadOnly = true;
-        ativoDataGridViewCheckBoxColumn.Width = 54;
-        // 
-        // idDataGridViewTextBoxColumn
-        // 
-        idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-        idDataGridViewTextBoxColumn.HeaderText = "Id";
-        idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-        idDataGridViewTextBoxColumn.ReadOnly = true;
-        idDataGridViewTextBoxColumn.Width = 50;
-        // 
-        // crmDataGridViewTextBoxColumn
-        // 
-        crmDataGridViewTextBoxColumn.DataPropertyName = "Crm";
-        crmDataGridViewTextBoxColumn.HeaderText = "Crm";
-        crmDataGridViewTextBoxColumn.Name = "crmDataGridViewTextBoxColumn";
-        crmDataGridViewTextBoxColumn.ReadOnly = true;
-        crmDataGridViewTextBoxColumn.Width = 130;
-        // 
-        // nomeDataGridViewTextBoxColumn
-        // 
-        nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-        nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-        nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-        nomeDataGridViewTextBoxColumn.ReadOnly = true;
-        nomeDataGridViewTextBoxColumn.Width = 300;
-        // 
-        // emailDataGridViewTextBoxColumn
-        // 
-        emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-        emailDataGridViewTextBoxColumn.HeaderText = "Email";
-        emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-        emailDataGridViewTextBoxColumn.ReadOnly = true;
-        emailDataGridViewTextBoxColumn.Width = 300;
-        // 
-        // telefoneDataGridViewTextBoxColumn
-        // 
-        telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
-        telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
-        telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
-        telefoneDataGridViewTextBoxColumn.ReadOnly = true;
-        telefoneDataGridViewTextBoxColumn.Width = 120;
-        // 
-        // especialidadeDataGridViewTextBoxColumn
-        // 
-        especialidadeDataGridViewTextBoxColumn.DataPropertyName = "Especialidade";
-        especialidadeDataGridViewTextBoxColumn.HeaderText = "Especialidade";
-        especialidadeDataGridViewTextBoxColumn.Name = "especialidadeDataGridViewTextBoxColumn";
-        especialidadeDataGridViewTextBoxColumn.ReadOnly = true;
-        especialidadeDataGridViewTextBoxColumn.Width = 150;
         // 
         // medicoBindingSource
         // 
@@ -575,6 +519,62 @@ partial class Form_Medicos
         Lbl_Id.TabIndex = 0;
         Lbl_Id.Text = "ID";
         // 
+        // ativoDataGridViewCheckBoxColumn
+        // 
+        ativoDataGridViewCheckBoxColumn.DataPropertyName = "Ativo";
+        ativoDataGridViewCheckBoxColumn.HeaderText = "Ativo";
+        ativoDataGridViewCheckBoxColumn.Name = "ativoDataGridViewCheckBoxColumn";
+        ativoDataGridViewCheckBoxColumn.ReadOnly = true;
+        ativoDataGridViewCheckBoxColumn.Width = 54;
+        // 
+        // idDataGridViewTextBoxColumn
+        // 
+        idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+        idDataGridViewTextBoxColumn.HeaderText = "Id";
+        idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+        idDataGridViewTextBoxColumn.ReadOnly = true;
+        idDataGridViewTextBoxColumn.Width = 50;
+        // 
+        // nomeDataGridViewTextBoxColumn
+        // 
+        nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
+        nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+        nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+        nomeDataGridViewTextBoxColumn.ReadOnly = true;
+        nomeDataGridViewTextBoxColumn.Width = 300;
+        // 
+        // emailDataGridViewTextBoxColumn
+        // 
+        emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+        emailDataGridViewTextBoxColumn.HeaderText = "Email";
+        emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+        emailDataGridViewTextBoxColumn.ReadOnly = true;
+        emailDataGridViewTextBoxColumn.Width = 300;
+        // 
+        // crmDataGridViewTextBoxColumn
+        // 
+        crmDataGridViewTextBoxColumn.DataPropertyName = "Crm";
+        crmDataGridViewTextBoxColumn.HeaderText = "Crm";
+        crmDataGridViewTextBoxColumn.Name = "crmDataGridViewTextBoxColumn";
+        crmDataGridViewTextBoxColumn.ReadOnly = true;
+        crmDataGridViewTextBoxColumn.Width = 130;
+        // 
+        // telefoneDataGridViewTextBoxColumn
+        // 
+        telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
+        telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
+        telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
+        telefoneDataGridViewTextBoxColumn.ReadOnly = true;
+        telefoneDataGridViewTextBoxColumn.Width = 120;
+        // 
+        // especialidadeDataGridViewTextBoxColumn
+        // 
+        especialidadeDataGridViewTextBoxColumn.DataPropertyName = "Especialidade";
+        especialidadeDataGridViewTextBoxColumn.HeaderText = "Especialidade";
+        especialidadeDataGridViewTextBoxColumn.Name = "especialidadeDataGridViewTextBoxColumn";
+        especialidadeDataGridViewTextBoxColumn.ReadOnly = true;
+        especialidadeDataGridViewTextBoxColumn.Width = 150;
+        // 
         // Form_Medicos
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
@@ -648,13 +648,13 @@ partial class Form_Medicos
     private Label Lbl_UF;
     private CheckBox Ckb_Ativo;
     private BindingSource medicoBindingSource;
-    private DataGridViewCheckBoxColumn ativoDataGridViewCheckBoxColumn;
-    private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn crmDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
-    private DataGridViewTextBoxColumn especialidadeDataGridViewTextBoxColumn;
     private ComboBox Cmb_Especialidade;
     private Label Lbl_Especialidade;
+    private DataGridViewCheckBoxColumn ativoDataGridViewCheckBoxColumn;
+    private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn crmDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn especialidadeDataGridViewTextBoxColumn;
 }
