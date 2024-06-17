@@ -109,7 +109,8 @@
             Cmb_Status.Location = new Point(6, 30);
             Cmb_Status.Name = "Cmb_Status";
             Cmb_Status.Size = new Size(110, 23);
-            Cmb_Status.TabIndex = 12;
+            Cmb_Status.TabIndex = 0;
+            Cmb_Status.TabStop = false;
             Cmb_Status.SelectedIndexChanged += Cmb_Status_SelectedIndexChanged;
             // 
             // Txt_Identificador
@@ -118,7 +119,7 @@
             Txt_Identificador.MaxLength = 11;
             Txt_Identificador.Name = "Txt_Identificador";
             Txt_Identificador.Size = new Size(216, 23);
-            Txt_Identificador.TabIndex = 11;
+            Txt_Identificador.TabIndex = 3;
             // 
             // Lbl_Identificador
             // 
@@ -153,7 +154,7 @@
             Txt_Nome.Location = new Point(228, 32);
             Txt_Nome.Name = "Txt_Nome";
             Txt_Nome.Size = new Size(579, 23);
-            Txt_Nome.TabIndex = 3;
+            Txt_Nome.TabIndex = 2;
             // 
             // Lbl_Nome
             // 
@@ -187,7 +188,7 @@
             Btn_Cancelar.Location = new Point(750, 446);
             Btn_Cancelar.Name = "Btn_Cancelar";
             Btn_Cancelar.Size = new Size(75, 23);
-            Btn_Cancelar.TabIndex = 3;
+            Btn_Cancelar.TabIndex = 7;
             Btn_Cancelar.Text = "Cancelar";
             Btn_Cancelar.UseVisualStyleBackColor = true;
             Btn_Cancelar.Click += Btn_Cancelar_Click;
@@ -197,7 +198,7 @@
             Btn_Selecionar.Location = new Point(669, 446);
             Btn_Selecionar.Name = "Btn_Selecionar";
             Btn_Selecionar.Size = new Size(75, 23);
-            Btn_Selecionar.TabIndex = 4;
+            Btn_Selecionar.TabIndex = 6;
             Btn_Selecionar.Text = "Selecionar";
             Btn_Selecionar.UseVisualStyleBackColor = true;
             Btn_Selecionar.Click += Btn_Selecionar_Click;
@@ -217,7 +218,8 @@
             Btn_Limpar.Location = new Point(12, 446);
             Btn_Limpar.Name = "Btn_Limpar";
             Btn_Limpar.Size = new Size(75, 23);
-            Btn_Limpar.TabIndex = 6;
+            Btn_Limpar.TabIndex = 0;
+            Btn_Limpar.TabStop = false;
             Btn_Limpar.Text = "Limpar";
             Btn_Limpar.UseVisualStyleBackColor = true;
             Btn_Limpar.Click += Btn_Limpar_Click;
