@@ -52,7 +52,20 @@
             nomePacienteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             consultaFormatadaBindingSource = new BindingSource(components);
             Gpb_Consulta = new GroupBox();
+            Gpb_Data = new GroupBox();
+            Gpb_DataHora = new GroupBox();
+            Dtp_Data = new DateTimePicker();
+            Lbl_Hora = new Label();
+            Dtp_Horario = new DateTimePicker();
+            Lbl_Data = new Label();
             Gpb_Paciente = new GroupBox();
+            Txt_Nome = new TextBox();
+            Lbl_NomePaciente = new Label();
+            Txt_CpfPaciente = new TextBox();
+            Lbl_CPF = new Label();
+            Txt_IdPaciente = new TextBox();
+            Lbl_Id = new Label();
+            Btn_BuscarPaciente = new Button();
             Gpb_Medico = new GroupBox();
             cmb_NomeMedico = new ComboBox();
             Lbl_NomeMedico = new Label();
@@ -62,6 +75,9 @@
             ((System.ComponentModel.ISupportInitialize)Dgv_Consultas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)consultaFormatadaBindingSource).BeginInit();
             Gpb_Consulta.SuspendLayout();
+            Gpb_Data.SuspendLayout();
+            Gpb_DataHora.SuspendLayout();
+            Gpb_Paciente.SuspendLayout();
             Gpb_Medico.SuspendLayout();
             SuspendLayout();
             // 
@@ -117,6 +133,7 @@
             toolStripEditar.Size = new Size(23, 22);
             toolStripEditar.Text = "toolStripButton2";
             toolStripEditar.ToolTipText = "Editar o cadastro do médico";
+            toolStripEditar.Click += toolStripEditar_Click;
             // 
             // toolStripSeparator3
             // 
@@ -133,6 +150,7 @@
             toolStripSalvar.Size = new Size(23, 22);
             toolStripSalvar.Text = "toolStripButton3";
             toolStripSalvar.ToolTipText = "Salvar";
+            toolStripSalvar.Click += toolStripSalvar_Click;
             // 
             // toolStripSeparator4
             // 
@@ -149,6 +167,7 @@
             toolStripExcluir.Size = new Size(23, 22);
             toolStripExcluir.Text = "toolStripButton1";
             toolStripExcluir.ToolTipText = "Excluir o cadastro do médico";
+            toolStripExcluir.Click += toolStripExcluir_Click;
             // 
             // toolStripSeparator5
             // 
@@ -165,6 +184,7 @@
             toolStripCancelar.Size = new Size(23, 22);
             toolStripCancelar.Text = "toolStripButton1";
             toolStripCancelar.ToolTipText = "Cancelar";
+            toolStripCancelar.Click += toolStripCancelar_Click;
             // 
             // Dgv_Consultas
             // 
@@ -246,22 +266,163 @@
             // 
             // Gpb_Consulta
             // 
+            Gpb_Consulta.Controls.Add(Gpb_Data);
             Gpb_Consulta.Controls.Add(Gpb_Paciente);
             Gpb_Consulta.Controls.Add(Gpb_Medico);
             Gpb_Consulta.Location = new Point(12, 346);
             Gpb_Consulta.Name = "Gpb_Consulta";
-            Gpb_Consulta.Size = new Size(1147, 305);
+            Gpb_Consulta.Size = new Size(1147, 284);
             Gpb_Consulta.TabIndex = 4;
             Gpb_Consulta.TabStop = false;
             // 
+            // Gpb_Data
+            // 
+            Gpb_Data.Controls.Add(Gpb_DataHora);
+            Gpb_Data.Location = new Point(564, 22);
+            Gpb_Data.Name = "Gpb_Data";
+            Gpb_Data.Size = new Size(577, 252);
+            Gpb_Data.TabIndex = 2;
+            Gpb_Data.TabStop = false;
+            Gpb_Data.Text = "Agendamento";
+            // 
+            // Gpb_DataHora
+            // 
+            Gpb_DataHora.Controls.Add(Dtp_Data);
+            Gpb_DataHora.Controls.Add(Lbl_Hora);
+            Gpb_DataHora.Controls.Add(Dtp_Horario);
+            Gpb_DataHora.Controls.Add(Lbl_Data);
+            Gpb_DataHora.Location = new Point(6, 19);
+            Gpb_DataHora.Name = "Gpb_DataHora";
+            Gpb_DataHora.Size = new Size(256, 65);
+            Gpb_DataHora.TabIndex = 8;
+            Gpb_DataHora.TabStop = false;
+            // 
+            // Dtp_Data
+            // 
+            Dtp_Data.Enabled = false;
+            Dtp_Data.Format = DateTimePickerFormat.Short;
+            Dtp_Data.Location = new Point(6, 34);
+            Dtp_Data.MinDate = new DateTime(2024, 6, 17, 0, 0, 0, 0);
+            Dtp_Data.Name = "Dtp_Data";
+            Dtp_Data.Size = new Size(105, 23);
+            Dtp_Data.TabIndex = 4;
+            // 
+            // Lbl_Hora
+            // 
+            Lbl_Hora.AutoSize = true;
+            Lbl_Hora.Font = new Font("Arial Narrow", 10F);
+            Lbl_Hora.Location = new Point(117, 14);
+            Lbl_Hora.Name = "Lbl_Hora";
+            Lbl_Hora.Size = new Size(44, 17);
+            Lbl_Hora.TabIndex = 7;
+            Lbl_Hora.Text = "Horário";
+            // 
+            // Dtp_Horario
+            // 
+            Dtp_Horario.CustomFormat = "HH:mm";
+            Dtp_Horario.Enabled = false;
+            Dtp_Horario.Format = DateTimePickerFormat.Custom;
+            Dtp_Horario.Location = new Point(117, 34);
+            Dtp_Horario.MinDate = new DateTime(2024, 6, 17, 0, 0, 0, 0);
+            Dtp_Horario.Name = "Dtp_Horario";
+            Dtp_Horario.ShowUpDown = true;
+            Dtp_Horario.Size = new Size(132, 23);
+            Dtp_Horario.TabIndex = 5;
+            Dtp_Horario.Value = new DateTime(2024, 6, 17, 18, 24, 0, 0);
+            // 
+            // Lbl_Data
+            // 
+            Lbl_Data.AutoSize = true;
+            Lbl_Data.Font = new Font("Arial Narrow", 10F);
+            Lbl_Data.Location = new Point(6, 14);
+            Lbl_Data.Name = "Lbl_Data";
+            Lbl_Data.Size = new Size(30, 17);
+            Lbl_Data.TabIndex = 6;
+            Lbl_Data.Text = "Data";
+            // 
             // Gpb_Paciente
             // 
-            Gpb_Paciente.Location = new Point(589, 22);
+            Gpb_Paciente.Controls.Add(Txt_Nome);
+            Gpb_Paciente.Controls.Add(Lbl_NomePaciente);
+            Gpb_Paciente.Controls.Add(Txt_CpfPaciente);
+            Gpb_Paciente.Controls.Add(Lbl_CPF);
+            Gpb_Paciente.Controls.Add(Txt_IdPaciente);
+            Gpb_Paciente.Controls.Add(Lbl_Id);
+            Gpb_Paciente.Controls.Add(Btn_BuscarPaciente);
+            Gpb_Paciente.Location = new Point(6, 151);
             Gpb_Paciente.Name = "Gpb_Paciente";
-            Gpb_Paciente.Size = new Size(552, 277);
+            Gpb_Paciente.Size = new Size(552, 123);
             Gpb_Paciente.TabIndex = 1;
             Gpb_Paciente.TabStop = false;
             Gpb_Paciente.Text = "Paciente";
+            // 
+            // Txt_Nome
+            // 
+            Txt_Nome.Location = new Point(6, 88);
+            Txt_Nome.Name = "Txt_Nome";
+            Txt_Nome.ReadOnly = true;
+            Txt_Nome.Size = new Size(540, 23);
+            Txt_Nome.TabIndex = 8;
+            Txt_Nome.TabStop = false;
+            // 
+            // Lbl_NomePaciente
+            // 
+            Lbl_NomePaciente.AutoSize = true;
+            Lbl_NomePaciente.Font = new Font("Arial Narrow", 10F);
+            Lbl_NomePaciente.Location = new Point(6, 68);
+            Lbl_NomePaciente.Name = "Lbl_NomePaciente";
+            Lbl_NomePaciente.Size = new Size(98, 17);
+            Lbl_NomePaciente.TabIndex = 7;
+            Lbl_NomePaciente.Text = "Nome do Paciente";
+            // 
+            // Txt_CpfPaciente
+            // 
+            Txt_CpfPaciente.Location = new Point(310, 39);
+            Txt_CpfPaciente.Name = "Txt_CpfPaciente";
+            Txt_CpfPaciente.ReadOnly = true;
+            Txt_CpfPaciente.Size = new Size(236, 23);
+            Txt_CpfPaciente.TabIndex = 6;
+            Txt_CpfPaciente.TabStop = false;
+            // 
+            // Lbl_CPF
+            // 
+            Lbl_CPF.AutoSize = true;
+            Lbl_CPF.Font = new Font("Arial Narrow", 10F);
+            Lbl_CPF.Location = new Point(310, 19);
+            Lbl_CPF.Name = "Lbl_CPF";
+            Lbl_CPF.Size = new Size(91, 17);
+            Lbl_CPF.TabIndex = 5;
+            Lbl_CPF.Text = "CPF do Paciente";
+            // 
+            // Txt_IdPaciente
+            // 
+            Txt_IdPaciente.Location = new Point(204, 39);
+            Txt_IdPaciente.Name = "Txt_IdPaciente";
+            Txt_IdPaciente.ReadOnly = true;
+            Txt_IdPaciente.Size = new Size(100, 23);
+            Txt_IdPaciente.TabIndex = 4;
+            Txt_IdPaciente.TabStop = false;
+            // 
+            // Lbl_Id
+            // 
+            Lbl_Id.AutoSize = true;
+            Lbl_Id.Font = new Font("Arial Narrow", 10F);
+            Lbl_Id.Location = new Point(204, 19);
+            Lbl_Id.Name = "Lbl_Id";
+            Lbl_Id.Size = new Size(79, 17);
+            Lbl_Id.TabIndex = 3;
+            Lbl_Id.Text = "ID do Paciente";
+            // 
+            // Btn_BuscarPaciente
+            // 
+            Btn_BuscarPaciente.Enabled = false;
+            Btn_BuscarPaciente.Location = new Point(6, 22);
+            Btn_BuscarPaciente.Name = "Btn_BuscarPaciente";
+            Btn_BuscarPaciente.Size = new Size(192, 41);
+            Btn_BuscarPaciente.TabIndex = 3;
+            Btn_BuscarPaciente.Text = "Buscar Paciente";
+            Btn_BuscarPaciente.UseVisualStyleBackColor = true;
+            Btn_BuscarPaciente.Click += Btn_BuscarPaciente_Click;
             // 
             // Gpb_Medico
             // 
@@ -284,7 +445,7 @@
             cmb_NomeMedico.Location = new Point(6, 88);
             cmb_NomeMedico.Name = "cmb_NomeMedico";
             cmb_NomeMedico.Size = new Size(540, 23);
-            cmb_NomeMedico.TabIndex = 3;
+            cmb_NomeMedico.TabIndex = 2;
             // 
             // Lbl_NomeMedico
             // 
@@ -322,7 +483,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveCaption;
-            ClientSize = new Size(1171, 663);
+            ClientSize = new Size(1171, 635);
             Controls.Add(Gpb_Consulta);
             Controls.Add(toolStrip1);
             Controls.Add(Dgv_Consultas);
@@ -336,6 +497,11 @@
             ((System.ComponentModel.ISupportInitialize)Dgv_Consultas).EndInit();
             ((System.ComponentModel.ISupportInitialize)consultaFormatadaBindingSource).EndInit();
             Gpb_Consulta.ResumeLayout(false);
+            Gpb_Data.ResumeLayout(false);
+            Gpb_DataHora.ResumeLayout(false);
+            Gpb_DataHora.PerformLayout();
+            Gpb_Paciente.ResumeLayout(false);
+            Gpb_Paciente.PerformLayout();
             Gpb_Medico.ResumeLayout(false);
             Gpb_Medico.PerformLayout();
             ResumeLayout(false);
@@ -372,5 +538,18 @@
         private ComboBox Cmb_Especialidade;
         private ComboBox cmb_NomeMedico;
         private Label Lbl_NomeMedico;
+        private TextBox Txt_IdPaciente;
+        private Label Lbl_Id;
+        private Button Btn_BuscarPaciente;
+        private TextBox Txt_CpfPaciente;
+        private Label Lbl_CPF;
+        private TextBox Txt_Nome;
+        private Label Lbl_NomePaciente;
+        private GroupBox Gpb_Data;
+        private DateTimePicker Dtp_Data;
+        private GroupBox Gpb_DataHora;
+        private Label Lbl_Hora;
+        private DateTimePicker Dtp_Horario;
+        private Label Lbl_Data;
     }
 }
