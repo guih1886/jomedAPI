@@ -538,9 +538,9 @@ Ao clicar em novo é formulário é desbloqueado para a inclusão da nova consul
 <br>
 Ao clicar duas vezes sobre uma consulta, o formulário é preenchido com os dados da consulta selecionada e caso o usuáriro seja um `Administrador` é liberado o icone do menu para a exclusão.
 
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultasEdicao.png)
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultaEdicao.png)
 
-A tela de cancelamento de consulta é aberta, solicitando que seja informado o motivo do cancelamento da consulta.
+Ao clicar no icone de exclusão, a tela de cancelamento de consulta é aberta, solicitando que seja informado o motivo do cancelamento da consulta.
 
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cancelarConsultas.png)
 
