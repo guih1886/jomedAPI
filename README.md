@@ -528,6 +528,28 @@ Ao clicar na lupa do formulário é aberto a tela de busca de pacientes, o qual 
 
 Ao selecionar o paciente, o formulário de cadastro de pacientes é preenchido no modo de edição.
 
+<br>
+
+A tela de cadastro de consultas permite realizar a consulta, inclusão e exclusão das consultas ativas.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultas.png)
+
+Ao clicar em novo é formulário é desbloqueado para a inclusão da nova consulta.
+<br>
+Ao clicar duas vezes sobre uma consulta, o formulário é preenchido com os dados da consulta selecionada e caso o usuáriro seja um `Administrador` é liberado o icone do menu para a exclusão.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultasEdicao.png)
+
+A tela de cancelamento de consulta é aberta, solicitando que seja informado o motivo do cancelamento da consulta.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cancelarConsultas.png)
+
+<br>
+
+Ao clicar no icone de lupa do menu, é aberto a tela de busca de consultas, o qual possui os campos de `data`, `especialidade`, `nome do médico`, `CPF do paciente` e `nome do paciente` para filtro.
+
+![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscarConsultas.png)
+
 ## Imagens
 
 ![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Images/swagger1.png)
