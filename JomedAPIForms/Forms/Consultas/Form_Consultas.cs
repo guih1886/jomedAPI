@@ -210,7 +210,6 @@ namespace JomedAPIForms.Forms.Consultas
         {
             if (Cmb_Especialidade.SelectedIndex != 0)
             {
-                cmb_NomeMedico.Enabled = true;
                 cmb_NomeMedico.Items.Clear();
                 Especialidade especialidadeSelecionada = (Especialidade)Cmb_Especialidade.SelectedItem!;
                 List<Medico> listaMedicos = this.listaMedicos.Where(m => m.Especialidade == especialidadeSelecionada).ToList();
