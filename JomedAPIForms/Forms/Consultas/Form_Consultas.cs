@@ -14,6 +14,7 @@ namespace JomedAPIForms.Forms.Consultas
         private List<Consulta> listaConsultas;
         private List<Medico> listaMedicos;
         private List<Paciente> listaPacientes;
+        private DataGridViewRow? consultaSelecionada;
         public Form_Consultas(HttpClientBuilder httpClientBuilder, List<Consulta> listaConsultas, List<Medico> listaMedicos, List<Paciente> listaPacientes)
         {
             _httpClientBuilder = httpClientBuilder;
@@ -23,28 +24,17 @@ namespace JomedAPIForms.Forms.Consultas
             InitializeComponent();
             PreencheDataGrid(listaConsultas, listaMedicos, listaPacientes);
             PreencheComboBoxEspecialidade();
-            Dtp_Horario.Text = "00:00";
+            Dtp_Data.Value = DateTime.Now.AddDays(1);
+            Dtp_Horario.Text = "07:00";
         }
 
         private void toolStripNovo_Click(object sender, EventArgs e)
         {
             AtivarFormulario();
             AtivarMenuModoEdicao();
-            toolStripEditar.Enabled = false;
             toolStripExcluir.Enabled = false;
         }
-        private void Btn_BuscarPaciente_Click(object sender, EventArgs e)
-        {
-            Form_Busca buscar = new Form_Busca(listaPacientes, "Cpf");
-            DialogResult resposta = buscar.ShowDialog();
-            if (resposta == DialogResult.OK)
-            {
-                Txt_IdPaciente.Text = buscar.selecionado!.Cells[0].Value.ToString();
-                Txt_Nome.Text = buscar.selecionado.Cells[1].Value.ToString();
-                Txt_CpfPaciente.Text = buscar.selecionado.Cells[3].Value.ToString();
-            }
-        }
-        private void toolStripEditar_Click(object sender, EventArgs e)
+        private void toolStripBuscar_Click(object sender, EventArgs e)
         {
 
         }
@@ -78,16 +68,48 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void toolStripExcluir_Click(object sender, EventArgs e)
         {
-
+            if (string.IsNullOrEmpty(Txt_IdPaciente.Text) || string.IsNullOrEmpty(cmb_NomeMedico.Text))
+            {
+                MessageBox.Show("Nenhuma consulta selecionada.", "Agendamento de consultas", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Form_CancelarConsulta cancelarConsulta = new Form_CancelarConsulta(_httpClientBuilder, consultaSelecionada!);
+                DialogResult resposta = cancelarConsulta.ShowDialog();
+                if (resposta == DialogResult.OK)
+                {
+                    MessageBox.Show("Consulta excluida com sucesso.", "Cancelamento de consultas", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DesativarFormulario();
+                    DesativarMenuModoEdicao();
+                    AtualizarDataGrid();
+                }
+            }
         }
         private void toolStripCancelar_Click(object sender, EventArgs e)
         {
             DesativarFormulario();
             DesativarMenuModoEdicao();
         }
-
-
-        //DataGrid
+        private void Btn_BuscarPaciente_Click(object sender, EventArgs e)
+        {
+            Form_Busca buscar = new Form_Busca(listaPacientes, "Cpf");
+            DialogResult resposta = buscar.ShowDialog();
+            if (resposta == DialogResult.OK)
+            {
+                Txt_IdPaciente.Text = buscar.selecionado!.Cells[0].Value.ToString();
+                Txt_Nome.Text = buscar.selecionado.Cells[1].Value.ToString();
+                Txt_CpfPaciente.Text = buscar.selecionado.Cells[3].Value.ToString();
+            }
+        }
+        private void Dgv_Consultas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            AtivarMenuModoEdicao();
+            AtivarFormulario();
+            toolStripSalvar.Enabled = false;
+            DataGridViewRow linha = Dgv_Consultas.SelectedRows[0];
+            consultaSelecionada = linha;
+            PreencheFormulario(linha);
+        }
         private void PreencheDataGrid(List<Consulta> listaConsultas, List<Medico> listaMedicos, List<Paciente> listaPacientes)
         {
             Cursor = Cursors.WaitCursor;
@@ -125,6 +147,7 @@ namespace JomedAPIForms.Forms.Consultas
             Dtp_Horario.Enabled = true;
             Dtp_Data.Enabled = true;
             Btn_BuscarPaciente.Enabled = true;
+            Dgv_Consultas.Enabled = false;
             Cmb_Especialidade.Focus();
         }
         private void DesativarFormulario()
@@ -135,6 +158,7 @@ namespace JomedAPIForms.Forms.Consultas
             Dtp_Horario.Enabled = false;
             Dtp_Data.Enabled = false;
             Btn_BuscarPaciente.Enabled = false;
+            Dgv_Consultas.Enabled = true;
         }
         private void LimparFormulario()
         {
@@ -142,14 +166,24 @@ namespace JomedAPIForms.Forms.Consultas
             Txt_IdPaciente.Text = string.Empty;
             Txt_CpfPaciente.Text = string.Empty;
             Txt_Nome.Text = string.Empty;
-            Dtp_Data.Text = DateTime.Today.ToString();
-            Dtp_Horario.Text = "00:00";
+            Dtp_Data.Text = DateTime.Today.AddDays(1).ToString();
+            Dtp_Horario.Text = "07:00";
+        }
+        private void PreencheFormulario(DataGridViewRow linha)
+        {
+            Cmb_Especialidade.SelectedIndex = Cmb_Especialidade.FindStringExact(linha.Cells[3].Value.ToString());
+            cmb_NomeMedico.SelectedItem = cmb_NomeMedico.FindStringExact(linha.Cells[4].Value.ToString());
+            Txt_IdPaciente.Text = 1.ToString();
+            Txt_CpfPaciente.Text = linha.Cells[5].Value.ToString();
+            Txt_Nome.Text = linha.Cells[6].Value.ToString();
+            Dtp_Data.Value = DateTime.Parse(linha.Cells[1].Value.ToString()!);
+            TimeSpan hora = DateTime.Parse(linha.Cells[1].Value.ToString()!).TimeOfDay;
+            Dtp_Horario.Text = hora.ToString();
         }
         private void AtivarMenuModoEdicao()
         {
             toolStripNovo.Enabled = false;
             toolStripBuscar.Enabled = false;
-            toolStripEditar.Enabled = true;
             toolStripSalvar.Enabled = true;
             toolStripExcluir.Enabled = true;
             toolStripCancelar.Enabled = true;
@@ -158,7 +192,6 @@ namespace JomedAPIForms.Forms.Consultas
         {
             toolStripNovo.Enabled = true;
             toolStripBuscar.Enabled = true;
-            toolStripEditar.Enabled = false;
             toolStripSalvar.Enabled = false;
             toolStripExcluir.Enabled = false;
             toolStripCancelar.Enabled = false;
@@ -203,5 +236,6 @@ namespace JomedAPIForms.Forms.Consultas
                 cmb_NomeMedico.SelectedIndex = 0;
             }
         }
+
     }
 }

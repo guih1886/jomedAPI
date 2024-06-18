@@ -35,8 +35,6 @@
             toolStripSeparator1 = new ToolStripSeparator();
             toolStripBuscar = new ToolStripButton();
             toolStripSeparator2 = new ToolStripSeparator();
-            toolStripEditar = new ToolStripButton();
-            toolStripSeparator3 = new ToolStripSeparator();
             toolStripSalvar = new ToolStripButton();
             toolStripSeparator4 = new ToolStripSeparator();
             toolStripExcluir = new ToolStripButton();
@@ -84,7 +82,7 @@
             // toolStrip1
             // 
             toolStrip1.GripStyle = ToolStripGripStyle.Hidden;
-            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripNovo, toolStripSeparator1, toolStripBuscar, toolStripSeparator2, toolStripEditar, toolStripSeparator3, toolStripSalvar, toolStripSeparator4, toolStripExcluir, toolStripSeparator5, toolStripCancelar });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripNovo, toolStripSeparator1, toolStripBuscar, toolStripSeparator2, toolStripSalvar, toolStripSeparator4, toolStripExcluir, toolStripSeparator5, toolStripCancelar });
             toolStrip1.Location = new Point(0, 0);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1171, 25);
@@ -117,28 +115,12 @@
             toolStripBuscar.Size = new Size(23, 22);
             toolStripBuscar.Text = "toolStripButton4";
             toolStripBuscar.ToolTipText = "Buscar o cadastro do médico";
+            toolStripBuscar.Click += toolStripBuscar_Click;
             // 
             // toolStripSeparator2
             // 
             toolStripSeparator2.Name = "toolStripSeparator2";
             toolStripSeparator2.Size = new Size(6, 25);
-            // 
-            // toolStripEditar
-            // 
-            toolStripEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            toolStripEditar.Enabled = false;
-            toolStripEditar.Image = Properties.Resources.editar;
-            toolStripEditar.ImageTransparentColor = Color.Magenta;
-            toolStripEditar.Name = "toolStripEditar";
-            toolStripEditar.Size = new Size(23, 22);
-            toolStripEditar.Text = "toolStripButton2";
-            toolStripEditar.ToolTipText = "Editar o cadastro do médico";
-            toolStripEditar.Click += toolStripEditar_Click;
-            // 
-            // toolStripSeparator3
-            // 
-            toolStripSeparator3.Name = "toolStripSeparator3";
-            toolStripSeparator3.Size = new Size(6, 25);
             // 
             // toolStripSalvar
             // 
@@ -206,6 +188,7 @@
             Dgv_Consultas.Size = new Size(1147, 312);
             Dgv_Consultas.TabIndex = 2;
             Dgv_Consultas.TabStop = false;
+            Dgv_Consultas.CellDoubleClick += Dgv_Consultas_CellDoubleClick;
             // 
             // idConsultaDataGridViewTextBoxColumn
             // 
@@ -515,8 +498,6 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripButton toolStripBuscar;
         private ToolStripSeparator toolStripSeparator2;
-        private ToolStripButton toolStripEditar;
-        private ToolStripSeparator toolStripSeparator3;
         private ToolStripButton toolStripSalvar;
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripButton toolStripExcluir;
