@@ -251,11 +251,6 @@
         #endregion
 
         private DataGridView Dgv_Busca;
-        private DataGridViewCheckBoxColumn ativoDataGridViewCheckBoxColumn;
-        private DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cpfDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nomeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private BindingSource pacienteBindingSource;
         private GroupBox Gpb_Dados;
         private Label Lbl_Identificador;
