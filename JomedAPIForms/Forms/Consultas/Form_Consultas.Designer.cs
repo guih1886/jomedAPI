@@ -41,13 +41,6 @@
             toolStripSeparator5 = new ToolStripSeparator();
             toolStripCancelar = new ToolStripButton();
             Dgv_Consultas = new DataGridView();
-            idConsultaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            dataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            crmDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            especialidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nomeMedicoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            cpfPacienteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-            nomePacienteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             consultaFormatadaBindingSource = new BindingSource(components);
             Gpb_Consulta = new GroupBox();
             Gpb_Data = new GroupBox();
@@ -69,6 +62,13 @@
             Lbl_NomeMedico = new Label();
             Cmb_Especialidade = new ComboBox();
             Lbl_Especialidade = new Label();
+            idConsultaDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            dataDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            crmDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            especialidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nomeMedicoDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            cpfPacienteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+            nomePacienteDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
             toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)Dgv_Consultas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)consultaFormatadaBindingSource).BeginInit();
@@ -189,59 +189,6 @@
             Dgv_Consultas.TabIndex = 2;
             Dgv_Consultas.TabStop = false;
             Dgv_Consultas.CellDoubleClick += Dgv_Consultas_CellDoubleClick;
-            // 
-            // idConsultaDataGridViewTextBoxColumn
-            // 
-            idConsultaDataGridViewTextBoxColumn.DataPropertyName = "IdConsulta";
-            idConsultaDataGridViewTextBoxColumn.HeaderText = "Id Consulta";
-            idConsultaDataGridViewTextBoxColumn.Name = "idConsultaDataGridViewTextBoxColumn";
-            idConsultaDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dataDataGridViewTextBoxColumn
-            // 
-            dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
-            dataDataGridViewTextBoxColumn.HeaderText = "Data";
-            dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
-            dataDataGridViewTextBoxColumn.ReadOnly = true;
-            dataDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // crmDataGridViewTextBoxColumn
-            // 
-            crmDataGridViewTextBoxColumn.DataPropertyName = "Crm";
-            crmDataGridViewTextBoxColumn.HeaderText = "Crm";
-            crmDataGridViewTextBoxColumn.Name = "crmDataGridViewTextBoxColumn";
-            crmDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // especialidadeDataGridViewTextBoxColumn
-            // 
-            especialidadeDataGridViewTextBoxColumn.DataPropertyName = "Especialidade";
-            especialidadeDataGridViewTextBoxColumn.HeaderText = "Especialidade";
-            especialidadeDataGridViewTextBoxColumn.Name = "especialidadeDataGridViewTextBoxColumn";
-            especialidadeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nomeMedicoDataGridViewTextBoxColumn
-            // 
-            nomeMedicoDataGridViewTextBoxColumn.DataPropertyName = "NomeMedico";
-            nomeMedicoDataGridViewTextBoxColumn.HeaderText = "Nome Medico";
-            nomeMedicoDataGridViewTextBoxColumn.Name = "nomeMedicoDataGridViewTextBoxColumn";
-            nomeMedicoDataGridViewTextBoxColumn.ReadOnly = true;
-            nomeMedicoDataGridViewTextBoxColumn.Width = 220;
-            // 
-            // cpfPacienteDataGridViewTextBoxColumn
-            // 
-            cpfPacienteDataGridViewTextBoxColumn.DataPropertyName = "CpfPaciente";
-            cpfPacienteDataGridViewTextBoxColumn.HeaderText = "Cpf Paciente";
-            cpfPacienteDataGridViewTextBoxColumn.Name = "cpfPacienteDataGridViewTextBoxColumn";
-            cpfPacienteDataGridViewTextBoxColumn.ReadOnly = true;
-            cpfPacienteDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // nomePacienteDataGridViewTextBoxColumn
-            // 
-            nomePacienteDataGridViewTextBoxColumn.DataPropertyName = "NomePaciente";
-            nomePacienteDataGridViewTextBoxColumn.HeaderText = "Nome Paciente";
-            nomePacienteDataGridViewTextBoxColumn.Name = "nomePacienteDataGridViewTextBoxColumn";
-            nomePacienteDataGridViewTextBoxColumn.ReadOnly = true;
-            nomePacienteDataGridViewTextBoxColumn.Width = 220;
             // 
             // consultaFormatadaBindingSource
             // 
@@ -461,6 +408,59 @@
             Lbl_Especialidade.TabIndex = 0;
             Lbl_Especialidade.Text = "Especialidade";
             // 
+            // idConsultaDataGridViewTextBoxColumn
+            // 
+            idConsultaDataGridViewTextBoxColumn.DataPropertyName = "IdConsulta";
+            idConsultaDataGridViewTextBoxColumn.HeaderText = "Id Consulta";
+            idConsultaDataGridViewTextBoxColumn.Name = "idConsultaDataGridViewTextBoxColumn";
+            idConsultaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataDataGridViewTextBoxColumn
+            // 
+            dataDataGridViewTextBoxColumn.DataPropertyName = "Data";
+            dataDataGridViewTextBoxColumn.HeaderText = "Data";
+            dataDataGridViewTextBoxColumn.Name = "dataDataGridViewTextBoxColumn";
+            dataDataGridViewTextBoxColumn.ReadOnly = true;
+            dataDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // crmDataGridViewTextBoxColumn
+            // 
+            crmDataGridViewTextBoxColumn.DataPropertyName = "Crm";
+            crmDataGridViewTextBoxColumn.HeaderText = "Crm";
+            crmDataGridViewTextBoxColumn.Name = "crmDataGridViewTextBoxColumn";
+            crmDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // especialidadeDataGridViewTextBoxColumn
+            // 
+            especialidadeDataGridViewTextBoxColumn.DataPropertyName = "Especialidade";
+            especialidadeDataGridViewTextBoxColumn.HeaderText = "Especialidade";
+            especialidadeDataGridViewTextBoxColumn.Name = "especialidadeDataGridViewTextBoxColumn";
+            especialidadeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nomeMedicoDataGridViewTextBoxColumn
+            // 
+            nomeMedicoDataGridViewTextBoxColumn.DataPropertyName = "NomeMedico";
+            nomeMedicoDataGridViewTextBoxColumn.HeaderText = "Nome Medico";
+            nomeMedicoDataGridViewTextBoxColumn.Name = "nomeMedicoDataGridViewTextBoxColumn";
+            nomeMedicoDataGridViewTextBoxColumn.ReadOnly = true;
+            nomeMedicoDataGridViewTextBoxColumn.Width = 227;
+            // 
+            // cpfPacienteDataGridViewTextBoxColumn
+            // 
+            cpfPacienteDataGridViewTextBoxColumn.DataPropertyName = "CpfPaciente";
+            cpfPacienteDataGridViewTextBoxColumn.HeaderText = "Cpf Paciente";
+            cpfPacienteDataGridViewTextBoxColumn.Name = "cpfPacienteDataGridViewTextBoxColumn";
+            cpfPacienteDataGridViewTextBoxColumn.ReadOnly = true;
+            cpfPacienteDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // nomePacienteDataGridViewTextBoxColumn
+            // 
+            nomePacienteDataGridViewTextBoxColumn.DataPropertyName = "NomePaciente";
+            nomePacienteDataGridViewTextBoxColumn.HeaderText = "Nome Paciente";
+            nomePacienteDataGridViewTextBoxColumn.Name = "nomePacienteDataGridViewTextBoxColumn";
+            nomePacienteDataGridViewTextBoxColumn.ReadOnly = true;
+            nomePacienteDataGridViewTextBoxColumn.Width = 227;
+            // 
             // Form_Consultas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -505,13 +505,6 @@
         private ToolStripButton toolStripCancelar;
         private DataGridView Dgv_Consultas;
         private BindingSource consultaFormatadaBindingSource;
-        private DataGridViewTextBoxColumn idConsultaDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dataDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn crmDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn especialidadeDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nomeMedicoDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cpfPacienteDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn nomePacienteDataGridViewTextBoxColumn;
         private GroupBox Gpb_Consulta;
         private GroupBox Gpb_Paciente;
         private GroupBox Gpb_Medico;
@@ -532,5 +525,12 @@
         private Label Lbl_Hora;
         private DateTimePicker Dtp_Horario;
         private Label Lbl_Data;
+        private DataGridViewTextBoxColumn idConsultaDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn dataDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn crmDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn especialidadeDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nomeMedicoDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn cpfPacienteDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn nomePacienteDataGridViewTextBoxColumn;
     }
 }

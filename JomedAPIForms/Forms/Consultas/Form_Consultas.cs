@@ -36,7 +36,15 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void toolStripBuscar_Click(object sender, EventArgs e)
         {
-
+            Form_BuscarConsulta buscarConsulta = new Form_BuscarConsulta(listaConsultas, listaMedicos, listaPacientes);
+            DialogResult resposta = buscarConsulta.ShowDialog();
+            if (resposta == DialogResult.OK)
+            {
+                consultaSelecionada = buscarConsulta.selecionado;
+                PreencheFormulario(buscarConsulta.selecionado!);
+                AtivarMenuModoEdicao();
+                toolStripSalvar.Enabled = false;
+            }
         }
         private async void toolStripSalvar_Click(object sender, EventArgs e)
         {
@@ -92,7 +100,7 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void Btn_BuscarPaciente_Click(object sender, EventArgs e)
         {
-            Form_Busca buscar = new Form_Busca(listaPacientes, "Cpf");
+            Form_BuscaPaciente buscar = new Form_BuscaPaciente(listaPacientes, "Cpf");
             DialogResult resposta = buscar.ShowDialog();
             if (resposta == DialogResult.OK)
             {
@@ -104,7 +112,6 @@ namespace JomedAPIForms.Forms.Consultas
         private void Dgv_Consultas_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             AtivarMenuModoEdicao();
-            AtivarFormulario();
             toolStripSalvar.Enabled = false;
             DataGridViewRow linha = Dgv_Consultas.SelectedRows[0];
             consultaSelecionada = linha;
@@ -117,13 +124,10 @@ namespace JomedAPIForms.Forms.Consultas
             foreach (var item in listaConsultas)
             {
                 //Dados do médico
-                Especialidade especialidade = listaMedicos.Find(m => m.Id == item.MedicoId)!.Especialidade!.Value;
-                string crm = listaMedicos.Find(m => m.Id == item.MedicoId)!.Crm!;
-                string nomeMedico = listaMedicos.Find(m => m.Id == item.MedicoId)!.Nome!;
+                Medico medico = listaMedicos.Find(m => m.Id == item.MedicoId)!;
                 //Dados do paciente
-                string cpfPaciente = listaPacientes.Find(p => p.Id == item.PacienteId)!.Cpf!;
-                string nomePaciente = listaPacientes.Find(p => p.Id == item.PacienteId)!.Nome!;
-                ConsultaFormatada lista = new ConsultaFormatada(item.Id, especialidade, crm, nomeMedico, cpfPaciente, nomePaciente, item.Data);
+                Paciente paciente = listaPacientes.Find(p => p.Id == item.PacienteId)!;
+                ConsultaFormatada lista = new ConsultaFormatada(item.Id, medico.Especialidade!.Value, medico.Crm!, medico.Nome!, paciente.Cpf!, paciente.Nome!, item.Data);
                 listaFormatada.Add(lista);
             }
             Dgv_Consultas.DataSource = listaFormatada;
@@ -137,6 +141,9 @@ namespace JomedAPIForms.Forms.Consultas
             List<Consulta> listaConsultas = JsonConvert.DeserializeObject<List<Consulta>>(await respostaConsultas.Content.ReadAsStringAsync())!;
             List<Medico> listaMedicos = JsonConvert.DeserializeObject<List<Medico>>(await respostaMedicos.Content.ReadAsStringAsync())!;
             List<Paciente> listaPacientes = JsonConvert.DeserializeObject<List<Paciente>>(await respostaPacientes.Content.ReadAsStringAsync())!;
+            this.listaConsultas = listaConsultas;
+            this.listaMedicos = listaMedicos;
+            this.listaPacientes = listaPacientes;
             PreencheDataGrid(listaConsultas, listaMedicos, listaPacientes);
         }
         //Formulários e menu
@@ -210,7 +217,6 @@ namespace JomedAPIForms.Forms.Consultas
         {
             if (Cmb_Especialidade.SelectedIndex != 0)
             {
-                cmb_NomeMedico.Enabled = true;
                 cmb_NomeMedico.Items.Clear();
                 Especialidade especialidadeSelecionada = (Especialidade)Cmb_Especialidade.SelectedItem!;
                 List<Medico> listaMedicos = this.listaMedicos.Where(m => m.Especialidade == especialidadeSelecionada).ToList();
