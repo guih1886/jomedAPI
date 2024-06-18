@@ -85,7 +85,7 @@ public partial class Form_Pacientes : Form
     }
     private void toolStripBuscar_Click(object sender, EventArgs e)
     {
-        Form_Busca buscar = new Form_Busca(_listaPacientes, "CPF");
+        Form_BuscaPaciente buscar = new Form_BuscaPaciente(_listaPacientes, "CPF");
         DialogResult resposta = buscar.ShowDialog();
         if (resposta == DialogResult.OK)
         {
