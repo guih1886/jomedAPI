@@ -97,7 +97,7 @@ public partial class Form_Pacientes : Form
         DialogResult resposta = MessageBox.Show($"Deseja mesmo excluir o cadastro do paciente {_pacienteNome}?", "Exclusão de Pacientes", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         if (resposta == DialogResult.OK)
         {
-            HttpResponseMessage response = await _httpClientBuilder.DeleteRequisition($"/Pacientes/{_pacienteId}");
+            HttpResponseMessage response = await _httpClientBuilder.DeleteRequisition($"/Pacientes/{_pacienteId}", "");
             if (response.IsSuccessStatusCode)
             {
                 MessageBox.Show("Paciente excluído com sucesso.", "Exclusão de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -259,7 +259,7 @@ public partial class Form_Pacientes : Form
     {
         if (Ckb_Ativo.CheckState == CheckState.Unchecked)
         {
-            await _httpClientBuilder.DeleteRequisition($"/Pacientes/{_pacienteId}/inativar");
+            await _httpClientBuilder.DeleteRequisition($"/Pacientes/{_pacienteId}/inativar", "");
         }
         if (Ckb_Ativo.CheckState == CheckState.Checked)
         {
