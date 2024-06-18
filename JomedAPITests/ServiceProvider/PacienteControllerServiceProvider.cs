@@ -32,6 +32,6 @@ public class PacienteControllerServiceProvider
 
         var provedor = servico.BuildServiceProvider();
         var controler = provedor.GetService<IPacienteController>();
-        return controler;
+        return controler!;
     }
 }

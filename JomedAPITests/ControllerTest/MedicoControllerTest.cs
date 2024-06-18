@@ -60,7 +60,7 @@ public class MedicoControllerTest
         Medico medico = DeserializarObjeto<Medico>(resposta);
         //Assert
         Assert.Equal(200, resposta.StatusCode);
-        Assert.Equal("Rua Alterada", medico.Endereco.Logradouro);
+        Assert.Equal("Rua Alterada", medico.Endereco!.Logradouro);
         Assert.Empty(validaEndereco);
         Assert.IsType<Medico>(medico);
         DeletarMedico(medicoCriado);

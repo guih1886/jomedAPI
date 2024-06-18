@@ -38,6 +38,6 @@ public class MedicoControllerServiceProvider
 
         var provedor = servico.BuildServiceProvider();
         var controler = provedor.GetService<IMedicoController>();
-        return controler;
+        return controler!;
     }
 }

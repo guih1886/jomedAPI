@@ -32,6 +32,6 @@ public class UsuarioControllerServiceProvider
 
         var provedor = servico.BuildServiceProvider();
         var controler = provedor.GetService<IUsuarioController>();
-        return controler;
+        return controler!;
     }
 }

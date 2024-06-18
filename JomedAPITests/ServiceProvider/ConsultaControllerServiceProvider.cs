@@ -37,6 +37,6 @@ public class ConsultaControllerServiceProvider
 
         var provedor = servico.BuildServiceProvider();
         var controler = provedor.GetService<IConsultaController>();
-        return controler;
+        return controler!;
     }
 }
