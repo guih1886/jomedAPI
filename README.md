@@ -483,72 +483,87 @@ Dessa forma o banco de dados estará atualizado para rodar a aplicação.
 
 ## Windows Forms
 
-A entrada no sistema começa na tela de login, o qual faz uma requisição para `/Login` com os dados do formulário. Apresenta os erros de login caso possua ou abre a tela principal do sistema.
+### Tela de Login
 
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/login.png)
+A entrada no sistema é feita pela tela de login, onde os dados do usuário são enviados para a rota `/Login` da API.
 
-A API retorna um JWT com os dados do usuário, o qual é armazenado pelo sistema para fazer as requisições, a fim de evitar o erro [HTTP 401][http401] e o [HTTP 403][http403] caso o usuário não seja `Administrador`.
+![Tela de Login](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/login.png)
+
+- **Requisição**: `/Login`
+- **Autenticação**: JWT retornado pela API, armazenado para evitar erros HTTP 401 e HTTP 403.
+- **Ações**: 
+  - Mensagem de erro em caso de falha no login.
+  - Redirecionamento para a tela principal em caso de sucesso.
+
+### Cadastro de Usuários
+
+Ao clicar no botão "Cadastrar" na tela de login, abre-se a tela de cadastro de usuários. Os dados do formulário são enviados para a rota `/Usuarios`.
+
+![Tela de Cadastro](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastrar.png)
+
+- **Requisição**: `/Usuarios`
+- **Role do Novo Usuário**: `Usuario`
+- **Ações**: 
+  - Exibição de mensagens de erro.
+  - Mensagem de sucesso e redirecionamento para a tela de login com o e-mail preenchido.
+
+### Tela Principal
+
+Após o login bem-sucedido, o usuário é redirecionado para a tela principal do sistema.
+
+![Tela Principal](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/principal.png)
+
+- **Funcionalidades**: 
+  - Gerenciamento de cadastros de consultas, médicos e pacientes.
+  - Informações do usuário logado: função e e-mail.
+
+### Cadastro de Pacientes
+
+A tela de cadastro de pacientes permite inclusão, alteração e, para usuários com a role `Administrador`, exclusão e inativação de pacientes.
+
+![Cadastro de Pacientes](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/pacientes.png)
+
+- **Autorização**: 
+  - Ícones de exclusão e ativação ficam invisíveis para usuários não administradores.
+- **Funcionalidades**: 
+  - Seleção ou busca de pacientes com preenchimento automático do formulário.
+  - Modo de edição ao selecionar um paciente.
+  - Autopreenchimento do CEP via API do [viacep](https://viacep.com.br).
+
+### Busca de Pacientes
+
+Ao clicar na lupa do formulário de pacientes, abre-se a tela de busca de pacientes, permitindo filtros por `ativo/inativo`, `Id`, `Nome`, `CPF` ou `E-mail`.
+
+![Busca de Pacientes](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscar.png)
+
+- **Funcionalidade**: 
+  - Preenchimento do formulário de cadastro de pacientes no modo de edição ao selecionar um paciente.
+
+### Cadastro de Consultas
+
+A tela de cadastro de consultas permite a inclusão, consulta e exclusão de consultas ativas.
+
+![Cadastro de Consultas](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultas.png)
+
+- **Funcionalidades**: 
+  - Desbloqueio do formulário ao clicar em "Novo".
+  - Preenchimento do formulário ao clicar duas vezes em uma consulta.
+  - Liberação do ícone de exclusão para administradores.
+
+### Busca de Consultas
+
+Ao clicar na lupa do menu, abre-se a tela de busca de consultas, permitindo filtros por data, especialidade, nome do médico, CPF do paciente e nome do paciente.
+
+![Busca de Consultas](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscarConsultas.png)
+
+### Cancelamento de Consultas
+
+Ao clicar no ícone de exclusão, abre-se a tela de cancelamento de consulta, solicitando o motivo do cancelamento.
+
+![Cancelamento de Consultas](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cancelarConsultas.png)
 
 <br>
 
-Ao clicar no botão "cadastrar" na tela de login, abre a tela para o cadastro de usuários, que faz a requisição para /Usuarios enviando os dados do formulário. 
-Ao cadastrar um novo usuário, esse terá a Role como `Usuario`.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastrar.png)
-
-Caso tenha erros, é exibido no label de mensagem, e em caso de sucesso é mostrado uma mensagem de sucesso e redirecionado para a tela de login e preenchendo o campo de e-mail com o e-mail cadastrado.
-
-<br>
-
-Ao fazer o login corretamente, é aberto da tela principal do sistema.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/principal.png)
-
-Aqui temos o menu, onde é possivel fazer o gerenciamento dos cadastros de consultas, médicos e pacientes. Abaixo tem a informação da função do usuário logado e o seu e-mail.
-
-<br>
-
-Na tela de cadastro de pacientes é possivel fazer a inclussão, alteração e caso o usuário logado seja um `Administrador` a exclusão e inativação dos pacientes.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/pacientes.png)
-
-Os icones de `exclusão` e `ativo` ficam invisíveis se o usuário não for administrador.<br>
-
-Ao selecionar ou buscar um paciente, os dados são preenchidos no formulário, e o menu é alterado para um modo de edição.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/pacientesEdicao.png)
-
-O CEP tem um autopreenchimento via API do [viacep][viacep].
-
-<br>
-
-Ao clicar na lupa do formulário é aberto a tela de busca de pacientes, o qual pode ser feito filtros por `ativo/inativo`, `Id`, `Nome`,`Cpf` ou `E-mail`.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscar.png)
-
-Ao selecionar o paciente, o formulário de cadastro de pacientes é preenchido no modo de edição.
-
-<br>
-
-A tela de cadastro de consultas permite realizar a consulta, inclusão e exclusão das consultas ativas.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultas.png)
-
-Ao clicar em novo é formulário é desbloqueado para a inclusão da nova consulta.
-<br>
-Ao clicar duas vezes sobre uma consulta, o formulário é preenchido com os dados da consulta selecionada e caso o usuáriro seja um `Administrador` é liberado o icone do menu para a exclusão.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroConsultaEdicao.png)
-
-Ao clicar no icone de exclusão, a tela de cancelamento de consulta é aberta, solicitando que seja informado o motivo do cancelamento da consulta.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cancelarConsultas.png)
-
-<br>
-
-Ao clicar no icone de lupa do menu, é aberto a tela de busca de consultas, o qual possui os campos de `data`, `especialidade`, `nome do médico`, `CPF do paciente` e `nome do paciente` para filtro.
-
-![](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscarConsultas.png)
 
 ## Imagens
 
