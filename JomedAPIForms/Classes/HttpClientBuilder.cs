@@ -41,12 +41,18 @@ public class HttpClientBuilder : IHttpClientBuilder
         HttpResponseMessage resposta = await _httpClient.PutAsync(_urlBase + endPoint, content);
         return resposta;
     }
-    public async Task<HttpResponseMessage> DeleteRequisition(string endPoint)
+    public async Task<HttpResponseMessage> DeleteRequisition(string endPoint, object body)
     {
-        HttpResponseMessage resposta = await _httpClient.DeleteAsync(_urlBase + endPoint);
+        StringContent content = GerarStringContent(body);
+        HttpRequestMessage request = new HttpRequestMessage
+        {
+            Method = HttpMethod.Delete,
+            RequestUri = new Uri(_urlBase + endPoint),
+            Content = content
+        };
+        HttpResponseMessage resposta = await _httpClient.SendAsync(request);
         return resposta;
     }
-
     private StringContent GerarStringContent(object body)
     {
         string json = JsonConvert.SerializeObject(body);
