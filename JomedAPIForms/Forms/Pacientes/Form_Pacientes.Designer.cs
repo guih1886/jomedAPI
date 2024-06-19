@@ -311,16 +311,16 @@
             Cmb_UF.DropDownStyle = ComboBoxStyle.DropDownList;
             Cmb_UF.Enabled = false;
             Cmb_UF.FormattingEnabled = true;
-            Cmb_UF.Location = new Point(712, 77);
+            Cmb_UF.Location = new Point(720, 77);
             Cmb_UF.Name = "Cmb_UF";
-            Cmb_UF.Size = new Size(205, 23);
+            Cmb_UF.Size = new Size(80, 23);
             Cmb_UF.TabIndex = 12;
             // 
             // Lbl_UF
             // 
             Lbl_UF.AutoSize = true;
             Lbl_UF.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Lbl_UF.Location = new Point(710, 58);
+            Lbl_UF.Location = new Point(720, 58);
             Lbl_UF.Name = "Lbl_UF";
             Lbl_UF.Size = new Size(22, 16);
             Lbl_UF.TabIndex = 16;
@@ -349,7 +349,7 @@
             Txt_Cidade.Enabled = false;
             Txt_Cidade.Location = new Point(359, 77);
             Txt_Cidade.Name = "Txt_Cidade";
-            Txt_Cidade.Size = new Size(347, 23);
+            Txt_Cidade.Size = new Size(355, 23);
             Txt_Cidade.TabIndex = 11;
             // 
             // Lbl_Cidade

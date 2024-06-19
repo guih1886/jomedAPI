@@ -73,7 +73,7 @@ public partial class Form_Pacientes : Form
         string msg = await ValidaRequisicoes.ValidarErrosRequisicao(resposta);
         if (resposta.IsSuccessStatusCode)
         {
-            MessageBox.Show("Paciente atualizado com sucesso.", "Cadastro de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Paciente criado com sucesso.", "Cadastro de Pacientes", MessageBoxButtons.OK, MessageBoxIcon.Information);
             AtualizaPacientes();
             LimparFormulario();
             DesativarFormulario();
@@ -85,7 +85,7 @@ public partial class Form_Pacientes : Form
     }
     private void toolStripBuscar_Click(object sender, EventArgs e)
     {
-        Form_BuscaPaciente buscar = new Form_BuscaPaciente(_listaPacientes, "CPF");
+        Form_BuscaPaciente buscar = new Form_BuscaPaciente(_listaPacientes);
         DialogResult resposta = buscar.ShowDialog();
         if (resposta == DialogResult.OK)
         {
