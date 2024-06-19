@@ -517,6 +517,28 @@ Após o login bem-sucedido, o usuário é redirecionado para a tela principal do
   - Gerenciamento de cadastros de consultas, médicos e pacientes.
   - Informações do usuário logado: função e e-mail.
 
+### Cadastro de Médicos
+
+A tela de cadastro de médicos permite inclusão, alteração e, para usuários com a role `Administrador`, exclusão e inativação de médicos.
+
+![Cadastro de Médicos](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/cadastroMedicos.png)
+
+- **Autorização**: 
+  - Ícones de exclusão e ativação ficam invisíveis para usuários não administradores.
+- **Funcionalidades**: 
+  - Seleção ou busca de médicos com preenchimento automático do formulário.
+  - Modo de edição ao selecionar um médico.
+  - Autopreenchimento do CEP via API do [viacep](https://viacep.com.br).
+
+### Busca de Médicos
+
+Ao clicar na lupa do formulário de médicos, abre-se a tela de busca de médicos, permitindo filtros por `ativo/inativo`, `Id`, `Especialidade`, `CRM` ou `Nome`.
+
+![Busca de Médicos](https://github.com/guih1886/jomedAPI/blob/main/JomedAPI/Assets/Forms/buscarMedico.png)
+
+- **Funcionalidade**: 
+  - Preenchimento do formulário de cadastro de médicos no modo de edição ao selecionar um médico.
+
 ### Cadastro de Pacientes
 
 A tela de cadastro de pacientes permite inclusão, alteração e, para usuários com a role `Administrador`, exclusão e inativação de pacientes.
