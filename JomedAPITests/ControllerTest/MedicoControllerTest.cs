@@ -200,8 +200,8 @@ public class MedicoControllerTest
         _medicoController.InativarMedico(medico.Id);
         ObjectResult resposta = _medicoController.InativarMedico(medico.Id);
         //Assert
-        Assert.Equal(404, resposta.StatusCode);
-        Assert.Equal("Médico não encontrado.", resposta.Value);
+        Assert.Equal(400, resposta.StatusCode);
+        Assert.Equal("Médico já está inativo.", resposta.Value);
         DeletarMedico(medico);
     }
     [Fact]

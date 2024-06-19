@@ -35,7 +35,7 @@ public class MedicoController : ControllerBase, IMedicoController
     [Authorize]
     public ObjectResult AtivarMedico(int id)
     {
-        Medico? medico = _medicoRepository.BuscarMedicoAtivoOuInativo(id);
+        Medico? medico = _medicoRepository.BuscarMedicoPorId(id);
         if (medico == null)
         {
             httpResponse.StatusCode = 404;
@@ -147,6 +147,12 @@ public class MedicoController : ControllerBase, IMedicoController
         {
             httpResponse.StatusCode = 404;
             httpResponse.Value = "Médico não encontrado.";
+            return httpResponse;
+        }
+        if (medico.Ativo == false)
+        {
+            httpResponse.StatusCode = 400;
+            httpResponse.Value = "Médico já está inativo.";
             return httpResponse;
         }
         if (!_medicoRepository.InativarMedico(medico))

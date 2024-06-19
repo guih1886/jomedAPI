@@ -20,15 +20,11 @@ public class MedicoRepository : IMedicoRepository
 
     public Medico? BuscarMedicoPorId(int medicoId)
     {
-        return _jomedContext.Medicos.Where(m => m.Ativo == true).FirstOrDefault(m => m.Id == medicoId);
-    }
-    public Medico? BuscarMedicoAtivoOuInativo(int medicoId)
-    {
         return _jomedContext.Medicos.FirstOrDefault(m => m.Id == medicoId);
     }
     public List<Medico> ListarMedicos()
     {
-        return _jomedContext.Medicos.Where(m => m.Ativo == true).ToList();
+        return _jomedContext.Medicos.ToList();
     }
     public Medico CadastrarMedico(CreateMedicoDto medicoDto)
     {
