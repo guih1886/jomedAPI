@@ -6,24 +6,28 @@ namespace JomedAPIForms.Forms.Buscar;
 public partial class Form_BuscaPaciente : Form
 {
     private List<Paciente> _lista;
-    private string _identificador;
     private int status = 0;
     public DataGridViewRow? selecionado { get; set; }
-    public Form_BuscaPaciente(List<Paciente> lista, string nomeIdentificador)
+    public Form_BuscaPaciente(List<Paciente> lista)
     {
         _lista = lista;
-        _identificador = nomeIdentificador;
         InitializeComponent();
         Cmb_Status.SelectedIndex = 0;
-        ConfiguraDataGridView(lista, nomeIdentificador);
-        Lbl_Identificador.Text = nomeIdentificador;
+        ConfiguraDataGridView(lista);
     }
 
     private void Btn_Buscar_Click(object sender, EventArgs e)
     {
         List<Paciente> novaLista = new List<Paciente>();
         int id = 0;
-        if (!Txt_Id.Text.IsNullOrEmpty()) id = Int32.Parse(Txt_Id.Text);
+        try
+        {
+            if (!Txt_Id.Text.IsNullOrEmpty()) id = Int32.Parse(Txt_Id.Text);
+        }
+        catch (Exception)
+        {
+            MessageBox.Show("Id não é um número válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
         if (id == 0)
         {
             if (status == 0)
@@ -38,15 +42,23 @@ public partial class Form_BuscaPaciente : Form
         }
         else
         {
-            novaLista = _lista.Where(p => p.Id == id).ToList();
+
+            novaLista = _lista.Where(p => p.Id.Equals(id)).ToList();
             Dgv_Busca.DataSource = novaLista;
         }
     }
     private void Btn_Selecionar_Click(object sender, EventArgs e)
     {
-        selecionado = Dgv_Busca.SelectedRows[0];
-        DialogResult = DialogResult.OK;
-        this.Close();
+        try
+        {
+            selecionado = Dgv_Busca.SelectedRows[0];
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
+        catch (Exception)
+        {
+            MessageBox.Show("Erro ao selecionar paciente.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
     private void Btn_Cancelar_Click(object sender, EventArgs e)
     {
@@ -54,7 +66,7 @@ public partial class Form_BuscaPaciente : Form
         this.Close();
     }
 
-    private void ConfiguraDataGridView(List<Paciente> lista, string nomeIdentificador)
+    private void ConfiguraDataGridView(List<Paciente> lista)
     {
         Dgv_Busca.DataSource = lista;
         Dgv_Busca.Columns["Endereco"].Visible = false;
@@ -63,8 +75,8 @@ public partial class Form_BuscaPaciente : Form
         Dgv_Busca.Columns["Id"].Width = 50;
         Dgv_Busca.Columns["Nome"].Width = 250;
         Dgv_Busca.Columns["Email"].Width = 250;
-        Dgv_Busca.Columns[nomeIdentificador].Width = 150;
-        Dgv_Busca.Columns["Ativo"].Width = 60;
+        Dgv_Busca.Columns["CPF"].Width = 150;
+        Dgv_Busca.Columns["Ativo"].Width = 70;
     }
     private void Cmb_Status_SelectedIndexChanged(object sender, EventArgs e)
     {
@@ -74,7 +86,7 @@ public partial class Form_BuscaPaciente : Form
     }
     private void Btn_Limpar_Click(object sender, EventArgs e)
     {
-        ConfiguraDataGridView(_lista, _identificador);
+        ConfiguraDataGridView(_lista);
         Cmb_Status.SelectedIndex = 0;
         Txt_Id.Text = string.Empty;
         Txt_Nome.Text = string.Empty;
