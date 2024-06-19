@@ -99,7 +99,7 @@ namespace JomedAPIForms
         {
             HttpResponseMessage resposta = await _httpClientBuilder.GetRequisition("/Medicos");
             List<Medico> lista = JsonConvert.DeserializeObject<List<Medico>>(await resposta.Content.ReadAsStringAsync())!;
-            Form_Medicos pacientes = new Form_Medicos(_httpClientBuilder, lista);
+            Form_Medicos pacientes = new Form_Medicos(_httpClientBuilder, lista, usuarioRole!);
             pacientes.Show();
         }
         private async void AbrirCadastroDeConsultas()
