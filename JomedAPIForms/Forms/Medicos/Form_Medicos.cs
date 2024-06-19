@@ -88,13 +88,13 @@ public partial class Form_Medicos : Form
         }
     }
     private void toolStripBuscar_Click(object sender, EventArgs e)
-    {/*
+    {
         Form_BuscaMedicos buscar = new Form_BuscaMedicos(_listaMedicos);
         DialogResult resposta = buscar.ShowDialog();
         if (resposta == DialogResult.OK)
         {
             PreencheFormComBuscar(buscar.selecionado!);
-        }*/
+        }
     }
     private async void toolStripExcluir_Click(object sender, EventArgs e)
     {
@@ -220,19 +220,20 @@ public partial class Form_Medicos : Form
     }
     private void PreencheFormComBuscar(DataGridViewRow linha)
     {
-        _medicoId = (Int32)linha.Cells[1].Value;
-        _medicoNome = linha.Cells[2].Value.ToString();
+        _medicoId = Int32.Parse(linha.Cells[0].Value.ToString()!);
+        _medicoNome = linha.Cells[1].Value.ToString();
         AtivarFormulario();
         Txt_Id.Enabled = false;
         toolStripSalvar.Enabled = false;
-        if (linha.Cells[6].Value.ToString() == "True") Ckb_Ativo.CheckState = CheckState.Checked;
-        if (linha.Cells[6].Value.ToString() == "False") Ckb_Ativo.CheckState = CheckState.Unchecked;
+        if (linha.Cells[7].Value.ToString() == "True") Ckb_Ativo.CheckState = CheckState.Checked;
+        if (linha.Cells[7].Value.ToString() == "False") Ckb_Ativo.CheckState = CheckState.Unchecked;
         Txt_Id.Text = linha.Cells[0].Value.ToString();
+        Txt_CRM.Text = linha.Cells[4].Value.ToString();
         Txt_Nome.Text = linha.Cells[1].Value.ToString();
         Txt_Email.Text = linha.Cells[2].Value.ToString();
-        Txt_CRM.Text = linha.Cells[3].Value.ToString();
-        Txt_Telefone.Text = linha.Cells[4].Value.ToString();
-        Endereco endereco = (Endereco)linha.Cells[5].Value;
+        Txt_Telefone.Text = linha.Cells[3].Value.ToString();
+        Cmb_Especialidade.SelectedIndex = Cmb_Especialidade.FindStringExact(linha.Cells[5].Value.ToString());
+        Endereco endereco = (Endereco)linha.Cells[6].Value;
         Txt_Logradouro.Text = endereco.Logradouro;
         Txt_Numero.Text = endereco.Numero.ToString();
         Txt_Bairro.Text = endereco.Bairro;
