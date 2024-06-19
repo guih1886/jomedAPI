@@ -36,7 +36,15 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void toolStripBuscar_Click(object sender, EventArgs e)
         {
-
+            Form_BuscarConsulta buscarConsulta = new Form_BuscarConsulta(listaConsultas,listaMedicos,listaPacientes);
+            DialogResult resposta = buscarConsulta.ShowDialog();
+            if (resposta == DialogResult.OK)
+            {
+                PreencheFormulario(buscarConsulta.selecionado!);
+                AtivarFormulario();
+                AtivarMenuModoEdicao();
+                toolStripSalvar.Enabled = false;
+            }
         }
         private async void toolStripSalvar_Click(object sender, EventArgs e)
         {
@@ -92,7 +100,7 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void Btn_BuscarPaciente_Click(object sender, EventArgs e)
         {
-            Form_Busca buscar = new Form_Busca(listaPacientes, "Cpf");
+            Form_BuscaPaciente buscar = new Form_BuscaPaciente(listaPacientes);
             DialogResult resposta = buscar.ShowDialog();
             if (resposta == DialogResult.OK)
             {
@@ -210,12 +218,13 @@ namespace JomedAPIForms.Forms.Consultas
         {
             if (Cmb_Especialidade.SelectedIndex != 0)
             {
+                cmb_NomeMedico.Enabled = true;
                 cmb_NomeMedico.Items.Clear();
                 Especialidade especialidadeSelecionada = (Especialidade)Cmb_Especialidade.SelectedItem!;
                 List<Medico> listaMedicos = this.listaMedicos.Where(m => m.Especialidade == especialidadeSelecionada).ToList();
                 if (listaMedicos.Count == 0)
                 {
-                    cmb_NomeMedico.Items.Add("Sem médicos cadastrados.");
+                    cmb_NomeMedico.Items.Add("0 - Sem médicos cadastrados.");
                     cmb_NomeMedico.SelectedIndex = 0;
                     cmb_NomeMedico.Enabled = false;
                 }
