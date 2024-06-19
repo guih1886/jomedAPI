@@ -32,7 +32,7 @@ public partial class Form_BuscaPaciente : Form
         {
             if (status == 0)
             {
-                Dgv_Busca.DataSource = _lista.Where(p => p.Email!.Contains(Txt_Email.Text) && p.Nome!.Contains(Txt_Nome.Text) && p.Cpf!.Contains(Txt_Identificador.Text)).ToList();
+                Dgv_Busca.DataSource = _lista.Where(p => p.Email!.Contains(Txt_Email.Text) && p.Nome!.Contains(Txt_Nome.Text) && p.Cpf!.Contains(Txt_CPF.Text)).ToList();
             }
             else
             {
@@ -90,7 +90,7 @@ public partial class Form_BuscaPaciente : Form
         Cmb_Status.SelectedIndex = 0;
         Txt_Id.Text = string.Empty;
         Txt_Nome.Text = string.Empty;
-        Txt_Identificador.Text = string.Empty;
+        Txt_CPF.Text = string.Empty;
         Txt_Email.Text = string.Empty;
     }
 }

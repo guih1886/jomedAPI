@@ -35,8 +35,8 @@
             Gpb_Dados = new GroupBox();
             Lbl_Status = new Label();
             Cmb_Status = new ComboBox();
-            Txt_Identificador = new TextBox();
-            Lbl_Identificador = new Label();
+            Txt_CPF = new TextBox();
+            Lbl_CPF = new Label();
             Txt_Email = new TextBox();
             Lbl_Email = new Label();
             Txt_Nome = new TextBox();
@@ -77,8 +77,8 @@
             // 
             Gpb_Dados.Controls.Add(Lbl_Status);
             Gpb_Dados.Controls.Add(Cmb_Status);
-            Gpb_Dados.Controls.Add(Txt_Identificador);
-            Gpb_Dados.Controls.Add(Lbl_Identificador);
+            Gpb_Dados.Controls.Add(Txt_CPF);
+            Gpb_Dados.Controls.Add(Lbl_CPF);
             Gpb_Dados.Controls.Add(Txt_Email);
             Gpb_Dados.Controls.Add(Lbl_Email);
             Gpb_Dados.Controls.Add(Txt_Nome);
@@ -113,24 +113,24 @@
             Cmb_Status.TabStop = false;
             Cmb_Status.SelectedIndexChanged += Cmb_Status_SelectedIndexChanged;
             // 
-            // Txt_Identificador
+            // Txt_CPF
             // 
-            Txt_Identificador.Location = new Point(6, 75);
-            Txt_Identificador.MaxLength = 11;
-            Txt_Identificador.Name = "Txt_Identificador";
-            Txt_Identificador.Size = new Size(216, 23);
-            Txt_Identificador.TabIndex = 3;
+            Txt_CPF.Location = new Point(6, 75);
+            Txt_CPF.MaxLength = 11;
+            Txt_CPF.Name = "Txt_CPF";
+            Txt_CPF.Size = new Size(216, 23);
+            Txt_CPF.TabIndex = 3;
             // 
-            // Lbl_Identificador
+            // Lbl_CPF
             // 
-            Lbl_Identificador.AutoSize = true;
-            Lbl_Identificador.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Lbl_Identificador.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
-            Lbl_Identificador.Location = new Point(6, 56);
-            Lbl_Identificador.Name = "Lbl_Identificador";
-            Lbl_Identificador.Size = new Size(63, 16);
-            Lbl_Identificador.TabIndex = 6;
-            Lbl_Identificador.Text = "Identificador";
+            Lbl_CPF.AutoSize = true;
+            Lbl_CPF.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Lbl_CPF.LiveSetting = System.Windows.Forms.Automation.AutomationLiveSetting.Polite;
+            Lbl_CPF.Location = new Point(6, 56);
+            Lbl_CPF.Name = "Lbl_CPF";
+            Lbl_CPF.Size = new Size(29, 16);
+            Lbl_CPF.TabIndex = 6;
+            Lbl_CPF.Text = "CPF";
             // 
             // Txt_Email
             // 
@@ -253,7 +253,7 @@
         private DataGridView Dgv_Busca;
         private BindingSource pacienteBindingSource;
         private GroupBox Gpb_Dados;
-        private Label Lbl_Identificador;
+        private Label Lbl_CPF;
         private TextBox Txt_Email;
         private Label Lbl_Email;
         private TextBox Txt_Nome;
@@ -262,7 +262,7 @@
         private Label Lbl_Id;
         private Button Btn_Cancelar;
         private Button Btn_Selecionar;
-        private TextBox Txt_Identificador;
+        private TextBox Txt_CPF;
         private Button Btn_Buscar;
         private Label Lbl_Status;
         private ComboBox Cmb_Status;

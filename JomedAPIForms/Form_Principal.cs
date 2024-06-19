@@ -110,7 +110,7 @@ namespace JomedAPIForms
             List<Consulta> listaConsultas = JsonConvert.DeserializeObject<List<Consulta>>(await respostaConsultas.Content.ReadAsStringAsync())!;
             List<Medico> listaMedicos = JsonConvert.DeserializeObject<List<Medico>>(await respostaMedicos.Content.ReadAsStringAsync())!;
             List<Paciente> listaPacientes = JsonConvert.DeserializeObject<List<Paciente>>(await respostaPacientes.Content.ReadAsStringAsync())!;
-            Form_Consultas consultas = new Form_Consultas(_httpClientBuilder, listaConsultas, listaMedicos, listaPacientes);
+            Form_Consultas consultas = new Form_Consultas(_httpClientBuilder, listaConsultas, listaMedicos, listaPacientes, usuarioRole!);
             consultas.Show();
         }
     }

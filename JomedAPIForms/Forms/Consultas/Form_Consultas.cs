@@ -15,13 +15,14 @@ namespace JomedAPIForms.Forms.Consultas
         private List<Medico> listaMedicos;
         private List<Paciente> listaPacientes;
         private DataGridViewRow? consultaSelecionada;
-        public Form_Consultas(HttpClientBuilder httpClientBuilder, List<Consulta> listaConsultas, List<Medico> listaMedicos, List<Paciente> listaPacientes)
+        public Form_Consultas(HttpClientBuilder httpClientBuilder, List<Consulta> listaConsultas, List<Medico> listaMedicos, List<Paciente> listaPacientes, string usuarioRole)
         {
             _httpClientBuilder = httpClientBuilder;
             this.listaConsultas = listaConsultas;
             this.listaMedicos = listaMedicos;
             this.listaPacientes = listaPacientes;
             InitializeComponent();
+            VerificaFuncaoDoUsuario(usuarioRole);
             PreencheDataGrid(listaConsultas, listaMedicos, listaPacientes);
             PreencheComboBoxEspecialidade();
             Dtp_Data.Value = DateTime.Now.AddDays(1);
@@ -36,7 +37,7 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void toolStripBuscar_Click(object sender, EventArgs e)
         {
-            Form_BuscarConsulta buscarConsulta = new Form_BuscarConsulta(listaConsultas,listaMedicos,listaPacientes);
+            Form_BuscarConsulta buscarConsulta = new Form_BuscarConsulta(listaConsultas, listaMedicos, listaPacientes);
             DialogResult resposta = buscarConsulta.ShowDialog();
             if (resposta == DialogResult.OK)
             {
@@ -244,6 +245,13 @@ namespace JomedAPIForms.Forms.Consultas
                 cmb_NomeMedico.SelectedIndex = 0;
             }
         }
-
+        private void VerificaFuncaoDoUsuario(string usuarioRole)
+        {
+            if (usuarioRole != "Administrador")
+            {
+                toolStripExcluir.Visible = false;
+                toolStripSeparator5.Visible = false;
+            }
+        }
     }
 }
