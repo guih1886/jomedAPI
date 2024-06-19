@@ -30,6 +30,14 @@ partial class Form_Medicos
         components = new System.ComponentModel.Container();
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Medicos));
         Dgv_Medicos = new DataGridView();
+        ativoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
+        idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        crmDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        telefoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        especialidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        Endereco = new DataGridViewTextBoxColumn();
         medicoBindingSource = new BindingSource(components);
         toolStrip1 = new ToolStrip();
         toolStripNovo = new ToolStripButton();
@@ -44,21 +52,6 @@ partial class Form_Medicos
         toolStripSeparator5 = new ToolStripSeparator();
         toolStripCancelar = new ToolStripButton();
         Gpb_DadosMedico = new GroupBox();
-        Gpb_Endereco = new GroupBox();
-        Cmb_UF = new ComboBox();
-        Lbl_UF = new Label();
-        Txt_Cidade = new TextBox();
-        Lbl_Cidade = new Label();
-        Txt_CEP = new TextBox();
-        Lbl_CEP = new Label();
-        Txt_Complemento = new TextBox();
-        Lbl_Complemento = new Label();
-        Txt_Bairro = new TextBox();
-        Lbl_Bairro = new Label();
-        Txt_Numero = new TextBox();
-        Lbl_Numero = new Label();
-        Txt_Logradouro = new TextBox();
-        Lbl_Logradouro = new Label();
         Gpb_Dados = new GroupBox();
         Cmb_Especialidade = new ComboBox();
         Lbl_Especialidade = new Label();
@@ -73,19 +66,27 @@ partial class Form_Medicos
         Lbl_Nome = new Label();
         Txt_Id = new TextBox();
         Lbl_Id = new Label();
-        ativoDataGridViewCheckBoxColumn = new DataGridViewCheckBoxColumn();
-        idDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        nomeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        emailDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        crmDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        telefoneDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
-        especialidadeDataGridViewTextBoxColumn = new DataGridViewTextBoxColumn();
+        Gpb_Endereco = new GroupBox();
+        Cmb_UF = new ComboBox();
+        Lbl_UF = new Label();
+        Lbl_Logradouro = new Label();
+        Txt_Logradouro = new TextBox();
+        Txt_Cidade = new TextBox();
+        Lbl_Cidade = new Label();
+        Txt_CEP = new TextBox();
+        Lbl_CEP = new Label();
+        Txt_Complemento = new TextBox();
+        Lbl_Complemento = new Label();
+        Txt_Bairro = new TextBox();
+        Lbl_Bairro = new Label();
+        Txt_Numero = new TextBox();
+        Lbl_Numero = new Label();
         ((System.ComponentModel.ISupportInitialize)Dgv_Medicos).BeginInit();
         ((System.ComponentModel.ISupportInitialize)medicoBindingSource).BeginInit();
         toolStrip1.SuspendLayout();
         Gpb_DadosMedico.SuspendLayout();
-        Gpb_Endereco.SuspendLayout();
         Gpb_Dados.SuspendLayout();
+        Gpb_Endereco.SuspendLayout();
         SuspendLayout();
         // 
         // Dgv_Medicos
@@ -95,15 +96,81 @@ partial class Form_Medicos
         Dgv_Medicos.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
         Dgv_Medicos.AutoGenerateColumns = false;
         Dgv_Medicos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-        Dgv_Medicos.Columns.AddRange(new DataGridViewColumn[] { ativoDataGridViewCheckBoxColumn, idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, crmDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn, especialidadeDataGridViewTextBoxColumn });
+        Dgv_Medicos.Columns.AddRange(new DataGridViewColumn[] { ativoDataGridViewCheckBoxColumn, idDataGridViewTextBoxColumn, nomeDataGridViewTextBoxColumn, emailDataGridViewTextBoxColumn, crmDataGridViewTextBoxColumn, telefoneDataGridViewTextBoxColumn, especialidadeDataGridViewTextBoxColumn, Endereco });
         Dgv_Medicos.DataSource = medicoBindingSource;
         Dgv_Medicos.Location = new Point(12, 28);
         Dgv_Medicos.MultiSelect = false;
         Dgv_Medicos.Name = "Dgv_Medicos";
         Dgv_Medicos.ReadOnly = true;
+        Dgv_Medicos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         Dgv_Medicos.Size = new Size(1147, 312);
         Dgv_Medicos.TabIndex = 0;
         Dgv_Medicos.TabStop = false;
+        Dgv_Medicos.CellDoubleClick += Dgv_Medicos_CellDoubleClick;
+        // 
+        // ativoDataGridViewCheckBoxColumn
+        // 
+        ativoDataGridViewCheckBoxColumn.DataPropertyName = "Ativo";
+        ativoDataGridViewCheckBoxColumn.HeaderText = "Ativo";
+        ativoDataGridViewCheckBoxColumn.Name = "ativoDataGridViewCheckBoxColumn";
+        ativoDataGridViewCheckBoxColumn.ReadOnly = true;
+        ativoDataGridViewCheckBoxColumn.Width = 54;
+        // 
+        // idDataGridViewTextBoxColumn
+        // 
+        idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+        idDataGridViewTextBoxColumn.HeaderText = "Id";
+        idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+        idDataGridViewTextBoxColumn.ReadOnly = true;
+        idDataGridViewTextBoxColumn.Width = 50;
+        // 
+        // nomeDataGridViewTextBoxColumn
+        // 
+        nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
+        nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
+        nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
+        nomeDataGridViewTextBoxColumn.ReadOnly = true;
+        nomeDataGridViewTextBoxColumn.Width = 300;
+        // 
+        // emailDataGridViewTextBoxColumn
+        // 
+        emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+        emailDataGridViewTextBoxColumn.HeaderText = "Email";
+        emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+        emailDataGridViewTextBoxColumn.ReadOnly = true;
+        emailDataGridViewTextBoxColumn.Width = 300;
+        // 
+        // crmDataGridViewTextBoxColumn
+        // 
+        crmDataGridViewTextBoxColumn.DataPropertyName = "Crm";
+        crmDataGridViewTextBoxColumn.HeaderText = "Crm";
+        crmDataGridViewTextBoxColumn.Name = "crmDataGridViewTextBoxColumn";
+        crmDataGridViewTextBoxColumn.ReadOnly = true;
+        crmDataGridViewTextBoxColumn.Width = 130;
+        // 
+        // telefoneDataGridViewTextBoxColumn
+        // 
+        telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
+        telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
+        telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
+        telefoneDataGridViewTextBoxColumn.ReadOnly = true;
+        telefoneDataGridViewTextBoxColumn.Width = 120;
+        // 
+        // especialidadeDataGridViewTextBoxColumn
+        // 
+        especialidadeDataGridViewTextBoxColumn.DataPropertyName = "Especialidade";
+        especialidadeDataGridViewTextBoxColumn.HeaderText = "Especialidade";
+        especialidadeDataGridViewTextBoxColumn.Name = "especialidadeDataGridViewTextBoxColumn";
+        especialidadeDataGridViewTextBoxColumn.ReadOnly = true;
+        especialidadeDataGridViewTextBoxColumn.Width = 150;
+        // 
+        // Endereco
+        // 
+        Endereco.DataPropertyName = "Endereco";
+        Endereco.HeaderText = "Endereco";
+        Endereco.Name = "Endereco";
+        Endereco.ReadOnly = true;
+        Endereco.Visible = false;
         // 
         // medicoBindingSource
         // 
@@ -226,156 +293,6 @@ partial class Form_Medicos
         Gpb_DadosMedico.TabStop = false;
         Gpb_DadosMedico.Text = "Dados do Médico";
         // 
-        // Gpb_Endereco
-        // 
-        Gpb_Endereco.Controls.Add(Cmb_UF);
-        Gpb_Endereco.Controls.Add(Lbl_UF);
-        Gpb_Endereco.Controls.Add(Txt_Cidade);
-        Gpb_Endereco.Controls.Add(Lbl_Cidade);
-        Gpb_Endereco.Controls.Add(Txt_CEP);
-        Gpb_Endereco.Controls.Add(Lbl_CEP);
-        Gpb_Endereco.Controls.Add(Txt_Complemento);
-        Gpb_Endereco.Controls.Add(Lbl_Complemento);
-        Gpb_Endereco.Controls.Add(Txt_Bairro);
-        Gpb_Endereco.Controls.Add(Lbl_Bairro);
-        Gpb_Endereco.Controls.Add(Txt_Numero);
-        Gpb_Endereco.Controls.Add(Lbl_Numero);
-        Gpb_Endereco.Controls.Add(Txt_Logradouro);
-        Gpb_Endereco.Controls.Add(Lbl_Logradouro);
-        Gpb_Endereco.Location = new Point(6, 168);
-        Gpb_Endereco.Name = "Gpb_Endereco";
-        Gpb_Endereco.Size = new Size(1135, 125);
-        Gpb_Endereco.TabIndex = 1;
-        Gpb_Endereco.TabStop = false;
-        // 
-        // Cmb_UF
-        // 
-        Cmb_UF.DropDownStyle = ComboBoxStyle.DropDownList;
-        Cmb_UF.Enabled = false;
-        Cmb_UF.FormattingEnabled = true;
-        Cmb_UF.Location = new Point(924, 77);
-        Cmb_UF.Name = "Cmb_UF";
-        Cmb_UF.Size = new Size(205, 23);
-        Cmb_UF.TabIndex = 12;
-        // 
-        // Lbl_UF
-        // 
-        Lbl_UF.AutoSize = true;
-        Lbl_UF.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_UF.Location = new Point(922, 58);
-        Lbl_UF.Name = "Lbl_UF";
-        Lbl_UF.Size = new Size(22, 16);
-        Lbl_UF.TabIndex = 16;
-        Lbl_UF.Text = "UF";
-        // 
-        // Txt_Cidade
-        // 
-        Txt_Cidade.Enabled = false;
-        Txt_Cidade.Location = new Point(571, 77);
-        Txt_Cidade.Name = "Txt_Cidade";
-        Txt_Cidade.Size = new Size(347, 23);
-        Txt_Cidade.TabIndex = 11;
-        // 
-        // Lbl_Cidade
-        // 
-        Lbl_Cidade.AutoSize = true;
-        Lbl_Cidade.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_Cidade.Location = new Point(571, 58);
-        Lbl_Cidade.Name = "Lbl_Cidade";
-        Lbl_Cidade.Size = new Size(41, 16);
-        Lbl_Cidade.TabIndex = 14;
-        Lbl_Cidade.Text = "Cidade";
-        // 
-        // Txt_CEP
-        // 
-        Txt_CEP.Enabled = false;
-        Txt_CEP.Location = new Point(359, 77);
-        Txt_CEP.Name = "Txt_CEP";
-        Txt_CEP.Size = new Size(206, 23);
-        Txt_CEP.TabIndex = 10;
-        // 
-        // Lbl_CEP
-        // 
-        Lbl_CEP.AutoSize = true;
-        Lbl_CEP.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_CEP.Location = new Point(359, 58);
-        Lbl_CEP.Name = "Lbl_CEP";
-        Lbl_CEP.Size = new Size(29, 16);
-        Lbl_CEP.TabIndex = 12;
-        Lbl_CEP.Text = "CEP";
-        // 
-        // Txt_Complemento
-        // 
-        Txt_Complemento.Enabled = false;
-        Txt_Complemento.Location = new Point(6, 77);
-        Txt_Complemento.Name = "Txt_Complemento";
-        Txt_Complemento.Size = new Size(347, 23);
-        Txt_Complemento.TabIndex = 9;
-        // 
-        // Lbl_Complemento
-        // 
-        Lbl_Complemento.AutoSize = true;
-        Lbl_Complemento.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_Complemento.Location = new Point(6, 58);
-        Lbl_Complemento.Name = "Lbl_Complemento";
-        Lbl_Complemento.Size = new Size(71, 16);
-        Lbl_Complemento.TabIndex = 10;
-        Lbl_Complemento.Text = "Complemento";
-        // 
-        // Txt_Bairro
-        // 
-        Txt_Bairro.Enabled = false;
-        Txt_Bairro.Location = new Point(691, 32);
-        Txt_Bairro.Name = "Txt_Bairro";
-        Txt_Bairro.Size = new Size(438, 23);
-        Txt_Bairro.TabIndex = 8;
-        // 
-        // Lbl_Bairro
-        // 
-        Lbl_Bairro.AutoSize = true;
-        Lbl_Bairro.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_Bairro.Location = new Point(691, 13);
-        Lbl_Bairro.Name = "Lbl_Bairro";
-        Lbl_Bairro.Size = new Size(36, 16);
-        Lbl_Bairro.TabIndex = 8;
-        Lbl_Bairro.Text = "Bairro";
-        // 
-        // Txt_Numero
-        // 
-        Txt_Numero.Enabled = false;
-        Txt_Numero.Location = new Point(570, 32);
-        Txt_Numero.Name = "Txt_Numero";
-        Txt_Numero.Size = new Size(115, 23);
-        Txt_Numero.TabIndex = 7;
-        // 
-        // Lbl_Numero
-        // 
-        Lbl_Numero.AutoSize = true;
-        Lbl_Numero.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_Numero.Location = new Point(570, 13);
-        Lbl_Numero.Name = "Lbl_Numero";
-        Lbl_Numero.Size = new Size(45, 16);
-        Lbl_Numero.TabIndex = 6;
-        Lbl_Numero.Text = "Número";
-        // 
-        // Txt_Logradouro
-        // 
-        Txt_Logradouro.Enabled = false;
-        Txt_Logradouro.Location = new Point(6, 32);
-        Txt_Logradouro.Name = "Txt_Logradouro";
-        Txt_Logradouro.Size = new Size(559, 23);
-        Txt_Logradouro.TabIndex = 6;
-        // 
-        // Lbl_Logradouro
-        // 
-        Lbl_Logradouro.AutoSize = true;
-        Lbl_Logradouro.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        Lbl_Logradouro.Location = new Point(6, 13);
-        Lbl_Logradouro.Name = "Lbl_Logradouro";
-        Lbl_Logradouro.Size = new Size(63, 16);
-        Lbl_Logradouro.TabIndex = 4;
-        Lbl_Logradouro.Text = "Logradouro";
-        // 
         // Gpb_Dados
         // 
         Gpb_Dados.Controls.Add(Cmb_Especialidade);
@@ -433,6 +350,7 @@ partial class Form_Medicos
         // 
         Txt_Telefone.Enabled = false;
         Txt_Telefone.Location = new Point(6, 117);
+        Txt_Telefone.MaxLength = 11;
         Txt_Telefone.Name = "Txt_Telefone";
         Txt_Telefone.Size = new Size(347, 23);
         Txt_Telefone.TabIndex = 5;
@@ -451,6 +369,7 @@ partial class Form_Medicos
         // 
         Txt_CRM.Enabled = false;
         Txt_CRM.Location = new Point(112, 29);
+        Txt_CRM.MaxLength = 11;
         Txt_CRM.Name = "Txt_CRM";
         Txt_CRM.Size = new Size(241, 23);
         Txt_CRM.TabIndex = 2;
@@ -519,61 +438,157 @@ partial class Form_Medicos
         Lbl_Id.TabIndex = 0;
         Lbl_Id.Text = "ID";
         // 
-        // ativoDataGridViewCheckBoxColumn
+        // Gpb_Endereco
         // 
-        ativoDataGridViewCheckBoxColumn.DataPropertyName = "Ativo";
-        ativoDataGridViewCheckBoxColumn.HeaderText = "Ativo";
-        ativoDataGridViewCheckBoxColumn.Name = "ativoDataGridViewCheckBoxColumn";
-        ativoDataGridViewCheckBoxColumn.ReadOnly = true;
-        ativoDataGridViewCheckBoxColumn.Width = 54;
+        Gpb_Endereco.Controls.Add(Cmb_UF);
+        Gpb_Endereco.Controls.Add(Lbl_UF);
+        Gpb_Endereco.Controls.Add(Lbl_Logradouro);
+        Gpb_Endereco.Controls.Add(Txt_Logradouro);
+        Gpb_Endereco.Controls.Add(Txt_Cidade);
+        Gpb_Endereco.Controls.Add(Lbl_Cidade);
+        Gpb_Endereco.Controls.Add(Txt_CEP);
+        Gpb_Endereco.Controls.Add(Lbl_CEP);
+        Gpb_Endereco.Controls.Add(Txt_Complemento);
+        Gpb_Endereco.Controls.Add(Lbl_Complemento);
+        Gpb_Endereco.Controls.Add(Txt_Bairro);
+        Gpb_Endereco.Controls.Add(Lbl_Bairro);
+        Gpb_Endereco.Controls.Add(Txt_Numero);
+        Gpb_Endereco.Controls.Add(Lbl_Numero);
+        Gpb_Endereco.Location = new Point(6, 174);
+        Gpb_Endereco.Name = "Gpb_Endereco";
+        Gpb_Endereco.Size = new Size(1135, 125);
+        Gpb_Endereco.TabIndex = 2;
+        Gpb_Endereco.TabStop = false;
         // 
-        // idDataGridViewTextBoxColumn
+        // Cmb_UF
         // 
-        idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-        idDataGridViewTextBoxColumn.HeaderText = "Id";
-        idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-        idDataGridViewTextBoxColumn.ReadOnly = true;
-        idDataGridViewTextBoxColumn.Width = 50;
+        Cmb_UF.DropDownStyle = ComboBoxStyle.DropDownList;
+        Cmb_UF.Enabled = false;
+        Cmb_UF.FormattingEnabled = true;
+        Cmb_UF.Location = new Point(720, 77);
+        Cmb_UF.Name = "Cmb_UF";
+        Cmb_UF.Size = new Size(80, 23);
+        Cmb_UF.TabIndex = 12;
         // 
-        // nomeDataGridViewTextBoxColumn
+        // Lbl_UF
         // 
-        nomeDataGridViewTextBoxColumn.DataPropertyName = "Nome";
-        nomeDataGridViewTextBoxColumn.HeaderText = "Nome";
-        nomeDataGridViewTextBoxColumn.Name = "nomeDataGridViewTextBoxColumn";
-        nomeDataGridViewTextBoxColumn.ReadOnly = true;
-        nomeDataGridViewTextBoxColumn.Width = 300;
+        Lbl_UF.AutoSize = true;
+        Lbl_UF.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_UF.Location = new Point(720, 58);
+        Lbl_UF.Name = "Lbl_UF";
+        Lbl_UF.Size = new Size(22, 16);
+        Lbl_UF.TabIndex = 16;
+        Lbl_UF.Text = "UF";
         // 
-        // emailDataGridViewTextBoxColumn
+        // Lbl_Logradouro
         // 
-        emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-        emailDataGridViewTextBoxColumn.HeaderText = "Email";
-        emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-        emailDataGridViewTextBoxColumn.ReadOnly = true;
-        emailDataGridViewTextBoxColumn.Width = 300;
+        Lbl_Logradouro.AutoSize = true;
+        Lbl_Logradouro.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_Logradouro.Location = new Point(183, 13);
+        Lbl_Logradouro.Name = "Lbl_Logradouro";
+        Lbl_Logradouro.Size = new Size(63, 16);
+        Lbl_Logradouro.TabIndex = 4;
+        Lbl_Logradouro.Text = "Logradouro";
         // 
-        // crmDataGridViewTextBoxColumn
+        // Txt_Logradouro
         // 
-        crmDataGridViewTextBoxColumn.DataPropertyName = "Crm";
-        crmDataGridViewTextBoxColumn.HeaderText = "Crm";
-        crmDataGridViewTextBoxColumn.Name = "crmDataGridViewTextBoxColumn";
-        crmDataGridViewTextBoxColumn.ReadOnly = true;
-        crmDataGridViewTextBoxColumn.Width = 130;
+        Txt_Logradouro.Enabled = false;
+        Txt_Logradouro.Location = new Point(183, 32);
+        Txt_Logradouro.Name = "Txt_Logradouro";
+        Txt_Logradouro.Size = new Size(531, 23);
+        Txt_Logradouro.TabIndex = 7;
         // 
-        // telefoneDataGridViewTextBoxColumn
+        // Txt_Cidade
         // 
-        telefoneDataGridViewTextBoxColumn.DataPropertyName = "Telefone";
-        telefoneDataGridViewTextBoxColumn.HeaderText = "Telefone";
-        telefoneDataGridViewTextBoxColumn.Name = "telefoneDataGridViewTextBoxColumn";
-        telefoneDataGridViewTextBoxColumn.ReadOnly = true;
-        telefoneDataGridViewTextBoxColumn.Width = 120;
+        Txt_Cidade.Enabled = false;
+        Txt_Cidade.Location = new Point(359, 77);
+        Txt_Cidade.Name = "Txt_Cidade";
+        Txt_Cidade.Size = new Size(355, 23);
+        Txt_Cidade.TabIndex = 11;
         // 
-        // especialidadeDataGridViewTextBoxColumn
+        // Lbl_Cidade
         // 
-        especialidadeDataGridViewTextBoxColumn.DataPropertyName = "Especialidade";
-        especialidadeDataGridViewTextBoxColumn.HeaderText = "Especialidade";
-        especialidadeDataGridViewTextBoxColumn.Name = "especialidadeDataGridViewTextBoxColumn";
-        especialidadeDataGridViewTextBoxColumn.ReadOnly = true;
-        especialidadeDataGridViewTextBoxColumn.Width = 150;
+        Lbl_Cidade.AutoSize = true;
+        Lbl_Cidade.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_Cidade.Location = new Point(359, 58);
+        Lbl_Cidade.Name = "Lbl_Cidade";
+        Lbl_Cidade.Size = new Size(41, 16);
+        Lbl_Cidade.TabIndex = 14;
+        Lbl_Cidade.Text = "Cidade";
+        // 
+        // Txt_CEP
+        // 
+        Txt_CEP.Enabled = false;
+        Txt_CEP.Location = new Point(6, 32);
+        Txt_CEP.MaxLength = 9;
+        Txt_CEP.Name = "Txt_CEP";
+        Txt_CEP.Size = new Size(171, 23);
+        Txt_CEP.TabIndex = 6;
+        Txt_CEP.Leave += Txt_CEP_Leave;
+        // 
+        // Lbl_CEP
+        // 
+        Lbl_CEP.AutoSize = true;
+        Lbl_CEP.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_CEP.Location = new Point(6, 13);
+        Lbl_CEP.Name = "Lbl_CEP";
+        Lbl_CEP.Size = new Size(29, 16);
+        Lbl_CEP.TabIndex = 12;
+        Lbl_CEP.Text = "CEP";
+        // 
+        // Txt_Complemento
+        // 
+        Txt_Complemento.Enabled = false;
+        Txt_Complemento.Location = new Point(6, 77);
+        Txt_Complemento.Name = "Txt_Complemento";
+        Txt_Complemento.Size = new Size(347, 23);
+        Txt_Complemento.TabIndex = 10;
+        // 
+        // Lbl_Complemento
+        // 
+        Lbl_Complemento.AutoSize = true;
+        Lbl_Complemento.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_Complemento.Location = new Point(6, 58);
+        Lbl_Complemento.Name = "Lbl_Complemento";
+        Lbl_Complemento.Size = new Size(71, 16);
+        Lbl_Complemento.TabIndex = 10;
+        Lbl_Complemento.Text = "Complemento";
+        // 
+        // Txt_Bairro
+        // 
+        Txt_Bairro.Enabled = false;
+        Txt_Bairro.Location = new Point(806, 32);
+        Txt_Bairro.Name = "Txt_Bairro";
+        Txt_Bairro.Size = new Size(323, 23);
+        Txt_Bairro.TabIndex = 9;
+        // 
+        // Lbl_Bairro
+        // 
+        Lbl_Bairro.AutoSize = true;
+        Lbl_Bairro.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_Bairro.Location = new Point(806, 13);
+        Lbl_Bairro.Name = "Lbl_Bairro";
+        Lbl_Bairro.Size = new Size(36, 16);
+        Lbl_Bairro.TabIndex = 8;
+        Lbl_Bairro.Text = "Bairro";
+        // 
+        // Txt_Numero
+        // 
+        Txt_Numero.Enabled = false;
+        Txt_Numero.Location = new Point(720, 32);
+        Txt_Numero.Name = "Txt_Numero";
+        Txt_Numero.Size = new Size(80, 23);
+        Txt_Numero.TabIndex = 8;
+        // 
+        // Lbl_Numero
+        // 
+        Lbl_Numero.AutoSize = true;
+        Lbl_Numero.Font = new Font("Arial Narrow", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        Lbl_Numero.Location = new Point(720, 13);
+        Lbl_Numero.Name = "Lbl_Numero";
+        Lbl_Numero.Size = new Size(45, 16);
+        Lbl_Numero.TabIndex = 6;
+        Lbl_Numero.Text = "Número";
         // 
         // Form_Medicos
         // 
@@ -596,10 +611,10 @@ partial class Form_Medicos
         toolStrip1.ResumeLayout(false);
         toolStrip1.PerformLayout();
         Gpb_DadosMedico.ResumeLayout(false);
-        Gpb_Endereco.ResumeLayout(false);
-        Gpb_Endereco.PerformLayout();
         Gpb_Dados.ResumeLayout(false);
         Gpb_Dados.PerformLayout();
+        Gpb_Endereco.ResumeLayout(false);
+        Gpb_Endereco.PerformLayout();
         ResumeLayout(false);
         PerformLayout();
     }
@@ -620,7 +635,6 @@ partial class Form_Medicos
     private ToolStripSeparator toolStripSeparator5;
     private ToolStripButton toolStripCancelar;
     private GroupBox Gpb_DadosMedico;
-    private GroupBox Gpb_Endereco;
     private GroupBox Gpb_Dados;
     private TextBox Txt_Id;
     private Label Lbl_Id;
@@ -632,20 +646,6 @@ partial class Form_Medicos
     private Label Lbl_Telefone;
     private TextBox Txt_CRM;
     private Label Lbl_CRM;
-    private TextBox Txt_Cidade;
-    private Label Lbl_Cidade;
-    private TextBox Txt_CEP;
-    private Label Lbl_CEP;
-    private TextBox Txt_Complemento;
-    private Label Lbl_Complemento;
-    private TextBox Txt_Bairro;
-    private Label Lbl_Bairro;
-    private TextBox Txt_Numero;
-    private Label Lbl_Numero;
-    private TextBox Txt_Logradouro;
-    private Label Lbl_Logradouro;
-    private ComboBox Cmb_UF;
-    private Label Lbl_UF;
     private CheckBox Ckb_Ativo;
     private BindingSource medicoBindingSource;
     private ComboBox Cmb_Especialidade;
@@ -657,4 +657,20 @@ partial class Form_Medicos
     private DataGridViewTextBoxColumn crmDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn telefoneDataGridViewTextBoxColumn;
     private DataGridViewTextBoxColumn especialidadeDataGridViewTextBoxColumn;
+    private DataGridViewTextBoxColumn Endereco;
+    private GroupBox Gpb_Endereco;
+    private ComboBox Cmb_UF;
+    private Label Lbl_UF;
+    private Label Lbl_Logradouro;
+    private TextBox Txt_Logradouro;
+    private TextBox Txt_Cidade;
+    private Label Lbl_Cidade;
+    private TextBox Txt_CEP;
+    private Label Lbl_CEP;
+    private TextBox Txt_Complemento;
+    private Label Lbl_Complemento;
+    private TextBox Txt_Bairro;
+    private Label Lbl_Bairro;
+    private TextBox Txt_Numero;
+    private Label Lbl_Numero;
 }
