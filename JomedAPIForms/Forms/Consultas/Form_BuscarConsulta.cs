@@ -43,9 +43,16 @@ namespace JomedAPIForms.Forms.Consultas
         }
         private void Btn_Selecionar_Click(object sender, EventArgs e)
         {
-            selecionado = Dgv_Busca.SelectedRows[0];
-            DialogResult = DialogResult.OK;
-            this.Close();
+            try
+            {
+                selecionado = Dgv_Busca.SelectedRows[0];
+                DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao selecionar consulta.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void Btn_Cancelar_Click(object sender, EventArgs e)
         {
